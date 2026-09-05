@@ -2,446 +2,420 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DERIV SIGNAL BOT PRO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DERIV SIGNAL BOT PRO — ELISY 254</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box}
 body{
+  margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#020806;
-  color:#eafff3;
-  min-height:100vh;
+  background:#05080d;
+  color:#fff;
 }
+button,input,select{font:inherit}
 
-button,input,select{
-  font:inherit;
-}
+.hidden{display:none!important}
 
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.green{
-  color:#20ff88;
-}
-
-.red{
-  color:#ff4d5f;
-}
-
-.yellow{
-  color:#ffd84d;
-}
-
-.blue{
-  color:#43a5ff;
-}
-
-.muted{
-  color:#78998a;
-}
-
-.small{
-  font-size:12px;
-}
-
-/* LOGIN */
-
-#loginScreen{
+.login-screen{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
   background:
-    radial-gradient(circle at top,#073c27 0%,#020806 45%,#000 100%);
+    radial-gradient(circle at top,#10281d 0,#05080d 45%,#020304 100%);
 }
 
-.login-card{
+.login-box{
   width:100%;
-  max-width:420px;
-  background:rgba(5,20,14,.96);
-  border:1px solid #174b32;
-  border-radius:24px;
+  max-width:430px;
   padding:30px;
-  box-shadow:0 0 40px rgba(0,255,130,.08);
+  border:1px solid #1d8f55;
+  border-radius:22px;
+  background:#09110e;
+  box-shadow:0 0 35px rgba(0,255,120,.12);
 }
 
 .logo{
   text-align:center;
-  margin-bottom:25px;
+  font-size:42px;
 }
 
-.logo-icon{
-  font-size:58px;
-  margin-bottom:8px;
-}
-
-.logo h1{
-  color:#25ff91;
+.login-title{
+  text-align:center;
+  color:#39ff88;
   font-size:25px;
-  letter-spacing:1px;
+  font-weight:900;
+  margin-top:5px;
 }
 
-.logo p{
-  color:#8db8a1;
+.powered{
+  text-align:center;
+  color:#aaa;
   font-size:12px;
-  margin-top:7px;
-  letter-spacing:1px;
+  margin:7px 0 25px;
 }
 
-.login-card label{
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
   display:block;
-  color:#8fb6a1;
-  font-size:11px;
-  font-weight:bold;
-  margin:15px 0 7px;
+  color:#9ca9a2;
+  font-size:12px;
+  margin-bottom:7px;
 }
 
-.login-card input{
+.field input{
   width:100%;
-  background:#020b07;
-  border:1px solid #24533c;
-  color:white;
   padding:14px;
-  border-radius:12px;
+  border-radius:10px;
+  border:1px solid #263b32;
+  background:#050908;
+  color:#fff;
   outline:none;
 }
 
-.login-card input:focus{
-  border-color:#20ff88;
+.field input:focus{
+  border-color:#39ff88;
 }
 
 .remember{
-  display:flex!important;
-  align-items:center;
+  display:flex;
   gap:9px;
-  margin:14px 0!important;
-  color:#9bbcac!important;
-  font-weight:normal!important;
+  align-items:center;
+  color:#aaa;
+  font-size:13px;
+  margin:10px 0 18px;
 }
 
-.remember input{
-  width:auto;
+.login-btn{
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:15px;
+  background:#18d66b;
+  color:#001b0c;
+  font-weight:900;
+  cursor:pointer;
 }
 
 .login-error{
-  color:#ff5868;
+  color:#ff6666;
   text-align:center;
-  min-height:18px;
-  margin-top:10px;
+  font-size:13px;
+  margin-top:12px;
 }
 
-.btn{
+.saved-account{
+  margin-top:12px;
   width:100%;
-  border:none;
-  border-radius:12px;
-  padding:14px;
-  font-weight:bold;
-  margin-top:10px;
-}
-
-.btn-primary{
-  background:#18ed7b;
-  color:#001d0e;
-}
-
-.btn-primary:hover{
-  background:#48ff9a;
-}
-
-.btn-danger{
-  background:#351018;
-  border:1px solid #8b2735;
-  color:#ff7380;
-}
-
-.btn-dark{
-  background:#07140e;
-  border:1px solid #205039;
-  color:#b7d9c6;
-}
-
-/* APP */
-
-#app{
+  border:1px solid #29483a;
+  background:#0b1711;
+  color:#8dffb9;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
   display:none;
 }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(2,8,6,.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #153b29;
-  padding:15px;
+.app{
+  min-height:100vh;
+  padding:12px;
+  max-width:1450px;
+  margin:auto;
 }
 
-.header-inner{
-  max-width:1250px;
-  margin:auto;
+header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:15px;
+  background:#08110d;
+  border:1px solid #193d2b;
+  border-radius:16px;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
 }
 
-.brand-icon{
+.brand-lion{
   font-size:35px;
 }
 
-.brand h2{
-  font-size:18px;
-  color:#25ff91;
+.brand-name{
+  font-size:22px;
+  font-weight:900;
+  color:#39ff88;
 }
 
-.brand small{
-  color:#739985;
+.brand-sub{
   font-size:10px;
+  color:#82928a;
 }
 
-.status{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:11px;
+.connection{
+  padding:9px 13px;
+  border-radius:20px;
+  background:#171b19;
+  color:#aaa;
+  font-size:12px;
 }
 
-.status-dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#ff4659;
+.connection.live{
+  color:#39ff88;
+  border:1px solid #1d8f55;
 }
 
-.status-dot.online{
-  background:#1eff82;
-  box-shadow:0 0 10px #1eff82;
+.connection.bad{
+  color:#ff6767;
+  border:1px solid #7e2525;
 }
 
-.container{
-  max-width:1250px;
-  margin:auto;
-  padding:18px;
+.logout{
+  border:1px solid #513333;
+  background:#170d0d;
+  color:#ff8585;
+  border-radius:9px;
+  padding:9px 13px;
+  cursor:pointer;
 }
 
 .warning{
-  border:1px solid #704e16;
-  background:#171107;
-  color:#e5c46d;
-  padding:11px;
-  border-radius:12px;
+  margin:12px 0;
+  padding:10px;
+  border-radius:10px;
+  background:#17130a;
+  border:1px solid #5a481d;
+  color:#e5ca7d;
   font-size:11px;
-  margin-bottom:15px;
   text-align:center;
 }
-
-/* GRID */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(12,1fr);
-  gap:14px;
+  gap:12px;
 }
 
 .card{
-  background:linear-gradient(145deg,#06130d,#03100a);
-  border:1px solid #16432c;
-  border-radius:17px;
+  background:#08100d;
+  border:1px solid #193528;
+  border-radius:15px;
   padding:15px;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
+  min-width:0;
 }
 
-.span-12{
-  grid-column:span 12;
-}
-
-.span-8{
-  grid-column:span 8;
-}
-
-.span-6{
-  grid-column:span 6;
-}
-
-.span-4{
-  grid-column:span 4;
-}
+.span12{grid-column:span 12}
+.span8{grid-column:span 8}
+.span6{grid-column:span 6}
+.span4{grid-column:span 4}
 
 .card-title{
-  color:#7fa793;
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:1px;
-  margin-bottom:10px;
+  color:#8dffb9;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.8px;
+  margin-bottom:12px;
 }
-
-/* CONTROLS */
 
 .controls{
   display:grid;
-  grid-template-columns:2fr 1fr 1fr;
+  grid-template-columns:1fr 1fr auto auto;
   gap:10px;
 }
 
 select{
   width:100%;
-  background:#020a06;
-  color:#dfffea;
-  border:1px solid #25523a;
-  border-radius:10px;
   padding:12px;
+  background:#050908;
+  border:1px solid #294638;
+  color:#fff;
+  border-radius:9px;
   outline:none;
 }
 
-.control-buttons{
-  display:flex;
-  gap:8px;
-}
-
-.control-buttons button{
-  flex:1;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  padding:12px;
-}
-
-.run{
-  background:#18e879;
-  color:#001a0d;
+.primary{
+  background:#18d66b;
+  border:0;
+  border-radius:9px;
+  padding:12px 18px;
+  font-weight:900;
+  cursor:pointer;
+  color:#001b0c;
 }
 
 .stop{
-  background:#301017;
-  color:#ff6a78;
-  border:1px solid #702534!important;
+  background:#3a1212;
+  border:1px solid #722727;
+  color:#ff8686;
+  border-radius:9px;
+  padding:12px 18px;
+  font-weight:900;
+  cursor:pointer;
 }
 
-/* MARKET */
+.status-line{
+  margin-top:10px;
+  color:#82928a;
+  font-size:12px;
+}
+
+.good{
+  color:#39ff88!important;
+}
+
+.wait{
+  color:#ffd65a!important;
+}
+
+.bad-text{
+  color:#ff6666!important;
+}
+
+.live-price{
+  font-size:31px;
+  font-weight:900;
+  color:#fff;
+}
 
 .market-name{
-  font-size:20px;
-  color:#20ff88;
-  font-weight:bold;
+  color:#8dffb9;
+  font-size:14px;
+  margin-bottom:5px;
 }
 
-.market-symbol{
-  font-size:11px;
-  color:#719481;
-  margin-top:3px;
-}
-
-.market-stats{
+.stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:8px;
-  margin-top:13px;
+  margin-top:14px;
 }
 
 .stat{
-  background:#020a06;
-  border:1px solid #113723;
+  background:#050908;
+  border:1px solid #172b22;
   border-radius:10px;
   padding:10px;
 }
 
-.stat-label{
+.stat small{
+  display:block;
+  color:#74827b;
   font-size:9px;
-  color:#6f907e;
 }
 
-.stat-value{
+.stat strong{
+  display:block;
   margin-top:5px;
-  font-weight:bold;
-  color:#dffff0;
+  font-size:16px;
 }
 
-/* ENTRY */
-
-.entry-box{
+.entry{
   text-align:center;
-  border:1px solid #1d6040;
-  background:
-    radial-gradient(circle at center,rgba(16,255,121,.08),transparent 60%),
-    #03100a;
+  border:1px solid #284936;
+  background:#07120c;
   border-radius:16px;
   padding:18px;
 }
 
-.entry-status{
-  font-size:13px;
-  font-weight:bold;
-  color:#8ba797;
-}
-
-.target-digit{
-  font-size:72px;
-  line-height:1;
+.entry-state{
+  font-size:24px;
   font-weight:900;
-  color:#20ff88;
-  margin:12px 0;
+  margin-bottom:10px;
 }
 
-.entry-contract{
-  color:#d9ffe8;
-  font-weight:bold;
-  font-size:17px;
+.entry-target{
+  font-size:56px;
+  font-weight:900;
+  color:#39ff88;
+  line-height:1;
+  margin:10px 0;
 }
 
-.entry-info{
+.entry-meta{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px;
-  margin-top:15px;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 
-.entry-info div{
-  background:#020b07;
-  padding:9px;
+.entry-meta div{
+  background:#050908;
+  padding:10px;
   border-radius:9px;
-  border:1px solid #113a26;
 }
 
-.entry-info b{
+.entry-meta small{
   display:block;
-  font-size:13px;
+  color:#718078;
+  font-size:9px;
+}
+
+.entry-meta strong{
+  display:block;
   margin-top:4px;
 }
 
 .timer{
-  margin-top:14px;
-  font-size:13px;
-  color:#ffd84d;
+  margin-top:15px;
+  font-size:24px;
+  font-weight:900;
 }
 
-.good{
-  color:#20ff88!important;
+.reason{
+  margin-top:12px;
+  padding:10px;
+  background:#050908;
+  border-radius:9px;
+  color:#a7b4ad;
+  font-size:12px;
 }
 
-.bad{
-  color:#ff5364!important;
+.windows{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
 
-/* DIGITS */
+.window{
+  padding:13px;
+  background:#050908;
+  border:1px solid #182d23;
+  border-radius:10px;
+}
+
+.window h4{
+  margin:0 0 10px;
+  color:#8dffb9;
+}
+
+.window-line{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  margin:6px 0;
+}
+
+.progress{
+  height:6px;
+  background:#182019;
+  border-radius:5px;
+  overflow:hidden;
+  margin-top:7px;
+}
+
+.progress i{
+  display:block;
+  height:100%;
+  background:#39ff88;
+}
 
 .digits{
   display:grid;
@@ -450,76 +424,42 @@ select{
 }
 
 .digit{
-  height:60px;
+  aspect-ratio:1;
   border-radius:50%;
   display:flex;
   flex-direction:column;
-  justify-content:center;
   align-items:center;
-  background:#06140d;
-  border:1px solid #17432c;
+  justify-content:center;
+  background:#101613;
+  border:2px solid #26342d;
+  font-weight:900;
 }
 
-.digit-number{
-  font-size:16px;
-  font-weight:bold;
-}
-
-.digit-percent{
+.digit small{
   font-size:9px;
-  margin-top:3px;
-  color:#9ebbac;
+  opacity:.75;
 }
 
-.hot{
-  border-color:#20ff88;
-  box-shadow:0 0 12px rgba(32,255,136,.25);
-  color:#20ff88;
+.digit.high{
+  border-color:#39ff88;
+  color:#39ff88;
+  box-shadow:0 0 12px rgba(57,255,136,.25);
 }
 
-.second-hot{
-  border-color:#43a5ff;
-  color:#43a5ff;
+.digit.second-high{
+  border-color:#4ba3ff;
+  color:#4ba3ff;
 }
 
-.cold{
-  border-color:#ff4558;
-  color:#ff4558;
+.digit.second-low{
+  border-color:#ffd65a;
+  color:#ffd65a;
 }
 
-.second-cold{
-  border-color:#ffd84d;
-  color:#ffd84d;
+.digit.low{
+  border-color:#ff5656;
+  color:#ff5656;
 }
-
-/* ANALYSIS */
-
-.analysis-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.window{
-  background:#020b07;
-  border:1px solid #123b27;
-  border-radius:11px;
-  padding:12px;
-}
-
-.window h4{
-  font-size:11px;
-  color:#85aa96;
-}
-
-.window .big{
-  color:#20ff88;
-  font-size:23px;
-  font-weight:bold;
-  margin:6px 0;
-}
-
-/* CONTRACTS */
 
 .contracts{
   display:grid;
@@ -528,54 +468,39 @@ select{
 }
 
 .contract{
-  background:#020b07;
-  border:1px solid #143d28;
-  border-radius:11px;
   padding:12px;
+  background:#050908;
+  border:1px solid #1b3026;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.contract.selected{
+  border-color:#39ff88;
+  box-shadow:0 0 10px rgba(57,255,136,.1);
 }
 
 .contract-name{
-  font-weight:bold;
-  font-size:12px;
+  font-size:11px;
+  color:#a8b6ae;
 }
 
-.contract-prob{
-  color:#20ff88;
-  font-size:21px;
-  margin-top:6px;
-  font-weight:bold;
+.contract-value{
+  font-size:20px;
+  font-weight:900;
+  margin-top:5px;
 }
 
-.contract-bar{
-  height:5px;
-  background:#102319;
-  border-radius:10px;
-  overflow:hidden;
-  margin-top:8px;
-}
-
-.contract-bar span{
-  display:block;
-  height:100%;
-  background:#20ff88;
-}
-
-/* LOG */
-
-.log{
-  height:180px;
+.scanner{
+  height:210px;
   overflow:auto;
-  background:#010604;
-  border:1px solid #102f20;
-  border-radius:10px;
+  background:#020504;
+  border:1px solid #17251e;
+  border-radius:9px;
   padding:10px;
   font-family:monospace;
-  font-size:10px;
-  line-height:1.7;
-}
-
-.log-line{
-  color:#50e99a;
+  font-size:11px;
+  color:#39ff88;
 }
 
 .history{
@@ -584,1191 +509,655 @@ select{
 }
 
 .history-row{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
-  gap:5px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
   padding:8px;
-  border-bottom:1px solid #0d291c;
-  font-size:10px;
+  border-bottom:1px solid #142119;
+  font-size:11px;
 }
 
-/* MATCHES */
+.history-row small{
+  color:#77857d;
+}
+
+.ticks{
+  max-height:170px;
+  overflow:auto;
+  font-family:monospace;
+  font-size:11px;
+}
+
+.tick-row{
+  display:flex;
+  justify-content:space-between;
+  padding:5px 2px;
+  border-bottom:1px solid #101b15;
+}
+
+.empty{
+  color:#657169;
+  text-align:center;
+  padding:15px;
+  font-size:12px;
+}
 
 .matches-box{
-  border:1px solid #6a4d12;
-  background:#110d03;
-  border-radius:12px;
-  padding:13px;
+  padding:12px;
+  border:1px solid #5d4b1d;
+  background:#171208;
+  border-radius:10px;
 }
 
-.matches-locked{
-  color:#ffd84d;
-  font-weight:bold;
-}
-
-.matches-unlocked{
-  color:#20ff88;
-  font-weight:bold;
-}
-
-.matches-buttons{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
-}
-
-.matches-buttons button{
-  flex:1;
+.matches-box button{
+  margin-top:9px;
+  width:100%;
   padding:10px;
-  border-radius:9px;
-  border:1px solid #755816;
-  background:#1b1304;
-  color:#ffd84d;
-}
-
-footer{
-  text-align:center;
-  padding:25px;
-  color:#557764;
-  font-size:10px;
+  border:0;
+  border-radius:8px;
+  background:#19d66b;
+  color:#001b0c;
+  font-weight:900;
 }
 
 @media(max-width:900px){
-  .span-8,
-  .span-6,
-  .span-4{
-    grid-column:span 12;
-  }
-
-  .controls{
-    grid-template-columns:1fr;
-  }
-
-  .digits{
-    grid-template-columns:repeat(5,1fr);
-  }
-
-  .analysis-grid{
-    grid-template-columns:1fr;
-  }
-
-  .contracts{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .span8,.span6,.span4{grid-column:span 12}
+  .controls{grid-template-columns:1fr 1fr}
 }
 
 @media(max-width:600px){
-  .header-inner{
-    align-items:flex-start;
-  }
-
-  .market-stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .entry-info{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .target-digit{
-    font-size:62px;
-  }
-
-  .contracts{
-    grid-template-columns:1fr;
-  }
+  .app{padding:7px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .windows{grid-template-columns:1fr}
+  .digits{gap:3px}
+  .digit{font-size:11px}
+  .digit small{font-size:7px}
+  .contracts{grid-template-columns:repeat(2,1fr)}
+  .entry-meta{grid-template-columns:1fr 1fr}
+  .controls{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- LOGIN -->
+<section id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <div class="logo">🦁</div>
+    <div class="login-title">DERIV SIGNAL BOT PRO</div>
+    <div class="powered">POWERED BY ELISY 254</div>
 
-<section id="loginScreen">
-
-  <div class="login-card">
-
-    <div class="logo">
-      <div class="logo-icon">🦁</div>
-
-      <h1>DERIV SIGNAL BOT PRO</h1>
-
-      <p>POWERED BY ELISY 254</p>
-      <p>LIVE MARKET ANALYSIS</p>
+    <div class="field">
+      <label>USERNAME / EMAIL</label>
+      <input id="loginUser" type="text" autocomplete="username" placeholder="Enter username">
     </div>
 
-    <label>USERNAME</label>
-
-    <input
-      id="loginUsername"
-      type="text"
-      autocomplete="username"
-      placeholder="Enter username"
-    >
-
-    <label>PASSWORD</label>
-
-    <input
-      id="loginPassword"
-      type="password"
-      autocomplete="current-password"
-      placeholder="Enter password"
-    >
+    <div class="field">
+      <label>PASSWORD</label>
+      <input id="loginPass" type="password" autocomplete="current-password" placeholder="Enter password">
+    </div>
 
     <label class="remember">
-      <input
-        id="rememberLogin"
-        type="checkbox"
-      >
-      <span>Remember me on this device</span>
+      <input id="rememberMe" type="checkbox">
+      Save login on this device
     </label>
 
-    <button
-      class="btn btn-primary"
-      id="loginBtn"
-    >
-      SIGN IN
-    </button>
+    <button id="savedAccountBtn" class="saved-account"></button>
 
-    <div
-      id="loginError"
-      class="login-error small"
-    ></div>
+    <button id="loginBtn" class="login-btn">LOGIN</button>
 
-    <div
-      class="muted small"
-      style="text-align:center;margin-top:12px"
-    >
-      Demo dashboard access
-    </div>
-
+    <div id="loginError" class="login-error"></div>
   </div>
-
 </section>
 
-
-<!-- ================= APP ================= -->
-
-<div id="app">
+<!-- APP -->
+<main id="app" class="app hidden">
 
 <header>
-
-  <div class="header-inner">
-
-    <div class="brand">
-
-      <div class="brand-icon">🦁</div>
-
-      <div>
-        <h2>DERIV SIGNAL BOT PRO</h2>
-        <small>POWERED BY ELISY 254</small>
-      </div>
-
+  <div class="brand">
+    <div class="brand-lion">🦁</div>
+    <div>
+      <div class="brand-name">DERIV SIGNAL BOT PRO</div>
+      <div class="brand-sub">POWERED BY ELISY 254 • LIVE MARKET ANALYZER</div>
     </div>
-
-    <div class="status">
-
-      <span
-        id="statusDot"
-        class="status-dot"
-      ></span>
-
-      <span id="connectionStatus">
-        DISCONNECTED
-      </span>
-
-    </div>
-
   </div>
 
+  <div id="connection" class="connection">● DISCONNECTED</div>
+
+  <div>
+    <span id="traderName" style="color:#8dffb9;font-size:12px;margin-right:10px"></span>
+    <button id="logoutBtn" class="logout">LOGOUT</button>
+  </div>
 </header>
 
-
-<main class="container">
-
-  <div class="warning">
-    ⚠️ ANALYSIS ONLY • MANUAL ENTRY • LIVE MARKET DATA.
-    NO AUTOMATIC TRADING. SIGNALS ARE NOT GUARANTEED.
-  </div>
-
-
-  <div class="grid">
-
-
-    <!-- CONTROLS -->
-
-    <section class="card span-12">
-
-      <div class="card-title">
-        BOT CONTROL
-      </div>
-
-      <div class="controls">
-
-        <select id="marketSelect">
-          <option value="">
-            Discovering Deriv markets...
-          </option>
-        </select>
-
-        <select id="contractSelect">
-
-          <option value="DIFFERS">
-            DIFFERS
-          </option>
-
-          <option value="EVEN">
-            EVEN
-          </option>
-
-          <option value="ODD">
-            ODD
-          </option>
-
-          <option value="OVER">
-            OVER
-          </option>
-
-          <option value="UNDER">
-            UNDER
-          </option>
-
-          <option value="MATCHES">
-            🔒 MATCHES
-          </option>
-
-        </select>
-
-        <div class="control-buttons">
-
-          <button
-            id="runBot"
-            class="run"
-          >
-            ▶ RUN BOT
-          </button>
-
-          <button
-            id="stopBot"
-            class="stop"
-          >
-            ■ STOP
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- MARKET -->
-
-    <section class="card span-8">
-
-      <div class="card-title">
-        LIVE MARKET
-      </div>
-
-      <div
-        id="marketName"
-        class="market-name"
-      >
-        Waiting...
-      </div>
-
-      <div
-        id="marketSymbol"
-        class="market-symbol"
-      >
-        --
-      </div>
-
-      <div class="market-stats">
-
-        <div class="stat">
-          <div class="stat-label">
-            LIVE PRICE
-          </div>
-
-          <div
-            id="price"
-            class="stat-value"
-          >
-            --
-          </div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-label">
-            LAST DIGIT
-          </div>
-
-          <div
-            id="lastDigit"
-            class="stat-value green"
-          >
-            --
-          </div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-label">
-            TICKS
-          </div>
-
-          <div
-            id="tickCount"
-            class="stat-value"
-          >
-            0
-          </div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-label">
-            MOMENTUM
-          </div>
-
-          <div
-            id="momentum"
-            class="stat-value"
-          >
-            --
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ENGINE -->
-
-    <section class="card span-4">
-
-      <div class="card-title">
-        ENGINE STATUS
-      </div>
-
-      <div
-        id="engineStatus"
-        class="green"
-        style="font-size:22px;font-weight:bold"
-      >
-        STOPPED
-      </div>
-
-      <div
-        id="engineMessage"
-        class="muted small"
-        style="margin-top:10px"
-      >
-        Press RUN BOT to begin scanning.
-      </div>
-
-      <div style="margin-top:15px">
-
-        <div class="small muted">
-          SIGNAL QUALITY
-        </div>
-
-        <div
-          id="quality"
-          class="green"
-          style="font-size:24px;font-weight:bold"
-        >
-          --
-        </div>
-
-      </div>
-
-      <div style="margin-top:12px">
-
-        <div class="small muted">
-          WINDOW AGREEMENT
-        </div>
-
-        <div
-          id="agreement"
-          class="green"
-          style="font-size:24px;font-weight:bold"
-        >
-          --
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- FINAL ENTRY -->
-
-    <section class="card span-6">
-
-      <div class="card-title">
-        FINAL ENTRY DECISION
-      </div>
-
-      <div class="entry-box">
-
-        <div
-          id="entryStatus"
-          class="entry-status"
-        >
-          WAITING FOR ANALYSIS
-        </div>
-
-        <div
-          id="targetDigit"
-          class="target-digit"
-        >
-          —
-        </div>
-
-        <div
-          id="entryContract"
-          class="entry-contract"
-        >
-          NO SIGNAL
-        </div>
-
-        <div class="entry-info">
-
-          <div>
-            <span class="muted small">
-              TICKS
-            </span>
-
-            <b id="entryTicks">
-              --
-            </b>
-          </div>
-
-          <div>
-            <span class="muted small">
-              CONFIDENCE
-            </span>
-
-            <b id="entryConfidence">
-              --
-            </b>
-          </div>
-
-          <div>
-            <span class="muted small">
-              TARGET
-            </span>
-
-            <b id="entryTarget">
-              --
-            </b>
-          </div>
-
-          <div>
-            <span class="muted small">
-              ACTION
-            </span>
-
-            <b id="entryAction">
-              WAIT
-            </b>
-          </div>
-
-        </div>
-
-        <div
-          id="timer"
-          class="timer"
-        >
-          Signal timer: --
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ANALYSIS WINDOWS -->
-
-    <section class="card span-6">
-
-      <div class="card-title">
-        MULTI-WINDOW CONFIRMATION
-      </div>
-
-      <div class="analysis-grid">
-
-        <div class="window">
-
-          <h4>
-            50 TICKS
-          </h4>
-
-          <div
-            id="win50Digit"
-            class="big"
-          >
-            --
-          </div>
-
-          <div
-            id="win50Percent"
-            class="small"
-          >
-            --
-          </div>
-
-        </div>
-
-
-        <div class="window">
-
-          <h4>
-            100 TICKS
-          </h4>
-
-          <div
-            id="win100Digit"
-            class="big"
-          >
-            --
-          </div>
-
-          <div
-            id="win100Percent"
-            class="small"
-          >
-            --
-          </div>
-
-        </div>
-
-
-        <div class="window">
-
-          <h4>
-            500 TICKS
-          </h4>
-
-          <div
-            id="win500Digit"
-            class="big"
-          >
-            --
-          </div>
-
-          <div
-            id="win500Percent"
-            class="small"
-          >
-            --
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- DIGITS -->
-
-    <section class="card span-12">
-
-      <div class="card-title">
-        LIVE DIGIT DISTRIBUTION
-      </div>
-
-      <div
-        id="digits"
-        class="digits"
-      ></div>
-
-      <div
-        class="muted small"
-        style="margin-top:12px;text-align:center"
-      >
-        🟢 Highest &nbsp;
-        🔵 2nd Highest &nbsp;
-        🟡 2nd Lowest &nbsp;
-        🔴 Lowest
-      </div>
-
-    </section>
-
-
-    <!-- CONTRACTS -->
-
-    <section class="card span-8">
-
-      <div class="card-title">
-        CONTRACT PROBABILITY
-      </div>
-
-      <div
-        id="contracts"
-        class="contracts"
-      ></div>
-
-    </section>
-
-
-    <!-- MATCHES -->
-
-    <section class="card span-4">
-
-      <div class="card-title">
-        MATCHES FEATURE
-      </div>
-
-      <div class="matches-box">
-
-        <div
-          id="matchesStatus"
-          class="matches-locked"
-        >
-          🔒 MATCHES LOCKED
-        </div>
-
-        <div
-          id="matchesText"
-          class="small muted"
-          style="margin-top:7px"
-        >
-          Activation required.
-        </div>
-
-        <div class="matches-buttons">
-
-          <button id="unlockMatches">
-            ENTER CODE
-          </button>
-
-          <button id="buyMatches">
-            BUY MATCHES
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SCANNER -->
-
-    <section class="card span-6">
-
-      <div class="card-title">
-        LIVE SCANNER
-      </div>
-
-      <div
-        id="scannerLog"
-        class="log"
-      ></div>
-
-    </section>
-
-
-    <!-- HISTORY -->
-
-    <section class="card span-6">
-
-      <div class="card-title">
-        SIGNAL HISTORY
-      </div>
-
-      <div
-        id="history"
-        class="history"
-      ></div>
-
-    </section>
-
-
-    <!-- RECENT TICKS -->
-
-    <section class="card span-12">
-
-      <div class="card-title">
-        RECENT TICKS
-      </div>
-
-      <div
-        id="recentTicks"
-        class="log"
-      ></div>
-
-    </section>
-
-
-    <!-- ACCOUNT -->
-
-    <section class="card span-12">
-
-      <div class="card-title">
-        SESSION
-      </div>
-
-      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
-
-        <div>
-          <div class="green">
-            Demo User: Trade23
-          </div>
-
-          <div class="muted small" style="margin-top:4px">
-            Public Deriv market-data mode
-          </div>
-        </div>
-
-        <button
-          id="logoutBtn"
-          class="btn btn-danger"
-          style="width:auto;margin:0;padding:10px 18px"
-        >
-          LOG OUT
-        </button>
-
-      </div>
-
-    </section>
-
-  </div>
-
-</main>
-
-
-<footer>
-  DERIV SIGNAL BOT PRO • POWERED BY ELISY 254
-  <br><br>
-  ANALYSIS ONLY • MANUAL ENTRY • LIVE MARKET DATA
-</footer>
-
+<div class="warning">
+  ANALYSIS ONLY • MANUAL ENTRY • LIVE MARKET DATA • NO AUTOMATIC ORDER PLACEMENT •
+  HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 </div>
 
+<div class="grid">
+
+<!-- CONTROL -->
+<section class="card span12">
+  <div class="card-title">BOT CONTROL</div>
+
+  <div class="controls">
+    <select id="marketSelect" disabled>
+      <option>CONNECTING TO DERIV...</option>
+    </select>
+
+    <select id="contractSelect">
+      <option value="EVEN">EVEN</option>
+      <option value="ODD">ODD</option>
+      <option value="OVER">OVER</option>
+      <option value="UNDER">UNDER</option>
+      <option value="DIFFERS">DIFFERS</option>
+      <option value="MATCHES">MATCHES 🔒</option>
+    </select>
+
+    <button id="runBtn" class="primary">RUN BOT</button>
+    <button id="stopBtn" class="stop">STOP</button>
+  </div>
+
+  <div id="botStatus" class="status-line">
+    Waiting for Deriv connection...
+  </div>
+</section>
+
+<!-- MARKET -->
+<section class="card span8">
+  <div class="card-title">LIVE MARKET</div>
+
+  <div id="marketName" class="market-name">No market selected</div>
+  <div id="livePrice" class="live-price">—</div>
+
+  <div class="stats">
+    <div class="stat">
+      <small>LAST DIGIT</small>
+      <strong id="lastDigit">—</strong>
+    </div>
+
+    <div class="stat">
+      <small>LIVE TICKS</small>
+      <strong id="tickCount">0</strong>
+    </div>
+
+    <div class="stat">
+      <small>MOMENTUM</small>
+      <strong id="momentum">—</strong>
+    </div>
+
+    <div class="stat">
+      <small>SELECTED</small>
+      <strong id="selectedContract">EVEN</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINE -->
+<section class="card span4">
+  <div class="card-title">ENGINE STATUS</div>
+
+  <div class="stats" style="grid-template-columns:1fr 1fr">
+    <div class="stat">
+      <small>SCORE</small>
+      <strong id="score">0%</strong>
+    </div>
+
+    <div class="stat">
+      <small>QUALITY</small>
+      <strong id="quality">0%</strong>
+    </div>
+
+    <div class="stat">
+      <small>AGREEMENT</small>
+      <strong id="agreement">0%</strong>
+    </div>
+
+    <div class="stat">
+      <small>CONFIRMATION</small>
+      <strong id="confirmation">0/3</strong>
+    </div>
+  </div>
+
+  <div id="engineMessage" class="status-line">
+    Waiting for analysis...
+  </div>
+</section>
+
+<!-- ENTRY -->
+<section class="card span12">
+  <div class="card-title">FINAL ENTRY DECISION</div>
+
+  <div class="entry">
+    <div id="entryState" class="entry-state wait">WAIT</div>
+
+    <div id="entryTarget" class="entry-target">—</div>
+
+    <div class="entry-meta">
+      <div>
+        <small>CONTRACT</small>
+        <strong id="entryContract">EVEN</strong>
+      </div>
+
+      <div>
+        <small>TICKS</small>
+        <strong id="entryTicks">—</strong>
+      </div>
+
+      <div>
+        <small>RATE</small>
+        <strong id="entryProbability">—</strong>
+      </div>
+
+      <div>
+        <small>SCORE</small>
+        <strong id="entryScore">—</strong>
+      </div>
+
+      <div>
+        <small>QUALITY</small>
+        <strong id="entryQuality">—</strong>
+      </div>
+
+      <div>
+        <small>ACTION</small>
+        <strong id="entryAction">WAIT</strong>
+      </div>
+    </div>
+
+    <div id="timer" class="timer">—</div>
+
+    <div id="entryReason" class="reason">
+      Select a market and run the bot.
+    </div>
+  </div>
+</section>
+
+<!-- WINDOWS -->
+<section class="card span12">
+  <div class="card-title">MULTI-WINDOW CONFIRMATION — SELECTED CONTRACT</div>
+
+  <div id="windows" class="windows">
+    <div class="empty">Waiting for live ticks...</div>
+  </div>
+</section>
+
+<!-- DIGITS -->
+<section class="card span12">
+  <div class="card-title">LIVE DIGIT DISTRIBUTION</div>
+
+  <div id="digits" class="digits"></div>
+</section>
+
+<!-- CONTRACTS -->
+<section class="card span8">
+  <div class="card-title">CONTRACT RATES</div>
+
+  <div id="contracts" class="contracts"></div>
+</section>
+
+<!-- MATCHES -->
+<section class="card span4">
+  <div class="card-title">MATCHES</div>
+
+  <div class="matches-box">
+    <div style="color:#ffd65a;font-weight:900">🔒 MATCHES LOCKED</div>
+    <div style="font-size:11px;color:#a89d78;margin-top:7px">
+      Activation code required.
+    </div>
+
+    <button id="unlockMatches">UNLOCK MATCHES</button>
+  </div>
+</section>
+
+<!-- SCANNER -->
+<section class="card span8">
+  <div class="card-title">LIVE SCANNER</div>
+  <div id="scanner" class="scanner"></div>
+</section>
+
+<!-- HISTORY -->
+<section class="card span4">
+  <div class="card-title">SIGNAL HISTORY</div>
+  <div id="history" class="history">
+    <div class="empty">No signals yet.</div>
+  </div>
+</section>
+
+<!-- TICKS -->
+<section class="card span12">
+  <div class="card-title">RECENT TICKS</div>
+  <div id="recentTicks" class="ticks"></div>
+</section>
+
+</div>
+</main>
 
 <script>
+"use strict";
 
-/* =====================================================
-   CONFIGURATION
-===================================================== */
+/* =========================================================
+   CONFIG
+========================================================= */
 
-const DERIV_PUBLIC_WS =
+const LOGIN_USER = "Trade23";
+const LOGIN_PASS = "Market23";
+
+const WS_URL =
   "wss://api.derivws.com/trading/v1/options/ws/public";
 
-const DEMO_USERNAME = "Trade23";
-const DEMO_PASSWORD = "Market23";
+const BOT_CONFIG = {
+  MIN_SCORE: 60,
+  MIN_QUALITY: 70,
+  MIN_AGREEMENT: 66,
+  CONFIRMATIONS_REQUIRED: 3,
 
-const MATCHES_ACTIVATION_CODE = "19809";
+  DIFFERS_MIN: 88,
+  MATCHES_MIN: 15,
+  PARITY_MIN: 55,
+  OVER_UNDER_MIN: 55,
 
-const WHATSAPP_NUMBER =
-  "254701859605";
+  SIGNAL_SECONDS: 60
+};
 
-const REQUIRED_TICKS = 500;
+const STORAGE = {
+  remember: "elisy254_remember_login",
+  savedUser: "elisy254_saved_user"
+};
 
-const SIGNAL_SECONDS = 60;
-
-
-/* =====================================================
+/* =========================================================
    STATE
-===================================================== */
+========================================================= */
 
 let ws = null;
-
 let reconnectTimer = null;
+let reconnectDelay = 1500;
 
-let reconnectDelay = 2000;
-
-let reqId = 1;
-
+let markets = [];
 let selectedMarket = "";
 
-let marketName = "";
-
-let pipSize = null;
-
 let ticks = [];
+let pipSize = 0.01;
 
 let botRunning = false;
+let scanTimer = null;
 
-let matchesUnlocked = false;
-
-let signal = null;
-
+let confirmationCount = 0;
+let lastConfirmationSignature = "";
+let currentSignal = null;
 let signalTimer = null;
+let signalSeconds = 0;
 
 let signalHistory = [];
 
-let discoveredMarkets = [];
+let lastScanAt = 0;
 
-let subscribed = false;
-
-
-/* =====================================================
+/* =========================================================
    ELEMENTS
-===================================================== */
+========================================================= */
 
-const $ = id =>
-  document.getElementById(id);
+const $ = id => document.getElementById(id);
 
+const loginScreen = $("loginScreen");
+const app = $("app");
 
-/* =====================================================
+const loginUser = $("loginUser");
+const loginPass = $("loginPass");
+const rememberMe = $("rememberMe");
+const loginBtn = $("loginBtn");
+const loginError = $("loginError");
+const savedAccountBtn = $("savedAccountBtn");
+
+const connection = $("connection");
+const traderName = $("traderName");
+
+const marketSelect = $("marketSelect");
+const contractSelect = $("contractSelect");
+
+const botStatus = $("botStatus");
+
+const marketName = $("marketName");
+const livePrice = $("livePrice");
+const lastDigitEl = $("lastDigit");
+const tickCount = $("tickCount");
+const momentumEl = $("momentum");
+const selectedContractEl = $("selectedContract");
+
+const scoreEl = $("score");
+const qualityEl = $("quality");
+const agreementEl = $("agreement");
+const confirmationEl = $("confirmation");
+const engineMessage = $("engineMessage");
+
+const entryState = $("entryState");
+const entryTarget = $("entryTarget");
+const entryContract = $("entryContract");
+const entryTicks = $("entryTicks");
+const entryProbability = $("entryProbability");
+const entryScore = $("entryScore");
+const entryQuality = $("entryQuality");
+const entryAction = $("entryAction");
+const timerEl = $("timer");
+const entryReason = $("entryReason");
+
+const windowsEl = $("windows");
+const digitsEl = $("digits");
+const contractsEl = $("contracts");
+const scannerEl = $("scanner");
+const historyEl = $("history");
+const recentTicksEl = $("recentTicks");
+
+/* =========================================================
    LOGIN
-===================================================== */
+========================================================= */
 
-function showDashboard(){
+function loadSavedLogin(){
+  const saved = localStorage.getItem(STORAGE.savedUser);
 
-  $("loginScreen").style.display = "none";
+  if(saved){
+    loginUser.value = saved;
 
-  $("app").style.display = "block";
+    savedAccountBtn.style.display = "block";
+    savedAccountBtn.textContent =
+      "USE SAVED ACCOUNT: " + saved;
+  }
 
+  if(localStorage.getItem(STORAGE.remember) === "1"){
+    openApp(saved || LOGIN_USER);
+  }
 }
 
+function login(){
+  const user = loginUser.value.trim();
+  const pass = loginPass.value;
 
-function performLogin(){
+  loginError.textContent = "";
 
-  const username =
-    $("loginUsername").value.trim();
-
-  const password =
-    $("loginPassword").value;
-
-  const remember =
-    $("rememberLogin").checked;
-
-  const error =
-    $("loginError");
-
-
-  if(
-    username !== DEMO_USERNAME ||
-    password !== DEMO_PASSWORD
-  ){
-
-    error.textContent =
-      "Invalid username or password.";
-
+  if(user !== LOGIN_USER || pass !== LOGIN_PASS){
+    loginError.textContent = "Invalid username or password.";
     return;
-
   }
 
-
-  error.textContent = "";
-
-
-  if(remember){
-
-    localStorage.setItem(
-      "elisy254_remember_login",
-      "true"
-    );
-
+  if(rememberMe.checked){
+    localStorage.setItem(STORAGE.remember, "1");
+    localStorage.setItem(STORAGE.savedUser, user);
   }else{
-
-    localStorage.removeItem(
-      "elisy254_remember_login"
-    );
-
+    localStorage.removeItem(STORAGE.remember);
+    localStorage.setItem(STORAGE.savedUser, user);
   }
 
+  openApp(user);
+}
 
-  showDashboard();
+function openApp(user){
+  loginScreen.classList.add("hidden");
+  app.classList.remove("hidden");
 
-  logMessage(
-    "Dashboard login successful."
-  );
+  traderName.textContent = "TRADER: " + (user || LOGIN_USER);
 
   connectDeriv();
-
 }
 
+function logout(){
+  localStorage.removeItem(STORAGE.remember);
 
-$("loginBtn").addEventListener(
-  "click",
-  performLogin
-);
+  stopBot();
 
-
-$("loginPassword").addEventListener(
-  "keydown",
-  e => {
-
-    if(e.key === "Enter"){
-      performLogin();
-    }
-
+  if(ws){
+    try{
+      ws.close();
+    }catch(e){}
   }
-);
 
+  ws = null;
 
-/* =====================================================
-   REMEMBER LOGIN
-===================================================== */
+  app.classList.add("hidden");
+  loginScreen.classList.remove("hidden");
 
-const remembered =
-  localStorage.getItem(
-    "elisy254_remember_login"
-  );
-
-
-if(remembered === "true"){
-
-  $("loginUsername").value =
-    DEMO_USERNAME;
-
-  $("loginPassword").value =
-    DEMO_PASSWORD;
-
-  $("rememberLogin").checked =
-    true;
-
-  showDashboard();
-
-  setTimeout(
-    connectDeriv,
-    100
-  );
-
+  loginPass.value = "";
+  loginError.textContent = "";
 }
 
+loginBtn.addEventListener("click",login);
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+loginPass.addEventListener("keydown",e=>{
+  if(e.key === "Enter") login();
+});
 
-$("logoutBtn").addEventListener(
-  "click",
-  () => {
+loginUser.addEventListener("keydown",e=>{
+  if(e.key === "Enter") login();
+});
 
-    botRunning = false;
+savedAccountBtn.addEventListener("click",()=>{
+  loginUser.value = localStorage.getItem(STORAGE.savedUser) || LOGIN_USER;
+  loginUser.focus();
+});
 
-    clearSignal();
-
-    if(ws){
-
-      try{
-        ws.close();
-      }catch(e){}
-
-    }
-
-    $("app").style.display = "none";
-
-    $("loginScreen").style.display =
-      "flex";
-
-  }
-);
-
-
-/* =====================================================
-   LOGGING
-===================================================== */
-
-function logMessage(message){
-
-  const box =
-    $("scannerLog");
-
-  if(!box) return;
-
-  const time =
-    new Date().toLocaleTimeString();
-
-  const line =
-    document.createElement("div");
-
-  line.className =
-    "log-line";
-
-  line.textContent =
-    `[${time}] ${message}`;
-
-  box.appendChild(line);
-
-  while(box.children.length > 150){
-
-    box.removeChild(
-      box.firstChild
-    );
-
-  }
-
-  box.scrollTop =
-    box.scrollHeight;
-
-}
-
-
-/* =====================================================
+/* =========================================================
    CONNECTION
-===================================================== */
+========================================================= */
 
-function setConnection(online){
+function setConnection(text,type=""){
+  connection.textContent = "● " + text;
 
-  $("statusDot")
-    .classList.toggle(
-      "online",
-      online
-    );
+  connection.classList.remove("live","bad");
 
-  $("connectionStatus")
-    .textContent =
-      online
-      ? "DERIV LIVE"
-      : "DISCONNECTED";
-
+  if(type){
+    connection.classList.add(type);
+  }
 }
-
 
 function connectDeriv(){
 
   if(ws){
-
     try{
       ws.close();
     }catch(e){}
-
   }
 
+  setConnection("CONNECTING...");
 
-  logMessage(
-    "Connecting to Deriv public market feed..."
-  );
+  botStatus.textContent =
+    "Connecting to Deriv live market feed...";
 
+  ws = new WebSocket(WS_URL);
 
-  try{
+  ws.onopen = ()=>{
+    reconnectDelay = 1500;
 
-    ws =
-      new WebSocket(
-        DERIV_PUBLIC_WS
-      );
+    setConnection("DERIV LIVE","live");
 
-  }catch(error){
+    botStatus.textContent =
+      "Connected — discovering Volatility markets...";
 
-    logMessage(
-      "WebSocket creation failed."
-    );
-
-    scheduleReconnect();
-
-    return;
-
-  }
-
-
-  ws.onopen = () => {
-
-    reconnectDelay = 2000;
-
-    setConnection(true);
-
-    logMessage(
-      "Deriv public WebSocket connected."
-    );
-
-    discoverMarkets();
-
+    send({
+      active_symbols:"brief"
+    });
   };
 
-
-  ws.onmessage = event => {
-
+  ws.onmessage = event=>{
     try{
-
-      const data =
-        JSON.parse(event.data);
-
+      const data = JSON.parse(event.data);
       handleDerivMessage(data);
-
-    }catch(error){
-
-      console.error(
-        "Message error:",
-        error
-      );
-
+    }catch(err){
+      console.error(err);
     }
-
   };
 
-
-  ws.onerror = () => {
-
-    setConnection(false);
-
-    logMessage(
-      "Deriv WebSocket error."
-    );
-
+  ws.onerror = ()=>{
+    setConnection("CONNECTION ERROR","bad");
   };
 
+  ws.onclose = ()=>{
+    setConnection("DISCONNECTED","bad");
 
-  ws.onclose = () => {
-
-    setConnection(false);
-
-    subscribed = false;
-
-    logMessage(
-      "Deriv feed disconnected."
-    );
+    botStatus.textContent =
+      "Deriv disconnected — reconnecting...";
 
     scheduleReconnect();
-
   };
-
 }
-
 
 function scheduleReconnect(){
 
-  clearTimeout(
-    reconnectTimer
-  );
+  if(reconnectTimer) return;
 
-  reconnectTimer =
-    setTimeout(
-      connectDeriv,
-      reconnectDelay
-    );
+  reconnectTimer = setTimeout(()=>{
+    reconnectTimer = null;
 
-  reconnectDelay =
-    Math.min(
-      reconnectDelay * 1.5,
-      30000
-    );
+    reconnectDelay =
+      Math.min(reconnectDelay * 1.7,30000);
 
+    connectDeriv();
+
+  },reconnectDelay);
 }
 
+function send(obj){
 
-/* =====================================================
-   MARKET DISCOVERY
-===================================================== */
-
-function discoverMarkets(){
-
-  if(!ws ||
-     ws.readyState !== WebSocket.OPEN){
-
-    return;
-
+  if(!ws || ws.readyState !== WebSocket.OPEN){
+    return false;
   }
 
-
-  ws.send(
-    JSON.stringify({
-      active_symbols:"brief",
-      req_id:reqId++
-    })
-  );
-
+  ws.send(JSON.stringify(obj));
+  return true;
 }
 
+/* =========================================================
+   DERIV MESSAGES
+========================================================= */
+
+function handleDerivMessage(data){
+
+  if(data.error){
+    addScanner(
+      "DERIV ERROR → " +
+      (data.error.message || "Unknown error")
+    );
+    return;
+  }
+
+  if(data.active_symbols){
+    processMarkets(data.active_symbols);
+    return;
+  }
+
+  if(data.history){
+    processHistory(data.history);
+    return;
+  }
+
+  if(data.tick){
+    processTick(data.tick);
+    return;
+  }
+}
+
+/* =========================================================
+   MARKET DISCOVERY
+========================================================= */
 
 function isVolatilityMarket(item){
 
@@ -1787,509 +1176,303 @@ function isVolatilityMarket(item){
       ""
     ).toUpperCase();
 
-
-  return(
+  return (
     /^R_\d+$/.test(symbol) ||
     /^1HZ\d+V$/.test(symbol) ||
     name.includes("VOLATILITY")
   );
-
 }
 
+function processMarkets(list){
 
-function formatMarketName(item){
+  const found = list
+    .filter(isVolatilityMarket)
+    .map(item=>({
+      symbol:
+        item.underlying_symbol ||
+        item.symbol,
 
-  return (
-    item.underlying_symbol_name ||
-    item.display_name ||
-    item.name ||
-    item.symbol ||
-    "Unknown Market"
+      name:
+        item.underlying_symbol_name ||
+        item.display_name ||
+        item.name ||
+        item.symbol,
+
+      pip:
+        Number(
+          item.pip_size ||
+          item.pip ||
+          0.01
+        )
+    }))
+    .filter(x=>x.symbol);
+
+  const unique = new Map();
+
+  found.forEach(item=>{
+    unique.set(item.symbol,item);
+  });
+
+  markets = [...unique.values()].sort((a,b)=>
+    a.name.localeCompare(b.name)
   );
 
+  renderMarkets();
+
+  if(!selectedMarket && markets.length){
+    selectedMarket = markets[0].symbol;
+    marketSelect.value = selectedMarket;
+
+    const item = markets.find(
+      x=>x.symbol === selectedMarket
+    );
+
+    if(item && item.pip){
+      pipSize = item.pip;
+    }
+
+    subscribeMarket();
+  }
+
+  botStatus.textContent =
+    markets.length +
+    " live Volatility markets loaded.";
 }
 
+function renderMarkets(){
 
-function populateMarkets(symbols){
+  marketSelect.innerHTML = "";
 
-  const select =
-    $("marketSelect");
-
-  select.innerHTML = "";
-
-
-  symbols.forEach(item => {
-
-    const symbol =
-      item.underlying_symbol ||
-      item.symbol;
-
-    if(!symbol) return;
-
+  if(!markets.length){
+    marketSelect.disabled = true;
 
     const option =
       document.createElement("option");
 
-    option.value =
-      symbol;
+    option.textContent =
+      "NO VOLATILITY MARKETS FOUND";
+
+    marketSelect.appendChild(option);
+
+    return;
+  }
+
+  marketSelect.disabled = false;
+
+  markets.forEach(m=>{
+    const option =
+      document.createElement("option");
+
+    option.value = m.symbol;
 
     option.textContent =
-      formatMarketName(item);
+      m.name + " [" + m.symbol + "]";
 
-    select.appendChild(
-      option
-    );
-
+    marketSelect.appendChild(option);
   });
 
-
-  if(!selectedMarket &&
-     symbols.length){
-
-    selectedMarket =
-      symbols[0].underlying_symbol ||
-      symbols[0].symbol;
-
-    select.value =
-      selectedMarket;
-
-    marketName =
-      formatMarketName(
-        symbols[0]
-      );
-
-    subscribeToMarket();
-
-  }
-
+  marketSelect.value = selectedMarket;
 }
 
+/* =========================================================
+   MARKET SUBSCRIPTION
+========================================================= */
 
-/* =====================================================
-   SUBSCRIBE MARKET
-===================================================== */
+function subscribeMarket(){
 
-function subscribeToMarket(){
-
-  if(!selectedMarket){
-
-    return;
-
-  }
-
-
-  if(!ws ||
-     ws.readyState !== WebSocket.OPEN){
-
-    return;
-
-  }
-
+  if(!selectedMarket) return;
 
   ticks = [];
+  confirmationCount = 0;
+  lastConfirmationSignature = "";
+  currentSignal = null;
 
-  pipSize = null;
+  stopSignalTimer();
 
-  subscribed = false;
+  renderDigits();
+  renderContracts();
+  renderWindows();
+  renderRecentTicks();
 
-  clearSignal();
-
-  updateUI();
-
-
-  logMessage(
-    `Loading ${selectedMarket} history...`
+  const item = markets.find(
+    x=>x.symbol === selectedMarket
   );
 
-
-  ws.send(
-    JSON.stringify({
-
-      ticks_history:
-        selectedMarket,
-
-      count:
-        REQUIRED_TICKS,
-
-      end:
-        "latest",
-
-      style:
-        "ticks",
-
-      req_id:
-        reqId++
-
-    })
-  );
-
-
-  ws.send(
-    JSON.stringify({
-
-      ticks:
-        selectedMarket,
-
-      subscribe:
-        1,
-
-      req_id:
-        reqId++
-
-    })
-  );
-
-
-  subscribed = true;
-
-  logMessage(
-    `Subscribed to ${selectedMarket}.`
-  );
-
-}
-
-
-/* =====================================================
-   DERIV MESSAGES
-===================================================== */
-
-function handleDerivMessage(data){
-
-  if(data.error){
-
-    logMessage(
-      "Deriv: " +
-      (data.error.message ||
-       "Unknown error")
-    );
-
-    return;
-
+  if(item && Number(item.pip) > 0){
+    pipSize = Number(item.pip);
   }
 
-
-  if(
-    data.active_symbols
-  ){
-
-    const markets =
-      data.active_symbols
-        .filter(
-          isVolatilityMarket
-        );
-
-    discoveredMarkets =
-      markets;
-
-    if(markets.length){
-
-      populateMarkets(
-        markets
-      );
-
-      logMessage(
-        `${markets.length} Volatility markets discovered.`
-      );
-
-    }
-
-    return;
-
-  }
-
-
-  if(
-    data.history
-  ){
-
-    handleHistory(
-      data.history,
-      data.pip_size
-    );
-
-    return;
-
-  }
-
-
-  if(
-    data.tick
-  ){
-
-    handleTick(
-      data.tick
-    );
-
-    return;
-
-  }
-
-}
-
-
-/* =====================================================
-   HISTORY
-===================================================== */
-
-function handleHistory(
-  history,
-  responsePip
-){
-
-  if(
-    Array.isArray(
-      history.prices
-    )
-  ){
-
-    const prices =
-      history.prices;
-
-    const times =
-      history.times || [];
-
-
-    if(
-      responsePip !== undefined
-    ){
-
-      pipSize =
-        responsePip;
-
-    }
-
-
-    ticks = [];
-
-
-    for(
-      let i = 0;
-      i < prices.length;
-      i++
-    ){
-
-      ticks.push({
-
-        quote:
-          Number(prices[i]),
-
-        epoch:
-          Number(
-            times[i] ||
-            Date.now()/1000
-          )
-
-      });
-
-    }
-
-
-    if(
-      ticks.length > 1000
-    ){
-
-      ticks =
-        ticks.slice(-1000);
-
-    }
-
-
-    logMessage(
-      `Loaded ${ticks.length} historical ticks.`
-    );
-
-
-    updateUI();
-
-    if(botRunning){
-
-      analyze();
-
-    }
-
-  }
-
-}
-
-
-/* =====================================================
-   LIVE TICK
-===================================================== */
-
-function handleTick(tick){
-
-  if(
-    !tick ||
-    tick.symbol !== selectedMarket
-  ){
-
-    return;
-
-  }
-
-
-  if(
-    tick.pip_size !== undefined
-  ){
-
-    pipSize =
-      tick.pip_size;
-
-  }
-
-
-  const quote =
-    Number(tick.quote);
-
-
-  if(!Number.isFinite(quote)){
-
-    return;
-
-  }
-
-
-  ticks.push({
-
-    quote,
-
-    epoch:
-      Number(
-        tick.epoch ||
-        Date.now()/1000
-      )
-
+  send({
+    forget_all:"ticks"
   });
 
+  send({
+    ticks_history:selectedMarket,
+    count:500,
+    end:"latest",
+    style:"ticks"
+  });
 
-  if(
-    ticks.length > 1000
-  ){
+  send({
+    ticks:selectedMarket,
+    subscribe:1
+  });
 
-    ticks.shift();
+  const readable =
+    item ? item.name : selectedMarket;
 
-  }
+  marketName.textContent =
+    readable + " [" + selectedMarket + "]";
 
+  botStatus.textContent =
+    "Loading 500 live/historical ticks for " +
+    readable + "...";
 
-  updateUI();
-
-  if(botRunning){
-
-    analyze();
-
-  }
-
+  addScanner(
+    "MARKET → " + readable
+  );
 }
 
+/* =========================================================
+   HISTORY
+========================================================= */
 
-/* =====================================================
-   LAST DIGIT
-===================================================== */
+function processHistory(history){
+
+  const prices =
+    Array.isArray(history.prices)
+      ? history.prices
+      : [];
+
+  const times =
+    Array.isArray(history.times)
+      ? history.times
+      : [];
+
+  ticks = prices.map((price,i)=>({
+    quote:Number(price),
+    time:
+      times[i] ||
+      Math.floor(Date.now()/1000)
+  }))
+  .filter(x=>Number.isFinite(x.quote))
+  .slice(-1000);
+
+  updateLiveUI();
+
+  addScanner(
+    "HISTORY → " +
+    ticks.length +
+    " ticks loaded"
+  );
+
+  if(botRunning){
+    analyzeAndDisplay();
+  }
+}
+
+/* =========================================================
+   TICK
+========================================================= */
+
+function processTick(tick){
+
+  const quote =
+    Number(
+      tick.quote ??
+      tick.ask ??
+      tick.bid
+    );
+
+  if(!Number.isFinite(quote)) return;
+
+  ticks.push({
+    quote,
+    time:
+      Number(tick.epoch) ||
+      Math.floor(Date.now()/1000)
+  });
+
+  if(ticks.length > 1000){
+    ticks =
+      ticks.slice(-1000);
+  }
+
+  updateLiveUI();
+
+  if(botRunning){
+    maybeScan();
+  }
+}
+
+/* =========================================================
+   DIGIT
+========================================================= */
 
 function decimalPlacesFromPip(pip){
 
-  const value =
-    Number(pip);
+  const value = Number(pip);
 
-
-  if(
-    !Number.isFinite(value) ||
-    value <= 0
-  ){
-
+  if(!Number.isFinite(value) || value <= 0){
     return 2;
-
   }
-
 
   return Math.max(
     0,
     Math.min(
       10,
-      Math.ceil(
-        -Math.log10(value)
-      )
+      Math.ceil(-Math.log10(value))
     )
   );
-
 }
 
-
-function getLastDigit(
-  quote,
-  pip
-){
+function getLastDigit(quote,pip){
 
   const decimals =
-    decimalPlacesFromPip(
-      pip
-    );
-
+    decimalPlacesFromPip(pip);
 
   const fixed =
-    Number(quote)
-      .toFixed(decimals);
-
+    Number(quote).toFixed(decimals);
 
   const digits =
-    fixed.replace(
-      /\D/g,
-      ""
-    );
+    fixed.replace(/\D/g,"");
 
-
-  if(!digits.length){
-
-    return 0;
-
-  }
-
+  if(!digits.length) return 0;
 
   return Number(
-    digits.charAt(
-      digits.length - 1
-    )
+    digits.charAt(digits.length - 1)
   );
-
 }
-
-
-/* =====================================================
-   DIGIT DATA
-===================================================== */
 
 function getDigits(data){
 
-  return data.map(
-    item =>
-      getLastDigit(
-        item.quote,
-        pipSize
-      )
+  return data.map(x=>
+    getLastDigit(x.quote,pipSize)
   );
-
 }
 
+/* =========================================================
+   BASIC STATS
+========================================================= */
+
+function getWindow(size){
+
+  return ticks.slice(-size);
+}
 
 function digitCounts(data){
 
   const counts =
     Array(10).fill(0);
 
-  getDigits(data)
-    .forEach(digit => {
-
-      counts[digit]++;
-
-    });
-
+  getDigits(data).forEach(d=>{
+    counts[d]++;
+  });
 
   return counts;
-
 }
 
-
-function digitStats(data){
+function digitPercentages(data){
 
   const counts =
     digitCounts(data);
@@ -2297,346 +1480,237 @@ function digitStats(data){
   const total =
     data.length || 1;
 
-
-  return counts.map(
-    (count,digit) => ({
-
-      digit,
-
-      count,
-
-      percent:
-        (count / total) * 100
-
-    })
+  return counts.map(c=>
+    (c / total) * 100
   );
-
 }
 
+function getHotCold(data){
 
-/* =====================================================
-   WINDOW ANALYSIS
-===================================================== */
+  const percentages =
+    digitPercentages(data);
 
-function windowAnalysis(size){
-
-  const data =
-    ticks.slice(-size);
-
-  if(!data.length){
-
-    return {
-      digit:null,
-      percent:0
-    };
-
-  }
-
-
-  const stats =
-    digitStats(data);
-
-
-  stats.sort(
-    (a,b) =>
-      b.percent -
-      a.percent
-  );
-
+  const ranked =
+    percentages
+      .map((value,digit)=>({
+        digit,
+        value
+      }))
+      .sort((a,b)=>b.value-a.value);
 
   return {
-
-    digit:
-      stats[0].digit,
-
-    percent:
-      stats[0].percent
-
+    percentages,
+    highest:ranked[0],
+    secondHighest:ranked[1],
+    secondLowest:ranked[8],
+    lowest:ranked[9]
   };
-
 }
 
+/* =========================================================
+   CONTRACT RATE
+========================================================= */
 
-/* =====================================================
-   CONTRACT PROBABILITIES
-===================================================== */
-
-function calculateContractProbability(
-  contract,
-  data
-){
+function calculateContractProbability(contract,data){
 
   if(!data.length){
-
     return 0;
-
   }
 
+  const digits =
+    getDigits(data);
 
-  const stats =
-    digitStats(data);
+  const total =
+    digits.length;
 
+  let hits = 0;
 
-  let probability = 0;
+  switch(contract){
 
+    case "EVEN":
+      hits =
+        digits.filter(d=>d % 2 === 0).length;
+      break;
 
-  if(contract === "EVEN"){
+    case "ODD":
+      hits =
+        digits.filter(d=>d % 2 !== 0).length;
+      break;
 
-    probability =
-      stats
-        .filter(
-          x =>
-            x.digit % 2 === 0
-        )
-        .reduce(
-          (sum,x) =>
-            sum + x.percent,
-          0
-        );
+    case "OVER":
+      hits =
+        digits.filter(d=>d >= 5).length;
+      break;
 
+    case "UNDER":
+      hits =
+        digits.filter(d=>d <= 4).length;
+      break;
+
+    case "MATCHES":{
+      const hot =
+        getHotCold(data).highest.digit;
+
+      hits =
+        digits.filter(d=>d === hot).length;
+
+      break;
+    }
+
+    case "DIFFERS":{
+      const hot =
+        getHotCold(data).highest.digit;
+
+      hits =
+        digits.filter(d=>d !== hot).length;
+
+      break;
+    }
   }
 
+  return (hits / total) * 100;
+}
 
-  if(contract === "ODD"){
+/* =========================================================
+   TARGET
+========================================================= */
 
-    probability =
-      stats
-        .filter(
-          x =>
-            x.digit % 2 !== 0
-        )
-        .reduce(
-          (sum,x) =>
-            sum + x.percent,
-          0
-        );
-
-  }
-
-
-  if(contract === "OVER"){
-
-    probability =
-      stats
-        .filter(
-          x =>
-            x.digit >= 5
-        )
-        .reduce(
-          (sum,x) =>
-            sum + x.percent,
-          0
-        );
-
-  }
-
-
-  if(contract === "UNDER"){
-
-    probability =
-      stats
-        .filter(
-          x =>
-            x.digit <= 4
-        )
-        .reduce(
-          (sum,x) =>
-            sum + x.percent,
-          0
-        );
-
-  }
-
+function getContractTarget(contract,data){
 
   if(
     contract === "MATCHES" ||
     contract === "DIFFERS"
   ){
-
-    const hottest =
-      Math.max(
-        ...stats.map(
-          x => x.percent
-        )
-      );
-
-
-    if(contract === "MATCHES"){
-
-      probability =
-        hottest;
-
-    }else{
-
-      probability =
-        100 - hottest;
-
-    }
-
+    return String(
+      getHotCold(data).highest.digit
+    );
   }
 
+  if(contract === "EVEN"){
+    return "EVEN";
+  }
 
-  return probability;
+  if(contract === "ODD"){
+    return "ODD";
+  }
 
+  if(contract === "OVER"){
+    return "5–9";
+  }
+
+  if(contract === "UNDER"){
+    return "0–4";
+  }
+
+  return "—";
 }
 
-
-/* =====================================================
+/* =========================================================
    QUALITY
-===================================================== */
+========================================================= */
 
-function calculateQuality(){
+function calculateQuality(data){
 
-  if(ticks.length < 50){
-
-    return 0;
-
-  }
-
-
-  const stats =
-    digitStats(
-      ticks.slice(-500)
-    );
-
-
-  const percentages =
-    stats.map(
-      x => x.percent
-    );
-
-
-  const max =
-    Math.max(
-      ...percentages
-    );
-
-
-  const min =
-    Math.min(
-      ...percentages
-    );
-
-
-  const spread =
-    max - min;
-
+  if(!data.length) return 0;
 
   const sampleQuality =
-    Math.min(
-      1,
-      ticks.length / 500
-    ) * 60;
+    Math.min(1,data.length/500) * 60;
 
+  const windows = [
+    data.slice(-50),
+    data.slice(-100),
+    data.slice(-500)
+  ].filter(x=>x.length);
+
+  const spreads =
+    windows.map(window=>{
+      const p =
+        digitPercentages(window);
+
+      return Math.max(...p) -
+             Math.min(...p);
+    });
+
+  const spread =
+    spreads.length
+      ? spreads.reduce((a,b)=>a+b,0) /
+        spreads.length
+      : 20;
 
   const stability =
     Math.max(
       0,
       Math.min(
         1,
-        1 - spread / 20
+        1 - spread/20
       )
     ) * 40;
 
-
   return Math.round(
-    sampleQuality +
-    stability
+    sampleQuality + stability
   );
-
 }
 
+/* =========================================================
+   SELECTED CONTRACT
+========================================================= */
 
-/* =====================================================
-   AGREEMENT
-===================================================== */
+function getSelectedContract(){
 
-function calculateAgreement(){
-
-  if(ticks.length < 100){
-
-    return 0;
-
-  }
-
-
-  const a =
-    windowAnalysis(50);
-
-  const b =
-    windowAnalysis(100);
-
-  const c =
-    windowAnalysis(500);
-
-
-  if(
-    a.digit === b.digit &&
-    b.digit === c.digit
-  ){
-
-    return 100;
-
-  }
-
-
-  if(
-    a.digit === b.digit ||
-    a.digit === c.digit ||
-    b.digit === c.digit
-  ){
-
-    return 67;
-
-  }
-
-
-  return 0;
-
+  return contractSelect.value;
 }
 
+function contractMinimum(contract){
 
-/* =====================================================
-   SCORE
-===================================================== */
+  if(contract === "DIFFERS"){
+    return BOT_CONFIG.DIFFERS_MIN;
+  }
 
-function scoreCandidate(
+  if(contract === "MATCHES"){
+    return BOT_CONFIG.MATCHES_MIN;
+  }
+
+  if(
+    contract === "EVEN" ||
+    contract === "ODD"
+  ){
+    return BOT_CONFIG.PARITY_MIN;
+  }
+
+  return BOT_CONFIG.OVER_UNDER_MIN;
+}
+
+function contractProbabilityOK(contract,probability){
+
+  return probability >=
+    contractMinimum(contract);
+}
+
+/* =========================================================
+   SELECTED-CONTRACT SCORE
+========================================================= */
+
+function calculateSelectedScore(
+  contract,
   probability,
   quality,
   agreement
 ){
 
-  let baseline = 50;
+  let baseline;
 
-
-  if(
-    probability >= 0 &&
-    probability <= 20
-  ){
-
+  if(contract === "MATCHES"){
     baseline = 10;
-
+  }else if(contract === "DIFFERS"){
+    baseline = 90;
+  }else{
+    baseline = 50;
   }
 
+  const edge =
+    probability - baseline;
 
-  if(
-    probability >= 80
-  ){
-
-    baseline =
-      probability >= 90
-      ? 90
-      : 50;
-
-  }
-
-
-  let edge =
-    probability -
-    baseline;
-
-
-  let edgeScore =
+  const edgeScore =
     Math.max(
       0,
       Math.min(
@@ -2645,879 +1719,880 @@ function scoreCandidate(
       )
     );
 
-
   return Math.round(
-
     edgeScore * 0.55 +
-
     quality * 0.25 +
-
     agreement * 0.20
-
   );
-
 }
 
+/* =========================================================
+   AGREEMENT — SELECTED CONTRACT
+========================================================= */
 
-/* =====================================================
-   TARGET
-===================================================== */
+function getWindowContractData(contract){
 
-function getTargetForContract(
-  contract
-){
+  const sizes = [50,100,500];
 
-  const stats =
-    digitStats(
-      ticks.slice(-500)
-    );
+  return sizes.map(size=>{
+    const data =
+      ticks.slice(-size);
 
+    return {
+      size,
+      data,
+      probability:
+        calculateContractProbability(
+          contract,
+          data
+        ),
+      target:
+        getContractTarget(
+          contract,
+          data
+        )
+    };
+  });
+}
 
-  stats.sort(
-    (a,b) =>
-      b.percent -
-      a.percent
-  );
+function calculateSelectedAgreement(contract){
 
+  const windows =
+    getWindowContractData(contract);
+
+  if(windows.some(w=>w.data.length < 10)){
+    return 0;
+  }
 
   if(
     contract === "MATCHES" ||
     contract === "DIFFERS"
   ){
 
-    return stats[0]?.digit ?? null;
+    const targets =
+      windows.map(w=>w.target);
 
+    if(
+      targets[0] === targets[1] &&
+      targets[1] === targets[2]
+    ){
+      return 100;
+    }
+
+    if(
+      targets[0] === targets[1] ||
+      targets[0] === targets[2] ||
+      targets[1] === targets[2]
+    ){
+      return 67;
+    }
+
+    return 0;
   }
 
+  const support =
+    windows.map(w=>
+      w.probability >= 50
+    );
 
-  if(
-    contract === "OVER"
-  ){
+  const supported =
+    support.filter(Boolean).length;
 
-    return 5;
+  if(supported === 3) return 100;
+  if(supported === 2) return 67;
 
-  }
-
-
-  if(
-    contract === "UNDER"
-  ){
-
-    return 4;
-
-  }
-
-
-  return null;
-
+  return 0;
 }
 
+/* =========================================================
+   ANALYZE SELECTED CONTRACT
+========================================================= */
 
-/* =====================================================
-   ANALYSIS ENGINE
-===================================================== */
+function analyzeSelectedContract(){
 
-function analyze(){
+  const contract =
+    getSelectedContract();
 
-  if(!botRunning){
+  const data =
+    ticks.slice(-500);
 
-    return;
-
+  if(data.length < 50){
+    return {
+      ready:false,
+      contract,
+      probability:0,
+      quality:calculateQuality(data),
+      agreement:0,
+      score:0,
+      target:getContractTarget(contract,data),
+      reason:
+        "Waiting for at least 50 live ticks."
+    };
   }
 
-
-  if(
-    ticks.length < REQUIRED_TICKS
-  ){
-
-    $("engineStatus")
-      .textContent =
-      "COLLECTING DATA";
-
-    $("engineMessage")
-      .textContent =
-      `Need ${REQUIRED_TICKS} ticks. Current: ${ticks.length}`;
-
-    return;
-
-  }
-
+  const probability =
+    calculateContractProbability(
+      contract,
+      data
+    );
 
   const quality =
-    calculateQuality();
+    calculateQuality(data);
 
   const agreement =
-    calculateAgreement();
-
-
-  $("quality").textContent =
-    quality + "%";
-
-  $("agreement").textContent =
-    agreement + "%";
-
-
-  const selectedContract =
-    $("contractSelect").value;
-
-
-  const contracts = [
-    "DIFFERS",
-    "EVEN",
-    "ODD",
-    "OVER",
-    "UNDER"
-  ];
-
-
-  if(matchesUnlocked){
-
-    contracts.push(
-      "MATCHES"
+    calculateSelectedAgreement(
+      contract
     );
 
-  }
-
-
-  const candidates =
-    contracts.map(
-      contract => {
-
-        const probability =
-          calculateContractProbability(
-            contract,
-            ticks.slice(-500)
-          );
-
-
-        const score =
-          scoreCandidate(
-            probability,
-            quality,
-            agreement
-          );
-
-
-        return {
-
-          contract,
-
-          probability,
-
-          score,
-
-          target:
-            getTargetForContract(
-              contract
-            )
-
-        };
-
-      }
-    );
-
-
-  candidates.sort(
-    (a,b) =>
-      b.score - a.score
-  );
-
-
-  const best =
-    candidates[0];
-
-
-  const minimumProbability =
-    best.contract === "DIFFERS"
-      ? 91
-      : best.contract === "MATCHES"
-        ? 15
-        : 55;
-
-
-  const matchesEligible =
-    best.contract === "MATCHES"
-      ? (
-        best.probability >= 15 &&
-        agreement === 100
-      )
-      : true;
-
-
-  const goodEntry = (
-
-    quality >= 70 &&
-
-    agreement >= 66 &&
-
-    best.score >= 70 &&
-
-    best.probability >=
-      minimumProbability &&
-
-    matchesEligible
-
-  );
-
-
-  if(goodEntry){
-
-    createSignal(
-      best,
+  const score =
+    calculateSelectedScore(
+      contract,
+      probability,
       quality,
       agreement
     );
 
-  }else{
-
-    if(
-      !signal ||
-      signal.expired
-    ){
-
-      $("entryStatus")
-        .textContent =
-        "WAIT — NO GOOD ENTRY";
-
-      $("entryStatus")
-        .className =
-        "entry-status bad";
-
-      $("entryContract")
-        .textContent =
-        "DO NOT TRADE";
-
-      $("entryAction")
-        .textContent =
-        "WAIT";
-
-      $("engineStatus")
-        .textContent =
-        "SCANNING";
-
-      $("engineMessage")
-        .textContent =
-        `Best setup: ${best.contract} ${best.probability.toFixed(1)}%`;
-
-    }
-
-  }
-
-
-  logMessage(
-    `Scan → ${best.contract} ${best.probability.toFixed(1)}% | Score ${best.score} | Q ${quality} | A ${agreement}`
-  );
-
-}
-
-
-/* =====================================================
-   SIGNAL
-===================================================== */
-
-function createSignal(
-  candidate,
-  quality,
-  agreement
-){
-
   const target =
-    candidate.target;
-
-
-  const signature =
-    [
-      selectedMarket,
-      candidate.contract,
-      target,
-      candidate.score
-    ].join("|");
-
-
-  if(
-    signal &&
-    signal.signature === signature &&
-    !signal.expired
-  ){
-
-    return;
-
-  }
-
-
-  clearSignal();
-
-
-  signal = {
-
-    signature,
-
-    market:
-      selectedMarket,
-
-    contract:
-      candidate.contract,
-
-    target,
-
-    probability:
-      candidate.probability,
-
-    confidence:
-      candidate.score,
-
-    quality,
-
-    agreement,
-
-    created:
-      Date.now(),
-
-    expires:
-      Date.now() +
-      SIGNAL_SECONDS * 1000,
-
-    expired:false
-
-  };
-
-
-  $("entryStatus")
-    .textContent =
-    "🟢 GOOD ENTRY";
-
-  $("entryStatus")
-    .className =
-    "entry-status good";
-
-
-  $("targetDigit")
-    .textContent =
-    target === null
-      ? "—"
-      : target;
-
-
-  $("entryContract")
-    .textContent =
-    candidate.contract;
-
-
-  $("entryTicks")
-    .textContent =
-    "NEXT";
-
-
-  $("entryConfidence")
-    .textContent =
-    candidate.score + "%";
-
-
-  $("entryTarget")
-    .textContent =
-    target === null
-      ? "AUTO"
-      : target;
-
-
-  $("entryAction")
-    .textContent =
-    "MANUAL ENTRY";
-
-
-  $("entryAction")
-    .className =
-    "good";
-
-
-  $("engineStatus")
-    .textContent =
-    "GOOD ENTRY";
-
-
-  $("engineStatus")
-    .className =
-    "green";
-
-
-  $("engineMessage")
-    .textContent =
-    `${candidate.contract} confirmed by live analysis.`;
-
-
-  signalHistory.unshift({
-
-    time:
-      new Date()
-        .toLocaleTimeString(),
-
-    contract:
-      candidate.contract,
-
-    target:
-      target === null
-        ? "-"
-        : target,
-
-    confidence:
-      candidate.score,
-
-    quality,
-
-    agreement
-
-  });
-
-
-  signalHistory =
-    signalHistory.slice(
-      0,
-      30
+    getContractTarget(
+      contract,
+      data
     );
 
+  const probabilityOK =
+    contractProbabilityOK(
+      contract,
+      probability
+    );
 
-  renderHistory();
+  const qualityOK =
+    quality >= BOT_CONFIG.MIN_QUALITY;
 
+  const agreementOK =
+    agreement >= BOT_CONFIG.MIN_AGREEMENT;
 
-  logMessage(
-    `🟢 GOOD ENTRY → ${candidate.contract} | Target ${target ?? "AUTO"} | Confidence ${candidate.score}%`
-  );
+  const scoreOK =
+    score >= BOT_CONFIG.MIN_SCORE;
 
+  const allFilters =
+    probabilityOK &&
+    qualityOK &&
+    agreementOK &&
+    scoreOK;
+
+  return {
+    ready:true,
+    contract,
+    probability,
+    quality,
+    agreement,
+    score,
+    target,
+    probabilityOK,
+    qualityOK,
+    agreementOK,
+    scoreOK,
+    allFilters
+  };
+}
+
+/* =========================================================
+   CONFIRMATION
+========================================================= */
+
+function updateConfirmation(result){
+
+  if(!result.ready){
+    confirmationCount = 0;
+    lastConfirmationSignature = "";
+    return;
+  }
+
+  const signature =
+    result.contract +
+    "|" +
+    result.target +
+    "|" +
+    Math.round(result.probability) +
+    "|" +
+    result.agreement;
+
+  if(!result.allFilters){
+
+    confirmationCount = 0;
+    lastConfirmationSignature = "";
+
+    return;
+  }
+
+  if(signature === lastConfirmationSignature){
+    return;
+  }
+
+  lastConfirmationSignature = signature;
+
+  confirmationCount =
+    Math.min(
+      BOT_CONFIG.CONFIRMATIONS_REQUIRED,
+      confirmationCount + 1
+    );
+}
+
+/* =========================================================
+   MAIN ANALYSIS
+========================================================= */
+
+function analyzeAndDisplay(){
+
+  if(!botRunning) return;
+
+  if(ticks.length < 50){
+    showWait(
+      "WAIT — collecting live ticks."
+    );
+    return;
+  }
+
+  const result =
+    analyzeSelectedContract();
+
+  updateConfirmation(result);
+
+  updateUnifiedUI(result);
+
+  if(
+    result.ready &&
+    result.allFilters &&
+    confirmationCount >=
+      BOT_CONFIG.CONFIRMATIONS_REQUIRED
+  ){
+
+    createSignal(result);
+
+  }else{
+
+    currentSignal = null;
+    stopSignalTimer();
+
+    entryAction.textContent = "WAIT";
+  }
+}
+
+/* =========================================================
+   UNIFIED UI
+========================================================= */
+
+function updateUnifiedUI(result){
+
+  selectedContractEl.textContent =
+    result.contract;
+
+  scoreEl.textContent =
+    result.score + "%";
+
+  qualityEl.textContent =
+    result.quality + "%";
+
+  agreementEl.textContent =
+    result.agreement + "%";
+
+  confirmationEl.textContent =
+    confirmationCount +
+    "/" +
+    BOT_CONFIG.CONFIRMATIONS_REQUIRED;
+
+  entryContract.textContent =
+    result.contract;
+
+  entryTicks.textContent =
+    "NEXT TICK";
+
+  entryProbability.textContent =
+    result.probability.toFixed(1) + "%";
+
+  entryScore.textContent =
+    result.score + "%";
+
+  entryQuality.textContent =
+    result.quality + "%";
+
+  entryTarget.textContent =
+    result.target;
+
+  const reasons = [];
+
+  if(!result.probabilityOK){
+    reasons.push(
+      "RATE " +
+      result.probability.toFixed(1) +
+      "% < " +
+      contractMinimum(result.contract) +
+      "%"
+    );
+  }
+
+  if(!result.qualityOK){
+    reasons.push(
+      "QUALITY " +
+      result.quality +
+      "% < " +
+      BOT_CONFIG.MIN_QUALITY +
+      "%"
+    );
+  }
+
+  if(!result.agreementOK){
+    reasons.push(
+      "AGREEMENT " +
+      result.agreement +
+      "% < " +
+      BOT_CONFIG.MIN_AGREEMENT +
+      "%"
+    );
+  }
+
+  if(!result.scoreOK){
+    reasons.push(
+      "SCORE " +
+      result.score +
+      "% < " +
+      BOT_CONFIG.MIN_SCORE +
+      "%"
+    );
+  }
+
+  if(
+    result.allFilters &&
+    confirmationCount <
+      BOT_CONFIG.CONFIRMATIONS_REQUIRED
+  ){
+    reasons.push(
+      "CONFIRMATION " +
+      confirmationCount +
+      "/" +
+      BOT_CONFIG.CONFIRMATIONS_REQUIRED
+    );
+  }
+
+  if(
+    result.allFilters &&
+    confirmationCount >=
+      BOT_CONFIG.CONFIRMATIONS_REQUIRED
+  ){
+    reasons.push(
+      "ALL FILTERS PASSED"
+    );
+  }
+
+  const good =
+    result.allFilters &&
+    confirmationCount >=
+      BOT_CONFIG.CONFIRMATIONS_REQUIRED;
+
+  if(good){
+
+    entryState.textContent =
+      "🟢 GOOD ENTRY";
+
+    entryState.className =
+      "entry-state good";
+
+    entryAction.textContent =
+      "MANUAL ENTRY";
+
+    entryReason.textContent =
+      result.contract +
+      " selected. All confirmation filters passed.";
+
+    engineMessage.textContent =
+      "GOOD ENTRY → " +
+      result.contract;
+
+    engineMessage.className =
+      "status-line good";
+
+  }else{
+
+    entryState.textContent =
+      "WAIT";
+
+    entryState.className =
+      "entry-state wait";
+
+    entryAction.textContent =
+      "WAIT";
+
+    entryReason.textContent =
+      reasons.join(" • ") ||
+      "Waiting for confirmation.";
+
+    engineMessage.textContent =
+      "WAIT → " +
+      reasons.join(" • ");
+
+    engineMessage.className =
+      "status-line wait";
+  }
+}
+
+function showWait(message){
+
+  entryState.textContent =
+    "WAIT";
+
+  entryState.className =
+    "entry-state wait";
+
+  entryTarget.textContent =
+    "—";
+
+  entryAction.textContent =
+    "WAIT";
+
+  entryReason.textContent =
+    message;
+
+  engineMessage.textContent =
+    message;
+
+  engineMessage.className =
+    "status-line wait";
+}
+
+/* =========================================================
+   SIGNAL
+========================================================= */
+
+function createSignal(result){
+
+  if(currentSignal){
+    return;
+  }
+
+  currentSignal = {
+    contract:result.contract,
+    target:result.target,
+    probability:result.probability,
+    score:result.score,
+    quality:result.quality,
+    agreement:result.agreement,
+    created:Date.now()
+  };
+
+  signalSeconds =
+    BOT_CONFIG.SIGNAL_SECONDS;
+
+  entryState.textContent =
+    "🟢 GOOD ENTRY";
+
+  entryState.className =
+    "entry-state good";
+
+  entryAction.textContent =
+    "MANUAL ENTRY";
+
+  entryReason.textContent =
+    "Signal confirmed. Place any trade manually on Deriv only if it matches your own risk plan.";
 
   startSignalTimer();
 
+  addScanner(
+    "GOOD ENTRY → " +
+    result.contract +
+    " → TARGET " +
+    result.target +
+    " → SCORE " +
+    result.score +
+    " → CONFIRM " +
+    confirmationCount +
+    "/3"
+  );
+
+  addHistory(result);
 }
-
-
-/* =====================================================
-   SIGNAL TIMER
-===================================================== */
 
 function startSignalTimer(){
 
-  clearInterval(
-    signalTimer
-  );
+  stopSignalTimer();
 
+  updateTimer();
 
   signalTimer =
-    setInterval(
-      () => {
+    setInterval(()=>{
+      signalSeconds--;
 
-        if(!signal){
+      updateTimer();
 
-          clearInterval(
-            signalTimer
-          );
+      if(signalSeconds <= 0){
+        expireSignal();
+      }
 
-          return;
-
-        }
-
-
-        const remaining =
-          Math.max(
-            0,
-            Math.ceil(
-              (
-                signal.expires -
-                Date.now()
-              ) / 1000
-            )
-          );
-
-
-        $("timer").textContent =
-          `Signal expires in ${remaining}s`;
-
-
-        if(
-          remaining <= 0
-        ){
-
-          expireSignal();
-
-        }
-
-      },
-      250
-    );
-
+    },1000);
 }
 
+function updateTimer(){
+
+  timerEl.textContent =
+    "SIGNAL TIMER: " +
+    String(
+      Math.max(0,signalSeconds)
+    ).padStart(2,"0") +
+    "s";
+}
+
+function stopSignalTimer(){
+
+  if(signalTimer){
+    clearInterval(signalTimer);
+    signalTimer = null;
+  }
+
+  timerEl.textContent = "—";
+}
 
 function expireSignal(){
 
-  if(!signal){
+  stopSignalTimer();
 
-    return;
+  currentSignal = null;
 
-  }
+  confirmationCount = 0;
+  lastConfirmationSignature = "";
 
+  entryState.textContent =
+    "⚠ SIGNAL EXPIRED";
 
-  signal.expired =
-    true;
+  entryState.className =
+    "entry-state bad-text";
 
-
-  clearInterval(
-    signalTimer
-  );
-
-
-  $("timer")
-    .textContent =
-    "SIGNAL EXPIRED";
-
-
-  $("entryStatus")
-    .textContent =
-    "SIGNAL EXPIRED";
-
-
-  $("entryStatus")
-    .className =
-    "entry-status bad";
-
-
-  $("entryContract")
-    .textContent =
-    "DO NOT TRADE";
-
-
-  $("targetDigit")
-    .textContent =
-    "—";
-
-
-  $("entryConfidence")
-    .textContent =
-    "--";
-
-
-  $("entryTarget")
-    .textContent =
-    "--";
-
-
-  $("entryAction")
-    .textContent =
+  entryAction.textContent =
     "RE-SCAN";
 
+  entryReason.textContent =
+    "SIGNAL EXPIRED — RE-SCAN REQUIRED.";
 
-  $("entryAction")
-    .className =
-    "bad";
+  engineMessage.textContent =
+    "SIGNAL EXPIRED — waiting for fresh confirmation.";
 
+  engineMessage.className =
+    "status-line bad-text";
 
-  $("engineStatus")
-    .textContent =
-    "RE-SCAN REQUIRED";
-
-
-  $("engineStatus")
-    .className =
-    "bad";
-
-
-  $("engineMessage")
-    .textContent =
-    "DO NOT TRADE — SIGNAL EXPIRED — RE-SCAN REQUIRED";
-
-
-  logMessage(
-    "🔴 Signal expired. Re-scan required."
+  addScanner(
+    "SIGNAL EXPIRED → FRESH SCAN REQUIRED"
   );
-
 }
 
+/* =========================================================
+   SCAN LOOP
+========================================================= */
 
-function clearSignal(){
+function runBot(){
 
-  clearInterval(
-    signalTimer
-  );
+  if(botRunning) return;
 
-  signal =
-    null;
-
-
-  $("timer")
-    .textContent =
-    "Signal timer: --";
-
-}
-
-
-/* =====================================================
-   UI UPDATE
-===================================================== */
-
-function updateUI(){
-
-  if(!ticks.length){
-
+  if(!selectedMarket){
+    botStatus.textContent =
+      "Select a market first.";
     return;
-
   }
 
+  botRunning = true;
+
+  botStatus.textContent =
+    "BOT RUNNING → " +
+    getSelectedContract() +
+    " selected.";
+
+  addScanner(
+    "BOT START → CONTRACT " +
+    getSelectedContract()
+  );
+
+  analyzeAndDisplay();
+
+  scanTimer =
+    setInterval(()=>{
+      analyzeAndDisplay();
+    },2000);
+}
+
+function stopBot(){
+
+  botRunning = false;
+
+  if(scanTimer){
+    clearInterval(scanTimer);
+    scanTimer = null;
+  }
+
+  stopSignalTimer();
+
+  currentSignal = null;
+
+  confirmationCount = 0;
+  lastConfirmationSignature = "";
+
+  botStatus.textContent =
+    "BOT STOPPED";
+
+  engineMessage.textContent =
+    "Bot stopped.";
+
+  engineMessage.className =
+    "status-line";
+
+  entryState.textContent =
+    "STOPPED";
+
+  entryState.className =
+    "entry-state";
+
+  entryAction.textContent =
+    "WAIT";
+
+  addScanner("BOT STOPPED");
+}
+
+function maybeScan(){
+
+  const now = Date.now();
+
+  if(now - lastScanAt < 1800){
+    return;
+  }
+
+  lastScanAt = now;
+
+  analyzeAndDisplay();
+}
+
+/* =========================================================
+   CONTRACT CHANGE
+========================================================= */
+
+contractSelect.addEventListener("change",()=>{
+
+  const contract =
+    getSelectedContract();
+
+  confirmationCount = 0;
+  lastConfirmationSignature = "";
+  currentSignal = null;
+
+  stopSignalTimer();
+
+  selectedContractEl.textContent =
+    contract;
+
+  entryContract.textContent =
+    contract;
+
+  entryState.textContent =
+    "WAIT";
+
+  entryState.className =
+    "entry-state wait";
+
+  entryAction.textContent =
+    "WAIT";
+
+  entryReason.textContent =
+    "Contract changed to " +
+    contract +
+    ". Fresh confirmation required.";
+
+  engineMessage.textContent =
+    "ENGINE SWITCHED → " +
+    contract +
+    " ONLY";
+
+  engineMessage.className =
+    "status-line wait";
+
+  addScanner(
+    "CONTRACT CHANGE → " +
+    contract +
+    " → OLD SIGNAL RESET"
+  );
+
+  renderWindows();
+  renderContracts();
+
+  if(botRunning){
+    analyzeAndDisplay();
+  }
+});
+
+/* =========================================================
+   MARKET CHANGE
+========================================================= */
+
+marketSelect.addEventListener("change",()=>{
+
+  selectedMarket =
+    marketSelect.value;
+
+  subscribeMarket();
+
+  if(botRunning){
+    confirmationCount = 0;
+    lastConfirmationSignature = "";
+  }
+});
+
+/* =========================================================
+   RUN / STOP
+========================================================= */
+
+$("runBtn").addEventListener(
+  "click",
+  runBot
+);
+
+$("stopBtn").addEventListener(
+  "click",
+  stopBot
+);
+
+$("logoutBtn").addEventListener(
+  "click",
+  logout
+);
+
+/* =========================================================
+   LIVE UI
+========================================================= */
+
+function updateLiveUI(){
+
+  tickCount.textContent =
+    ticks.length;
+
+  if(!ticks.length){
+    return;
+  }
 
   const latest =
-    ticks[ticks.length - 1];
+    ticks[ticks.length-1];
 
+  const price =
+    latest.quote;
+
+  const decimals =
+    decimalPlacesFromPip(pipSize);
+
+  livePrice.textContent =
+    price.toFixed(decimals);
 
   const digit =
     getLastDigit(
-      latest.quote,
+      price,
       pipSize
     );
 
-
-  $("price").textContent =
-    Number(
-      latest.quote
-    ).toFixed(
-      decimalPlacesFromPip(
-        pipSize
-      )
-    );
-
-
-  $("lastDigit").textContent =
+  lastDigitEl.textContent =
     digit;
 
+  const recent =
+    ticks.slice(-20);
 
-  $("tickCount").textContent =
-    ticks.length;
+  if(recent.length >= 2){
 
+    const first =
+      recent[0].quote;
 
-  const first =
-    ticks[
-      Math.max(
-        0,
-        ticks.length - 20
-      )
-    ];
+    const last =
+      recent[recent.length-1].quote;
 
-
-  const movement =
-    first
-      ? latest.quote -
-        first.quote
-      : 0;
-
-
-  $("momentum").textContent =
-    movement > 0
-      ? "UP"
-      : movement < 0
-        ? "DOWN"
-        : "NEUTRAL";
-
-
-  $("momentum").className =
-    "stat-value " +
-    (
-      movement > 0
-        ? "green"
-        : movement < 0
-          ? "red"
-          : "yellow"
-    );
-
-
-  $("marketName").textContent =
-    marketName ||
-    selectedMarket;
-
-
-  $("marketSymbol").textContent =
-    selectedMarket;
-
+    if(last > first){
+      momentumEl.textContent =
+        "UP";
+      momentumEl.className =
+        "good";
+    }else if(last < first){
+      momentumEl.textContent =
+        "DOWN";
+      momentumEl.className =
+        "bad-text";
+    }else{
+      momentumEl.textContent =
+        "NEUTRAL";
+      momentumEl.className = "";
+    }
+  }
 
   renderDigits();
-
-  renderWindows();
-
   renderContracts();
-
+  renderWindows();
   renderRecentTicks();
-
 }
 
-
-/* =====================================================
-   DIGITS UI
-===================================================== */
+/* =========================================================
+   DIGIT RENDER
+========================================================= */
 
 function renderDigits(){
 
-  const container =
-    $("digits");
-
+  if(!ticks.length){
+    digitsEl.innerHTML =
+      '<div class="empty" style="grid-column:1/-1">Waiting for ticks...</div>';
+    return;
+  }
 
   const stats =
-    digitStats(
+    getHotCold(
       ticks.slice(-500)
     );
 
+  const list =
+    stats.percentages
+      .map((value,digit)=>({
+        digit,
+        value
+      }))
+      .sort((a,b)=>b.value-a.value);
 
-  const sorted =
-    [...stats].sort(
-      (a,b) =>
-        b.percent -
-        a.percent
-    );
+  const classes =
+    {};
 
+  classes[list[0].digit] =
+    "high";
 
-  const highest =
-    sorted[0]?.digit;
+  classes[list[1].digit] =
+    "second-high";
 
-  const secondHighest =
-    sorted[1]?.digit;
+  classes[list[8].digit] =
+    "second-low";
 
-  const lowest =
-    sorted[sorted.length - 1]?.digit;
+  classes[list[9].digit] =
+    "low";
 
-  const secondLowest =
-    sorted[sorted.length - 2]?.digit;
-
-
-  container.innerHTML = "";
-
-
-  stats.forEach(
-    item => {
-
-      let cls = "";
-
-
-      if(
-        item.digit === highest
-      ){
-
-        cls =
-          "hot";
-
-      }else if(
-        item.digit === secondHighest
-      ){
-
-        cls =
-          "second-hot";
-
-      }else if(
-        item.digit === lowest
-      ){
-
-        cls =
-          "cold";
-
-      }else if(
-        item.digit === secondLowest
-      ){
-
-        cls =
-          "second-cold";
-
-      }
-
-
-      const div =
-        document.createElement("div");
-
-
-      div.className =
-        `digit ${cls}`;
-
-
-      div.innerHTML = `
-
-        <div class="digit-number">
-          ${item.digit}
+  digitsEl.innerHTML =
+    stats.percentages
+      .map((value,digit)=>`
+        <div class="digit ${classes[digit] || ""}">
+          <span>${digit}</span>
+          <small>${value.toFixed(1)}%</small>
         </div>
-
-        <div class="digit-percent">
-          ${item.percent.toFixed(1)}%
-        </div>
-
-      `;
-
-
-      container.appendChild(
-        div
-      );
-
-    }
-  );
-
+      `)
+      .join("");
 }
 
-
-/* =====================================================
-   WINDOWS UI
-===================================================== */
-
-function renderWindows(){
-
-  const a =
-    windowAnalysis(50);
-
-  const b =
-    windowAnalysis(100);
-
-  const c =
-    windowAnalysis(500);
-
-
-  $("win50Digit")
-    .textContent =
-    a.digit ?? "--";
-
-
-  $("win50Percent")
-    .textContent =
-    a.digit === null
-      ? "--"
-      : a.percent.toFixed(1) + "%";
-
-
-  $("win100Digit")
-    .textContent =
-    b.digit ?? "--";
-
-
-  $("win100Percent")
-    .textContent =
-    b.digit === null
-      ? "--"
-      : b.percent.toFixed(1) + "%";
-
-
-  $("win500Digit")
-    .textContent =
-    c.digit ?? "--";
-
-
-  $("win500Percent")
-    .textContent =
-    c.digit === null
-      ? "--"
-      : c.percent.toFixed(1) + "%";
-
-}
-
-
-/* =====================================================
-   CONTRACT UI
-===================================================== */
+/* =========================================================
+   CONTRACT PANEL
+========================================================= */
 
 function renderContracts(){
 
-  const container =
-    $("contracts");
+  if(!ticks.length){
+    contractsEl.innerHTML =
+      '<div class="empty" style="grid-column:1/-1">Waiting for ticks...</div>';
+    return;
+  }
 
+  const data =
+    ticks.slice(-500);
 
-  const names = [
+  const contracts = [
     "DIFFERS",
     "MATCHES",
     "EVEN",
@@ -3526,606 +2601,310 @@ function renderContracts(){
     "UNDER"
   ];
 
+  const selected =
+    getSelectedContract();
 
-  container.innerHTML = "";
-
-
-  names.forEach(
-    contract => {
+  contractsEl.innerHTML =
+    contracts.map(contract=>{
 
       const probability =
         calculateContractProbability(
           contract,
-          ticks.slice(-500)
+          data
         );
 
-
-      const locked =
-        contract === "MATCHES" &&
-        !matchesUnlocked;
-
-
-      const div =
-        document.createElement("div");
-
-
-      div.className =
-        "contract";
-
-
-      div.innerHTML = `
-
-        <div class="contract-name">
-
-          ${
-            locked
-              ? "🔒 "
+      return `
+        <div
+          class="contract ${
+            contract === selected
+              ? "selected"
               : ""
-          }
+          }"
+          data-contract="${contract}"
+        >
+          <div class="contract-name">
+            ${
+              contract === selected
+                ? "▶ "
+                : ""
+            }${contract}
+          </div>
 
-          ${contract}
-
+          <div class="contract-value">
+            ${probability.toFixed(1)}%
+          </div>
         </div>
-
-        <div class="contract-prob">
-
-          ${
-            locked
-              ? "--"
-              : probability.toFixed(1) + "%"
-          }
-
-        </div>
-
-        <div class="contract-bar">
-
-          <span
-            style="width:${
-              locked
-                ? 0
-                : Math.min(
-                    100,
-                    probability
-                  )
-            }%"
-          ></span>
-
-        </div>
-
       `;
 
+    }).join("");
 
-      container.appendChild(
-        div
+  document
+    .querySelectorAll(".contract")
+    .forEach(card=>{
+
+      card.addEventListener(
+        "click",
+        ()=>{
+          contractSelect.value =
+            card.dataset.contract;
+
+          contractSelect.dispatchEvent(
+            new Event("change")
+          );
+        }
       );
 
-    }
-  );
-
+    });
 }
 
+/* =========================================================
+   WINDOWS
+========================================================= */
 
-/* =====================================================
-   RECENT TICKS
-===================================================== */
+function renderWindows(){
 
-function renderRecentTicks(){
+  if(!ticks.length){
+    windowsEl.innerHTML =
+      '<div class="empty" style="grid-column:1/-1">Waiting for live ticks...</div>';
+    return;
+  }
 
-  const box =
-    $("recentTicks");
+  const contract =
+    getSelectedContract();
 
+  const windows =
+    getWindowContractData(contract);
 
-  const recent =
-    ticks.slice(-25)
-      .reverse();
+  windowsEl.innerHTML =
+    windows.map(w=>{
 
+      const support =
+        w.probability >= 50;
 
-  box.innerHTML = "";
+      return `
+        <div class="window">
 
+          <h4>${w.size} TICKS</h4>
 
-  recent.forEach(
-    tick => {
+          <div class="window-line">
+            <span>CONTRACT</span>
+            <strong>${contract}</strong>
+          </div>
 
-      const digit =
-        getLastDigit(
-          tick.quote,
-          pipSize
-        );
+          <div class="window-line">
+            <span>RATE</span>
+            <strong>
+              ${w.probability.toFixed(1)}%
+            </strong>
+          </div>
 
+          <div class="window-line">
+            <span>TARGET</span>
+            <strong>${w.target}</strong>
+          </div>
 
-      const line =
-        document.createElement("div");
+          <div class="window-line">
+            <span>SUPPORT</span>
+            <strong class="${
+              support ? "good" : "bad-text"
+            }">
+              ${support ? "YES" : "NO"}
+            </strong>
+          </div>
 
+          <div class="progress">
+            <i style="width:${
+              Math.min(
+                100,
+                w.probability
+              )
+            }%"></i>
+          </div>
 
-      line.className =
-        "log-line";
+        </div>
+      `;
 
-
-      line.textContent =
-        `${new Date(
-          tick.epoch * 1000
-        ).toLocaleTimeString()} | ${tick.quote} | DIGIT ${digit}`;
-
-
-      box.appendChild(
-        line
-      );
-
-    }
-  );
-
+    }).join("");
 }
 
+/* =========================================================
+   SCANNER
+========================================================= */
 
-/* =====================================================
+function addScanner(text){
+
+  const time =
+    new Date().toLocaleTimeString();
+
+  const line =
+    document.createElement("div");
+
+  line.textContent =
+    "[" + time + "] " + text;
+
+  scannerEl.appendChild(line);
+
+  while(scannerEl.children.length > 100){
+    scannerEl.removeChild(
+      scannerEl.firstChild
+    );
+  }
+
+  scannerEl.scrollTop =
+    scannerEl.scrollHeight;
+}
+
+/* =========================================================
    HISTORY
-===================================================== */
+========================================================= */
+
+function addHistory(result){
+
+  signalHistory.unshift({
+    time:new Date().toLocaleTimeString(),
+    contract:result.contract,
+    target:result.target,
+    probability:result.probability,
+    score:result.score
+  });
+
+  signalHistory =
+    signalHistory.slice(0,30);
+
+  renderHistory();
+}
 
 function renderHistory(){
 
-  const box =
-    $("history");
+  if(!signalHistory.length){
+    historyEl.innerHTML =
+      '<div class="empty">No signals yet.</div>';
+    return;
+  }
 
+  historyEl.innerHTML =
+    signalHistory.map(item=>`
+      <div class="history-row">
+        <div>
+          <strong class="good">
+            ${item.contract}
+          </strong>
+          →
+          <strong>${item.target}</strong>
+          <br>
+          <small>${item.time}</small>
+        </div>
 
-  box.innerHTML = "";
-
-
-  signalHistory.forEach(
-    row => {
-
-      const div =
-        document.createElement("div");
-
-
-      div.className =
-        "history-row";
-
-
-      div.innerHTML = `
-
-        <span>
-          ${row.time}
-        </span>
-
-        <span class="green">
-          ${row.contract}
-        </span>
-
-        <span>
-          Target ${row.target}
-        </span>
-
-        <span>
-          ${row.confidence}%
-        </span>
-
-      `;
-
-
-      box.appendChild(
-        div
-      );
-
-    }
-  );
-
+        <div style="text-align:right">
+          ${item.probability.toFixed(1)}%
+          <br>
+          <small>Score ${item.score}%</small>
+        </div>
+      </div>
+    `).join("");
 }
 
+/* =========================================================
+   RECENT TICKS
+========================================================= */
 
-/* =====================================================
-   RUN / STOP
-===================================================== */
+function renderRecentTicks(){
 
-$("runBot").addEventListener(
+  if(!ticks.length){
+    recentTicksEl.innerHTML =
+      '<div class="empty">No ticks yet.</div>';
+    return;
+  }
+
+  const recent =
+    ticks.slice(-50).reverse();
+
+  recentTicksEl.innerHTML =
+    recent.map((item,index)=>{
+
+      const digit =
+        getLastDigit(
+          item.quote,
+          pipSize
+        );
+
+      const decimals =
+        decimalPlacesFromPip(
+          pipSize
+        );
+
+      return `
+        <div class="tick-row">
+          <span>
+            #${index + 1}
+          </span>
+
+          <span>
+            ${item.quote.toFixed(decimals)}
+          </span>
+
+          <strong>
+            ${digit}
+          </strong>
+        </div>
+      `;
+
+    }).join("");
+}
+
+/* =========================================================
+   MATCHES
+========================================================= */
+
+$("unlockMatches").addEventListener(
   "click",
-  () => {
+  ()=>{
+    const code =
+      prompt("Enter MATCHES activation code:");
 
-    if(
-      !selectedMarket
-    ){
+    if(code === "19809"){
 
-      logMessage(
-        "Select a market first."
+      contractSelect.value =
+        "MATCHES";
+
+      contractSelect.dispatchEvent(
+        new Event("change")
       );
 
-      return;
+      alert(
+        "MATCHES unlocked for this session."
+      );
 
+    }else if(code !== null){
+
+      alert(
+        "Invalid activation code."
+      );
     }
-
-
-    botRunning =
-      true;
-
-
-    $("engineStatus")
-      .textContent =
-      "SCANNING";
-
-
-    $("engineStatus")
-      .className =
-      "green";
-
-
-    $("engineMessage")
-      .textContent =
-      "Live analysis engine running.";
-
-
-    logMessage(
-      "▶ BOT SCANNER STARTED."
-    );
-
-
-    analyze();
-
   }
 );
 
-
-$("stopBot").addEventListener(
-  "click",
-  () => {
-
-    botRunning =
-      false;
-
-
-    clearSignal();
-
-
-    $("engineStatus")
-      .textContent =
-      "STOPPED";
-
-
-    $("engineStatus")
-      .className =
-      "green";
-
-
-    $("engineMessage")
-      .textContent =
-      "Bot scanner stopped.";
-
-
-    $("entryStatus")
-      .textContent =
-      "BOT STOPPED";
-
-
-    $("entryStatus")
-      .className =
-      "entry-status";
-
-
-    $("entryContract")
-      .textContent =
-      "NO SIGNAL";
-
-
-    $("targetDigit")
-      .textContent =
-      "—";
-
-
-    $("entryAction")
-      .textContent =
-      "WAIT";
-
-
-    logMessage(
-      "■ BOT SCANNER STOPPED."
-    );
-
-  }
-);
-
-
-/* =====================================================
-   MARKET SELECT
-===================================================== */
-
-$("marketSelect")
-  .addEventListener(
-    "change",
-    () => {
-
-      selectedMarket =
-        $("marketSelect").value;
-
-
-      const selected =
-        discoveredMarkets.find(
-          item =>
-            (
-              item.underlying_symbol ||
-              item.symbol
-            ) === selectedMarket
-        );
-
-
-      marketName =
-        selected
-          ? formatMarketName(
-              selected
-            )
-          : selectedMarket;
-
-
-      subscribeToMarket();
-
-    }
-  );
-
-
-/* =====================================================
-   CONTRACT SELECT
-===================================================== */
-
-$("contractSelect")
-  .addEventListener(
-    "change",
-    () => {
-
-      if(
-        $("contractSelect").value ===
-        "MATCHES" &&
-        !matchesUnlocked
-      ){
-
-        $("contractSelect").value =
-          "DIFFERS";
-
-
-        alert(
-          "MATCHES is locked. Unlock it using activation code 19809."
-        );
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
-   MATCHES UNLOCK
-===================================================== */
-
-$("unlockMatches")
-  .addEventListener(
-    "click",
-    () => {
-
-      const code =
-        prompt(
-          "Enter MATCHES activation code:"
-        );
-
-
-      if(
-        code &&
-        code.trim() ===
-        MATCHES_ACTIVATION_CODE
-      ){
-
-        matchesUnlocked =
-          true;
-
-
-        $("matchesStatus")
-          .textContent =
-          "🟢 MATCHES UNLOCKED";
-
-
-        $("matchesStatus")
-          .className =
-          "matches-unlocked";
-
-
-        $("matchesText")
-          .textContent =
-          "MATCHES is now available to the signal engine.";
-
-
-        logMessage(
-          "MATCHES feature unlocked."
-        );
-
-
-        renderContracts();
-
-      }else if(code){
-
-        alert(
-          "Invalid activation code."
-        );
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
-   BUY MATCHES → WHATSAPP
-===================================================== */
-
-$("buyMatches")
-  .addEventListener(
-    "click",
-    () => {
-
-      const message =
-        encodeURIComponent(
-          "Hello ELISY 254, I want to buy/activate the MATCHES feature."
-        );
-
-
-      const url =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-
-
-      window.open(
-        url,
-        "_blank"
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   FALLBACK MARKETS
-===================================================== */
-
-const FALLBACK_MARKETS = [
-
-  {
-    symbol:"R_10",
-    name:"Volatility 10 Index"
-  },
-
-  {
-    symbol:"R_25",
-    name:"Volatility 25 Index"
-  },
-
-  {
-    symbol:"R_50",
-    name:"Volatility 50 Index"
-  },
-
-  {
-    symbol:"R_75",
-    name:"Volatility 75 Index"
-  },
-
-  {
-    symbol:"R_100",
-    name:"Volatility 100 Index"
-  },
-
-  {
-    symbol:"1HZ10V",
-    name:"Volatility 10 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ15V",
-    name:"Volatility 15 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ25V",
-    name:"Volatility 25 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ30V",
-    name:"Volatility 30 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ50V",
-    name:"Volatility 50 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ75V",
-    name:"Volatility 75 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ90V",
-    name:"Volatility 90 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ100V",
-    name:"Volatility 100 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ150V",
-    name:"Volatility 150 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ200V",
-    name:"Volatility 200 (1s) Index"
-  },
-
-  {
-    symbol:"1HZ250V",
-    name:"Volatility 250 (1s) Index"
-  }
-
-];
-
-
-/* =====================================================
-   FALLBACK IF DISCOVERY EMPTY
-===================================================== */
-
-setTimeout(
-  () => {
-
-    if(
-      discoveredMarkets.length === 0
-    ){
-
-      logMessage(
-        "Using fallback Volatility market list."
-      );
-
-
-      populateMarkets(
-        FALLBACK_MARKETS.map(
-          item => ({
-            symbol:item.symbol,
-            display_name:item.name
-          })
-        )
-      );
-
-    }
-
-  },
-  8000
-);
-
-
-/* =====================================================
-   START UI
-===================================================== */
-
-$("marketName")
-  .textContent =
-  "Waiting for Deriv...";
-
-
-$("entryStatus")
-  .textContent =
-  "WAITING FOR LIVE DATA";
-
-
-/* =====================================================
-   PERIODIC ANALYSIS
-===================================================== */
-
-setInterval(
-  () => {
-
-    if(botRunning){
-
-      analyze();
-
-    }
-
-  },
-  3000
-);
+/* =========================================================
+   INITIAL UI
+========================================================= */
+
+function initializeUI(){
+
+  selectedContractEl.textContent =
+    getSelectedContract();
+
+  entryContract.textContent =
+    getSelectedContract();
+
+  renderDigits();
+  renderContracts();
+  renderWindows();
+  renderHistory();
+  renderRecentTicks();
+}
+
+initializeUI();
+loadSavedLogin();
 
 </script>
 
