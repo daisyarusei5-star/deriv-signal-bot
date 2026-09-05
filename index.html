@@ -644,9 +644,7 @@ select{
 
 <body>
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<!-- ================= LOGIN ================= -->
 
 <section id="loginScreen">
 
@@ -683,26 +681,18 @@ select{
       Save login on this device
     </label>
 
-    <button
-      id="loginButton"
-      class="login-btn"
-    >
+    <button id="loginButton" class="login-btn">
       LOGIN
     </button>
 
-    <div
-      id="loginError"
-      class="login-error"
-    ></div>
+    <div id="loginError" class="login-error"></div>
 
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     MAIN APP
-===================================================== -->
+<!-- ================= MAIN APP ================= -->
 
 <main id="app">
 
@@ -724,10 +714,7 @@ select{
 
   <div class="header-right">
 
-    <div
-      id="connectionStatus"
-      class="status"
-    >
+    <div id="connectionStatus" class="status">
       ● CONNECTING...
     </div>
 
@@ -735,10 +722,7 @@ select{
       TRADER: <strong id="traderName">Trade23</strong>
     </div>
 
-    <button
-      id="logoutButton"
-      class="logout"
-    >
+    <button id="logoutButton" class="logout">
       LOGOUT
     </button>
 
@@ -755,9 +739,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
 <div class="grid">
 
-<!-- =====================================================
-     BOT CONTROL
-===================================================== -->
+<!-- ================= BOT CONTROL ================= -->
 
 <section class="card span-12">
 
@@ -772,11 +754,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
       <label>MARKET</label>
 
       <select id="marketSelect">
-
-        <option>
-          Connecting to Deriv...
-        </option>
-
+        <option>Connecting to Deriv...</option>
       </select>
 
     </div>
@@ -804,11 +782,11 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
         </option>
 
         <option value="OVER">
-          OVER 5
+          OVER • PREDICT 1–5
         </option>
 
         <option value="UNDER">
-          UNDER 5
+          UNDER • PREDICT 6–9
         </option>
 
       </select>
@@ -819,17 +797,11 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
   <div class="bot-buttons">
 
-    <button
-      id="runBot"
-      class="run"
-    >
+    <button id="runBot" class="run">
       ▶ RUN BOT
     </button>
 
-    <button
-      id="stopBot"
-      class="stop"
-    >
+    <button id="stopBot" class="stop">
       ■ STOP
     </button>
 
@@ -838,9 +810,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 </section>
 
 
-<!-- =====================================================
-     LIVE MARKET
-===================================================== -->
+<!-- ================= LIVE MARKET ================= -->
 
 <section class="card span-12">
 
@@ -857,10 +827,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
     <div class="metric">
       <span>SYMBOL</span>
-      <strong
-        id="symbolName"
-        class="green"
-      >—</strong>
+      <strong id="symbolName" class="green">—</strong>
     </div>
 
     <div class="metric">
@@ -870,10 +837,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
     <div class="metric">
       <span>LAST DIGIT</span>
-      <strong
-        id="lastDigit"
-        class="green"
-      >—</strong>
+      <strong id="lastDigit" class="green">—</strong>
     </div>
 
     <div class="metric">
@@ -900,9 +864,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 </section>
 
 
-<!-- =====================================================
-     ENGINE STATUS
-===================================================== -->
+<!-- ================= ENGINE ================= -->
 
 <section class="card span-12">
 
@@ -914,10 +876,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
     <div class="engine-box">
       <span>SCORE</span>
-      <strong
-        id="score"
-        class="green"
-      >0%</strong>
+      <strong id="score" class="green">0%</strong>
     </div>
 
     <div class="engine-box">
@@ -940,9 +899,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 </section>
 
 
-<!-- =====================================================
-     FINAL ENTRY
-===================================================== -->
+<!-- ================= FINAL ENTRY ================= -->
 
 <section class="card span-8 entry">
 
@@ -950,17 +907,11 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
     🎯 FINAL ENTRY DECISION
   </div>
 
-  <div
-    id="decision"
-    class="decision wait"
-  >
+  <div id="decision" class="decision wait">
     WAIT
   </div>
 
-  <div
-    id="predictedDigit"
-    class="big-digit"
-  >
+  <div id="predictedDigit" class="big-digit">
     —
   </div>
 
@@ -982,12 +933,12 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
     </div>
 
     <div class="entry-item">
-      <span>OPPOSITE DIGIT</span>
+      <span>OPPOSITE CHECK</span>
       <strong id="oppositeDigit">—</strong>
     </div>
 
     <div class="entry-item">
-      <span>OPPOSITE RATE</span>
+      <span>CHECK RATES</span>
       <strong id="oppositeRate">—</strong>
     </div>
 
@@ -998,26 +949,18 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
   </div>
 
-  <div
-    id="instructions"
-    class="instructions"
-  >
+  <div id="instructions" class="instructions">
     Start the bot and wait for a confirmed setup.
   </div>
 
-  <div
-    id="timer"
-    class="timer"
-  >
+  <div id="timer" class="timer">
     60
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     WINDOWS
-===================================================== -->
+<!-- ================= WINDOWS ================= -->
 
 <section class="card span-4">
 
@@ -1029,23 +972,17 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
     <div class="window">
       <span>50 TICKS</span>
-      <strong id="window50">
-        Waiting...
-      </strong>
+      <strong id="window50">Waiting...</strong>
     </div>
 
     <div class="window">
       <span>100 TICKS</span>
-      <strong id="window100">
-        Waiting...
-      </strong>
+      <strong id="window100">Waiting...</strong>
     </div>
 
     <div class="window">
       <span>500 TICKS</span>
-      <strong id="window500">
-        Waiting...
-      </strong>
+      <strong id="window500">Waiting...</strong>
     </div>
 
   </div>
@@ -1053,9 +990,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 </section>
 
 
-<!-- =====================================================
-     DIGIT DISTRIBUTION
-===================================================== -->
+<!-- ================= DIGIT DISTRIBUTION ================= -->
 
 <section class="card span-12">
 
@@ -1072,17 +1007,12 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
     YELLOW = 2ND LOW • RED = LOW
   </div>
 
-  <div
-    id="digits"
-    class="digits"
-  ></div>
+  <div id="digits" class="digits"></div>
 
 </section>
 
 
-<!-- =====================================================
-     CONTRACT RATES
-===================================================== -->
+<!-- ================= CONTRACT RATES ================= -->
 
 <section class="card span-12">
 
@@ -1113,12 +1043,12 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
     </div>
 
     <div class="rate">
-      <span>OVER 5</span>
+      <span>OVER • 1–5</span>
       <strong id="rate-OVER">—</strong>
     </div>
 
     <div class="rate">
-      <span>UNDER 5</span>
+      <span>UNDER • 6–9</span>
       <strong id="rate-UNDER">—</strong>
     </div>
 
@@ -1127,9 +1057,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 </section>
 
 
-<!-- =====================================================
-     MATCHES
-===================================================== -->
+<!-- ================= MATCHES ================= -->
 
 <section class="card span-12 matches">
 
@@ -1168,9 +1096,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 </section>
 
 
-<!-- =====================================================
-     SCANNER
-===================================================== -->
+<!-- ================= SCANNER ================= -->
 
 <section class="card span-8">
 
@@ -1178,17 +1104,12 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
     🟢 LIVE SCANNER
   </div>
 
-  <div
-    id="scanner"
-    class="scanner"
-  ></div>
+  <div id="scanner" class="scanner"></div>
 
 </section>
 
 
-<!-- =====================================================
-     RECENT TICKS
-===================================================== -->
+<!-- ================= RECENT TICKS ================= -->
 
 <section class="card span-4">
 
@@ -1196,19 +1117,14 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
     ⚡ RECENT TICKS
   </div>
 
-  <div
-    id="recentTicks"
-    class="recent"
-  >
+  <div id="recentTicks" class="recent">
     Waiting for ticks...
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     SIGNAL HISTORY
-===================================================== -->
+<!-- ================= SIGNAL HISTORY ================= -->
 
 <section class="card span-12">
 
@@ -1216,10 +1132,7 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
     📜 SIGNAL HISTORY
   </div>
 
-  <div
-    id="signalHistory"
-    class="recent"
-  >
+  <div id="signalHistory" class="recent">
     No signals yet.
   </div>
 
@@ -1231,47 +1144,73 @@ NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
 
 
 <script>
+
 /* =========================================================
    DERIV SIGNAL BOT PRO
    LIVE ANALYSIS ONLY
    NO AUTOMATIC TRADING
 ========================================================= */
 
+
 /* ================= CONFIG ================= */
 
 const CONFIG = {
 
-  USERNAME: "Trade23",
-  PASSWORD: "Market23",
+  USERNAME:"Trade23",
 
-  ACTIVATION_CODE: "19809",
+  PASSWORD:"Market23",
+
+  ACTIVATION_CODE:"19809",
 
   WS:
     "wss://api.derivws.com/trading/v1/options/ws/public",
 
-  MIN_TICKS: 50,
+  MIN_TICKS:50,
 
-  MIN_SCORE: 60,
+  ANALYSIS_TICKS:500,
 
-  MIN_QUALITY: 70,
+  MIN_SCORE:60,
 
-  MIN_AGREEMENT: 66,
+  MIN_QUALITY:70,
 
-  REQUIRED_CONFIRMATIONS: 3,
+  MIN_AGREEMENT:66,
 
-  DIFFERS_MIN: 88,
+  REQUIRED_CONFIRMATIONS:3,
 
-  MATCHES_MIN: 15,
+  DIFFERS_MIN:88,
 
-  PARITY_MIN: 55,
+  MATCHES_MIN:15,
 
-  OVER_UNDER_MIN: 55,
+  PARITY_MIN:55,
 
-  OPPOSITE_MAX_RATE: 10.5,
+  /*
+    Strategic EVEN/ODD edge.
+    Example:
+    EVEN 58% vs ODD 42%
+    = 16 point edge.
+  */
 
-  SIGNAL_SECONDS: 60,
+  PARITY_EDGE_MIN:6,
 
-  MAX_TICKS: 1000
+  /*
+    Predicted parity digit should
+    beat the neutral 10% digit rate.
+  */
+
+  PARITY_DIGIT_MIN:10.5,
+
+  OVER_UNDER_MIN:55,
+
+  /*
+    User's exact custom filter.
+    Strictly LESS than 10.5%.
+  */
+
+  OPPOSITE_MAX_RATE:10.5,
+
+  SIGNAL_SECONDS:60,
+
+  MAX_TICKS:1000
 };
 
 
@@ -1290,6 +1229,8 @@ let selectedMarket = "";
 let selectedMarketName = "";
 
 let selectedPipSize = 0.01;
+
+let activeSubscriptionId = null;
 
 let ticks = [];
 
@@ -1314,6 +1255,7 @@ function $(id){
   return document.getElementById(id);
 }
 
+
 function text(id,value){
 
   const node = $(id);
@@ -1321,7 +1263,9 @@ function text(id,value){
   if(node){
     node.textContent = value;
   }
+
 }
+
 
 function clamp(value,min,max){
 
@@ -1329,6 +1273,7 @@ function clamp(value,min,max){
     min,
     Math.min(max,value)
   );
+
 }
 
 
@@ -1344,7 +1289,9 @@ function openApp(username){
     "traderName",
     username
   );
+
 }
+
 
 function doLogin(){
 
@@ -1353,6 +1300,7 @@ function doLogin(){
 
   const password =
     $("password").value;
+
 
   if(
     username === CONFIG.USERNAME &&
@@ -1386,7 +1334,9 @@ function doLogin(){
       "Invalid username or password.";
 
   }
+
 }
+
 
 function logout(){
 
@@ -1395,17 +1345,21 @@ function logout(){
   );
 
   location.reload();
+
 }
+
 
 $("loginButton").addEventListener(
   "click",
   doLogin
 );
 
+
 $("logoutButton").addEventListener(
   "click",
   logout
 );
+
 
 $("password").addEventListener(
   "keydown",
@@ -1425,6 +1379,7 @@ const savedLogin =
   localStorage.getItem(
     "dsp_saved_login"
   );
+
 
 if(savedLogin){
 
@@ -1450,23 +1405,24 @@ function scan(message){
   const now =
     new Date().toLocaleTimeString();
 
-  const line =
-    `[${now}] ${message}`;
-
   const div =
     document.createElement("div");
 
-  div.textContent = line;
+  div.textContent =
+    `[${now}] ${message}`;
 
   box.prepend(div);
 
-  while(box.children.length > 100){
+  while(
+    box.children.length > 100
+  ){
 
     box.removeChild(
       box.lastChild
     );
 
   }
+
 }
 
 
@@ -1483,19 +1439,24 @@ function connectDeriv(){
   ){
 
     return;
+
   }
+
 
   scan(
     "SYSTEM → Connecting to Deriv public market feed..."
   );
+
 
   text(
     "connectionStatus",
     "● CONNECTING..."
   );
 
+
   $("connectionStatus")
     .classList.remove("live");
+
 
   try{
 
@@ -1514,6 +1475,7 @@ function connectDeriv(){
     scheduleReconnect();
 
     return;
+
   }
 
 
@@ -1521,23 +1483,21 @@ function connectDeriv(){
 
     reconnectDelay = 3000;
 
+
     $("connectionStatus")
       .classList.add("live");
+
 
     text(
       "connectionStatus",
       "● LIVE CONNECTED"
     );
 
+
     scan(
       "SYSTEM → Deriv public market connection established."
     );
 
-    /*
-      Current API active_symbols response
-      uses underlying_symbol,
-      underlying_symbol_name and pip_size.
-    */
 
     send({
 
@@ -1554,6 +1514,7 @@ function connectDeriv(){
 
     let data;
 
+
     try{
 
       data =
@@ -1564,7 +1525,9 @@ function connectDeriv(){
     }catch(error){
 
       return;
+
     }
+
 
     handleMessage(data);
 
@@ -1582,17 +1545,23 @@ function connectDeriv(){
 
   ws.onclose = () => {
 
+    activeSubscriptionId = null;
+
+
     $("connectionStatus")
       .classList.remove("live");
+
 
     text(
       "connectionStatus",
       "● DISCONNECTED"
     );
 
+
     scan(
       "SYSTEM → Deriv connection closed."
     );
+
 
     scheduleReconnect();
 
@@ -1625,6 +1594,7 @@ function scheduleReconnect(){
 
   if(reconnectTimer)
     return;
+
 
   reconnectTimer =
     setTimeout(() => {
@@ -1660,10 +1630,9 @@ function handleMessage(data){
     );
 
     return;
+
   }
 
-
-  /* ---------- ACTIVE SYMBOLS ---------- */
 
   if(
     data.msg_type ===
@@ -1675,10 +1644,9 @@ function handleMessage(data){
     );
 
     return;
+
   }
 
-
-  /* ---------- HISTORY ---------- */
 
   if(
     data.msg_type ===
@@ -1690,10 +1658,9 @@ function handleMessage(data){
     );
 
     return;
+
   }
 
-
-  /* ---------- LIVE TICK ---------- */
 
   if(
     data.msg_type ===
@@ -1705,37 +1672,28 @@ function handleMessage(data){
     );
 
     return;
+
   }
 
 }
 
 
-/* ================= MARKET DISCOVERY ================= */
+/* ================= MARKET NORMALIZATION ================= */
 
 function normalizeMarket(item){
-
-  /*
-    NEW API:
-
-    underlying_symbol
-    underlying_symbol_name
-    pip_size
-
-    Legacy fallbacks are retained
-    so the UI doesn't break if a
-    compatible response is received.
-  */
 
   const symbol =
     item.underlying_symbol ||
     item.symbol ||
     "";
 
+
   const name =
     item.underlying_symbol_name ||
     item.display_name ||
     item.name ||
     symbol;
+
 
   const pip =
     Number(
@@ -1744,8 +1702,10 @@ function normalizeMarket(item){
       0.01
     );
 
+
   if(!symbol)
     return null;
+
 
   return {
 
@@ -1754,7 +1714,8 @@ function normalizeMarket(item){
     name:String(name),
 
     pipSize:
-      Number.isFinite(pip) && pip > 0
+      Number.isFinite(pip) &&
+      pip > 0
         ? pip
         : 0.01
 
@@ -1763,7 +1724,9 @@ function normalizeMarket(item){
 }
 
 
-function isVolatilityMarket(item){
+/* ================= WANTED MARKETS ================= */
+
+function isWantedMarket(item){
 
   const symbol =
     String(
@@ -1771,6 +1734,7 @@ function isVolatilityMarket(item){
       item.symbol ||
       ""
     ).toUpperCase();
+
 
   const name =
     String(
@@ -1780,26 +1744,53 @@ function isVolatilityMarket(item){
       ""
     ).toUpperCase();
 
+
+  /*
+    STANDARD VOLATILITY
+    R_10 R_25 R_50 R_75 R_100
+
+    1 SECOND VOLATILITY
+    1HZ10V
+    1HZ15V
+    1HZ25V
+    1HZ30V
+    1HZ50V
+    1HZ75V
+    1HZ90V
+    1HZ100V
+    1HZ150V
+    1HZ200V
+    1HZ250V
+    and any future 1HZ...V
+
+    JUMP
+    JD10 JD25 JD50 JD75 JD100
+  */
+
   return (
 
     /^R_\d+$/.test(symbol) ||
 
     /^1HZ\d+V$/.test(symbol) ||
 
-    name.includes(
-      "VOLATILITY"
-    )
+    /^JD\d+$/.test(symbol) ||
+
+    name.includes("VOLATILITY") ||
+
+    name.includes("JUMP")
 
   );
 
 }
 
 
+/* ================= MARKET DISCOVERY ================= */
+
 function discoverMarkets(raw){
 
   markets =
     raw
-      .filter(isVolatilityMarket)
+      .filter(isWantedMarket)
       .map(normalizeMarket)
       .filter(Boolean)
       .sort(
@@ -1817,34 +1808,42 @@ function discoverMarkets(raw){
   scan(
     "MARKET DISCOVERY → " +
     markets.length +
-    " live Volatility markets found."
+    " live Volatility/Jump markets found."
   );
 
 
   populateMarkets();
 
 
-  if(!selectedMarket &&
-     markets.length){
+  if(
+    !selectedMarket &&
+    markets.length
+  ){
 
     const first =
       markets[0];
 
+
     selectedMarket =
       first.symbol;
+
 
     selectedMarketName =
       first.name;
 
+
     selectedPipSize =
       first.pipSize;
+
 
     $("marketSelect").value =
       first.symbol;
 
+
     updateMarketDisplay(
       first
     );
+
 
     subscribeMarket(
       first.symbol
@@ -1862,7 +1861,9 @@ function populateMarkets(){
   const select =
     $("marketSelect");
 
+
   select.innerHTML = "";
+
 
   markets.forEach(
     market => {
@@ -1872,19 +1873,20 @@ function populateMarkets(){
           "option"
         );
 
-      /*
-        CRITICAL FIX:
-
-        Never use undefined here.
-        The actual Deriv symbol is the
-        option value.
-      */
 
       option.value =
         market.symbol;
 
+
+      /*
+        Friendly name + symbol.
+        Raw symbol is NOT used as
+        the market name itself.
+      */
+
       option.textContent =
         `${market.name} (${market.symbol})`;
+
 
       select.appendChild(
         option
@@ -1902,6 +1904,7 @@ function populateMarkets(){
           market.symbol ===
           selectedMarket
       );
+
 
     if(exists){
 
@@ -1924,23 +1927,32 @@ $("marketSelect").addEventListener(
     const symbol =
       $("marketSelect").value;
 
+
     const market =
       markets.find(
         m =>
           m.symbol === symbol
       );
 
+
     if(!market)
       return;
+
+
+    stopCurrentSubscription();
+
 
     selectedMarket =
       market.symbol;
 
+
     selectedMarketName =
       market.name;
 
+
     selectedPipSize =
       market.pipSize;
+
 
     ticks = [];
 
@@ -1977,10 +1989,12 @@ function updateMarketDisplay(
     market.name
   );
 
+
   text(
     "symbolName",
     market.symbol
   );
+
 
   scan(
     "MARKET → " +
@@ -1989,6 +2003,37 @@ function updateMarketDisplay(
     market.symbol +
     "]"
   );
+
+}
+
+
+/* ================= STOP OLD SUBSCRIPTION ================= */
+
+function stopCurrentSubscription(){
+
+  if(
+    activeSubscriptionId
+  ){
+
+    send({
+
+      forget:
+        activeSubscriptionId,
+
+      req_id:90
+
+    });
+
+
+    scan(
+      "LIVE → Previous tick subscription cleared."
+    );
+
+
+    activeSubscriptionId =
+      null;
+
+  }
 
 }
 
@@ -2004,7 +2049,9 @@ function subscribeMarket(symbol){
     );
 
     return;
+
   }
+
 
   if(symbol === "undefined"){
 
@@ -2013,31 +2060,34 @@ function subscribeMarket(symbol){
     );
 
     return;
+
   }
 
 
   ticks = [];
 
+  confirmations = 0;
+
+  currentSignal = null;
+
   clearSignalTimer();
 
   resetAnalysisUI();
 
-  /*
-    Historical 500 ticks.
-    subscribe:0 means one-time history request.
-  */
 
   scan(
     "DATA → Loading 500 ticks for " +
     symbol
   );
 
+
   send({
 
     ticks_history:
       symbol,
 
-    count:500,
+    count:
+      CONFIG.ANALYSIS_TICKS,
 
     end:"latest",
 
@@ -2050,14 +2100,11 @@ function subscribeMarket(symbol){
   });
 
 
-  /*
-    Live subscription.
-  */
-
   scan(
     "LIVE → Subscribing to " +
     symbol
   );
+
 
   send({
 
@@ -2089,11 +2136,13 @@ function processHistory(data){
     );
 
     return;
+
   }
 
 
   const prices =
     data.history.prices;
+
 
   const times =
     Array.isArray(
@@ -2112,12 +2161,14 @@ function processHistory(data){
       const quote =
         Number(price);
 
+
       if(
         !Number.isFinite(
           quote
         )
       )
         return;
+
 
       ticks.push({
 
@@ -2129,7 +2180,10 @@ function processHistory(data){
           ) ||
           Math.floor(
             Date.now()/1000
-          )
+          ),
+
+        pipSize:
+          selectedPipSize
 
       });
 
@@ -2173,6 +2227,7 @@ function processTick(data){
       data.tick.quote
     );
 
+
   if(
     !Number.isFinite(
       quote
@@ -2190,13 +2245,37 @@ function processTick(data){
     );
 
 
+  const tickPip =
+    Number(
+      data.tick.pip_size ??
+      selectedPipSize
+    );
+
+
   ticks.push({
 
     quote,
 
-    epoch
+    epoch,
+
+    pipSize:
+      Number.isFinite(tickPip) &&
+      tickPip > 0
+        ? tickPip
+        : selectedPipSize
 
   });
+
+
+  if(
+    data.subscription &&
+    data.subscription.id
+  ){
+
+    activeSubscriptionId =
+      data.subscription.id;
+
+  }
 
 
   if(
@@ -2236,6 +2315,7 @@ function decimalPlacesFromPip(
   const value =
     Number(pip);
 
+
   if(
     !Number.isFinite(value) ||
     value <= 0
@@ -2260,20 +2340,35 @@ function decimalPlacesFromPip(
 
 /* ================= LAST DIGIT ================= */
 
-function getLastDigit(
-  quote
+function getLastDigitFromTick(
+  item
 ){
 
-  const decimals =
-    decimalPlacesFromPip(
+  const quote =
+    Number(item.quote);
+
+
+  if(
+    !Number.isFinite(quote)
+  )
+    return null;
+
+
+  const pip =
+    Number(
+      item.pipSize ??
       selectedPipSize
     );
 
 
+  const decimals =
+    decimalPlacesFromPip(
+      pip
+    );
+
+
   const fixed =
-    Number(
-      quote
-    ).toFixed(
+    quote.toFixed(
       decimals
     );
 
@@ -2286,7 +2381,7 @@ function getLastDigit(
 
 
   if(!digits.length)
-    return 0;
+    return null;
 
 
   return Number(
@@ -2308,6 +2403,7 @@ function formatPrice(
     decimalPlacesFromPip(
       selectedPipSize
     );
+
 
   return Number(
     quote
@@ -2338,11 +2434,13 @@ function digitPercentages(
     item => {
 
       const digit =
-        getLastDigit(
-          item.quote
+        getLastDigitFromTick(
+          item
         );
 
+
       if(
+        digit !== null &&
         digit >= 0 &&
         digit <= 9
       ){
@@ -2374,8 +2472,10 @@ function renderDigits(){
   const container =
     $("digits");
 
+
   const data =
     ticks.slice(-500);
+
 
   const p =
     digitPercentages(
@@ -2401,11 +2501,14 @@ function renderDigits(){
   const highest =
     sorted[0]?.digit;
 
+
   const secondHighest =
     sorted[1]?.digit;
 
+
   const lowest =
     sorted[9]?.digit;
+
 
   const secondLowest =
     sorted[8]?.digit;
@@ -2425,9 +2528,16 @@ function renderDigits(){
         "div"
       );
 
+
     div.className =
       "digit";
 
+
+    /*
+      Normal distribution colors only.
+      These colors are NOT used as
+      prerequisite confirmation signals.
+    */
 
     if(
       digit === highest
@@ -2515,9 +2625,11 @@ function contractRate(
         Math.max(...p)
       );
 
+
     case "MATCHES":
 
       return Math.max(...p);
+
 
     case "EVEN":
 
@@ -2525,23 +2637,34 @@ function contractRate(
         [0,2,4,6,8]
       );
 
+
     case "ODD":
 
       return sum(
         [1,3,5,7,9]
       );
 
+
+    /*
+      USER'S EXACT CUSTOM MAPPING:
+
+      OVER = 1,2,3,4,5
+      UNDER = 6,7,8,9
+    */
+
     case "OVER":
+
+      return sum(
+        [1,2,3,4,5]
+      );
+
+
+    case "UNDER":
 
       return sum(
         [6,7,8,9]
       );
 
-    case "UNDER":
-
-      return sum(
-        [0,1,2,3,4]
-      );
 
     default:
 
@@ -2565,12 +2688,14 @@ function updateContractRates(){
 
 
   const contracts = [
+
     "DIFFERS",
     "MATCHES",
     "EVEN",
     "ODD",
     "OVER",
     "UNDER"
+
   ];
 
 
@@ -2603,17 +2728,29 @@ function allowedDigits(
 
   switch(contract){
 
+    /*
+      EXACT USER RULE:
+      OVER predicts 1–5.
+    */
+
     case "OVER":
+
+      return [
+        1,2,3,4,5
+      ];
+
+
+    /*
+      EXACT USER RULE:
+      UNDER predicts 6–9.
+    */
+
+    case "UNDER":
 
       return [
         6,7,8,9
       ];
 
-    case "UNDER":
-
-      return [
-        0,1,2,3,4
-      ];
 
     case "EVEN":
 
@@ -2621,11 +2758,13 @@ function allowedDigits(
         0,2,4,6,8
       ];
 
+
     case "ODD":
 
       return [
         1,3,5,7,9
       ];
+
 
     case "MATCHES":
     case "DIFFERS":
@@ -2650,8 +2789,10 @@ function digitScore(
   const d50 =
     ticks.slice(-50);
 
+
   const d100 =
     ticks.slice(-100);
+
 
   const d500 =
     ticks.slice(-500);
@@ -2676,8 +2817,8 @@ function digitScore(
 
 
   /*
-    Recent data has slightly more weight,
-    while 500 ticks provide stability.
+    Recent movement is weighted more,
+    but 500 ticks stabilize the result.
   */
 
   return (
@@ -2689,11 +2830,135 @@ function digitScore(
 }
 
 
+/* ================= PARITY STRATEGY ================= */
+
+function parityStats(
+  contract,
+  data
+){
+
+  const p =
+    digitPercentages(
+      data
+    );
+
+
+  const digits =
+    contract === "EVEN"
+
+      ? [0,2,4,6,8]
+
+      : [1,3,5,7,9];
+
+
+  const oppositeDigits =
+    contract === "EVEN"
+
+      ? [1,3,5,7,9]
+
+      : [0,2,4,6,8];
+
+
+  const parityRate =
+    digits.reduce(
+      (sum,digit) =>
+        sum + p[digit],
+      0
+    );
+
+
+  const oppositeRate =
+    oppositeDigits.reduce(
+      (sum,digit) =>
+        sum + p[digit],
+      0
+    );
+
+
+  let bestDigit =
+    digits[0];
+
+
+  let bestRate =
+    p[bestDigit];
+
+
+  digits.forEach(
+    digit => {
+
+      if(
+        p[digit] >
+        bestRate
+      ){
+
+        bestDigit =
+          digit;
+
+        bestRate =
+          p[digit];
+
+      }
+
+    }
+  );
+
+
+  const edge =
+    parityRate -
+    oppositeRate;
+
+
+  return {
+
+    parityRate,
+
+    oppositeRate,
+
+    edge,
+
+    bestDigit,
+
+    bestRate
+
+  };
+
+}
+
+
 /* ================= PREDICT ONE DIGIT ================= */
 
 function predictOneDigit(
   contract
 ){
+
+  /*
+    EVEN/ODD use dedicated strategy.
+  */
+
+  if(
+    contract === "EVEN" ||
+    contract === "ODD"
+  ){
+
+    const stats =
+      parityStats(
+        contract,
+        ticks.slice(-500)
+      );
+
+
+    return {
+
+      digit:
+        stats.bestDigit,
+
+      score:
+        stats.bestRate
+
+    };
+
+  }
+
 
   const allowed =
     allowedDigits(
@@ -2703,6 +2968,7 @@ function predictOneDigit(
 
   let bestDigit =
     allowed[0];
+
 
   let bestScore =
     -Infinity;
@@ -2747,12 +3013,117 @@ function predictOneDigit(
 }
 
 
-/* ================= OPPOSITE DIGIT ================= */
+/* ================= OPPOSITE CHECK DIGITS ================= */
+
+function getOppositeDigits(
+  contract,
+  predictedDigit
+){
+
+  /*
+    EXACT CUSTOM OVER RULE:
+
+    OVER 5
+    check 1,2,3,4
+
+    OVER 4
+    check 1,2,3
+
+    OVER 3
+    check 1,2
+
+    OVER 2
+    check 1
+
+    OVER 1
+    check none
+  */
+
+  if(
+    contract === "OVER"
+  ){
+
+    return [
+      1,2,3,4,5
+    ].filter(
+      digit =>
+        digit < predictedDigit
+    );
+
+  }
+
+
+  /*
+    EXACT CUSTOM UNDER RULE:
+
+    UNDER 6
+    check 7,8,9
+
+    UNDER 7
+    check 8,9
+
+    UNDER 8
+    check 9
+
+    UNDER 9
+    check none
+  */
+
+  if(
+    contract === "UNDER"
+  ){
+
+    return [
+      6,7,8,9
+    ].filter(
+      digit =>
+        digit > predictedDigit
+    );
+
+  }
+
+
+  return [];
+
+}
+
+
+/* ================= OPPOSITE FILTER ================= */
 
 function getOppositeInfo(
   contract,
+  predictedDigit,
   data
 ){
+
+  /*
+    Only OVER/UNDER use this
+    custom prerequisite filter.
+  */
+
+  if(
+    contract !== "OVER" &&
+    contract !== "UNDER"
+  ){
+
+    return {
+
+      digits:[],
+
+      checks:[],
+
+      digit:null,
+
+      rate:null,
+
+      ok:true,
+
+      side:null
+
+    };
+
+  }
+
 
   const p =
     digitPercentages(
@@ -2760,189 +3131,202 @@ function getOppositeInfo(
     );
 
 
-  if(contract === "OVER"){
-
-    const candidates =
-      [0,1,2,3,4];
-
-
-    let digit =
-      candidates[0];
-
-
-    candidates.forEach(
-      d => {
-
-        if(
-          p[d] >
-          p[digit]
-        ){
-
-          digit = d;
-
-        }
-
-      }
+  const digits =
+    getOppositeDigits(
+      contract,
+      predictedDigit
     );
 
 
-    return {
+  const checks =
+    digits.map(
+      digit => ({
 
-      digit,
+        digit,
 
-      rate:p[digit],
+        rate:p[digit],
 
-      ok:
-        p[digit] <=
-        CONFIG.OPPOSITE_MAX_RATE,
+        ok:
+          p[digit] <
+          CONFIG.OPPOSITE_MAX_RATE
 
-      side:"UNDER"
-
-    };
-
-  }
-
-
-  if(contract === "UNDER"){
-
-    const candidates =
-      [6,7,8,9];
-
-
-    let digit =
-      candidates[0];
-
-
-    candidates.forEach(
-      d => {
-
-        if(
-          p[d] >
-          p[digit]
-        ){
-
-          digit = d;
-
-        }
-
-      }
+      })
     );
 
 
-    return {
+  const allOK =
+    checks.every(
+      item =>
+        item.ok
+    );
 
-      digit,
 
-      rate:p[digit],
-
-      ok:
-        p[digit] <=
-        CONFIG.OPPOSITE_MAX_RATE,
-
-      side:"OVER"
-
-    };
-
-  }
-
+  /*
+    No green success bar is generated
+    here. This is purely a numerical
+    prerequisite test.
+  */
 
   return {
 
-    digit:null,
+    digits,
 
-    rate:null,
+    checks,
 
-    ok:true,
+    /*
+      Keep the first/maximum checked
+      digit available for compatibility
+      with the entry UI.
+    */
 
-    side:null
+    digit:
+      checks.length
+        ? checks.reduce(
+            (best,item) =>
+              item.rate >
+              best.rate
+                ? item
+                : best
+          ).digit
+        : null,
+
+    rate:
+      checks.length
+        ? Math.max(
+            ...checks.map(
+              x => x.rate
+            )
+          )
+        : null,
+
+    ok:
+      allOK,
+
+    side:
+      contract === "OVER"
+        ? "LOWER OVER DIGITS"
+        : "HIGHER UNDER DIGITS"
 
   };
 
 }
 
 
-/* ================= QUALITY ================= */
+/* ================= PARITY AGREEMENT ================= */
 
-function calculateQuality(
-  data
+function calculateParityAgreement(
+  contract
 ){
-
-  if(!data.length)
-    return 0;
-
-
-  const sampleQuality =
-    Math.min(
-      1,
-      data.length / 500
-    ) * 60;
-
 
   const windows = [
 
-    data.slice(-50),
+    ticks.slice(-50),
 
-    data.slice(-100),
+    ticks.slice(-100),
 
-    data.slice(-500)
+    ticks.slice(-500)
 
-  ].filter(
-    x => x.length
-  );
+  ];
 
 
-  const spreads =
+  const results =
     windows.map(
-      window => {
+      data => {
 
-        const p =
-          digitPercentages(
-            window
+        if(
+          data.length < 10
+        )
+          return null;
+
+
+        const stats =
+          parityStats(
+            contract,
+            data
           );
 
-        return (
-          Math.max(...p) -
-          Math.min(...p)
-        );
+
+        /*
+          A window supports the selected
+          parity only when:
+
+          1. parity >= 50%
+          2. edge is positive
+        */
+
+        return {
+
+          supported:
+            stats.parityRate >= 50 &&
+            stats.edge > 0,
+
+          bestDigit:
+            stats.bestDigit,
+
+          parityRate:
+            stats.parityRate,
+
+          edge:
+            stats.edge
+
+        };
 
       }
     );
 
 
-  const spread =
-    spreads.length
-
-      ? spreads.reduce(
-          (a,b) => a+b,
-          0
-        ) /
-        spreads.length
-
-      : 20;
+  const valid =
+    results.filter(
+      x => x !== null
+    );
 
 
-  const stability =
-    clamp(
-      1 -
-      spread / 20,
-      0,
-      1
-    ) * 40;
+  if(valid.length < 3)
+    return 0;
 
 
-  return Math.round(
-    sampleQuality +
-    stability
-  );
+  const supported =
+    valid.filter(
+      x =>
+        x.supported
+    ).length;
+
+
+  if(supported === 3)
+    return 100;
+
+
+  if(supported === 2)
+    return 67;
+
+
+  return 0;
 
 }
 
 
-/* ================= AGREEMENT ================= */
+/* ================= GENERAL AGREEMENT ================= */
 
 function calculateAgreement(
   contract
 ){
+
+  /*
+    EVEN/ODD:
+    strategic parity agreement.
+  */
+
+  if(
+    contract === "EVEN" ||
+    contract === "ODD"
+  ){
+
+    return calculateParityAgreement(
+      contract
+    );
+
+  }
+
 
   const windows = [
 
@@ -2965,6 +3349,7 @@ function calculateAgreement(
         )
           return null;
 
+
         return predictOneDigitFromData(
           contract,
           data
@@ -2984,14 +3369,6 @@ function calculateAgreement(
     return 0;
 
 
-  /*
-    For directional/parity contracts,
-    agreement checks the selected class.
-
-    For MATCHES/DIFFERS, it checks
-    the same predicted digit.
-  */
-
   if(
     contract === "MATCHES" ||
     contract === "DIFFERS"
@@ -2999,6 +3376,7 @@ function calculateAgreement(
 
     const first =
       valid[0];
+
 
     const same =
       valid.filter(
@@ -3010,13 +3388,22 @@ function calculateAgreement(
     if(same === 3)
       return 100;
 
+
     if(same === 2)
       return 67;
+
 
     return 0;
 
   }
 
+
+  /*
+    OVER/UNDER:
+    check whether each window's
+    strongest digit belongs to the
+    selected custom class.
+  */
 
   const supported =
     valid.filter(
@@ -3031,8 +3418,10 @@ function calculateAgreement(
   if(supported === 3)
     return 100;
 
+
   if(supported === 2)
     return 67;
+
 
   return 0;
 
@@ -3046,6 +3435,24 @@ function predictOneDigitFromData(
   data
 ){
 
+  /*
+    EVEN/ODD use the parity strategy
+    inside each window.
+  */
+
+  if(
+    contract === "EVEN" ||
+    contract === "ODD"
+  ){
+
+    return parityStats(
+      contract,
+      data
+    ).bestDigit;
+
+  }
+
+
   const allowed =
     allowedDigits(
       contract
@@ -3054,6 +3461,7 @@ function predictOneDigitFromData(
 
   let best =
     allowed[0];
+
 
   let bestScore =
     -Infinity;
@@ -3068,11 +3476,16 @@ function predictOneDigitFromData(
         )[digit] || 0;
 
 
-      if(p > bestScore){
+      if(
+        p >
+        bestScore
+      ){
 
-        bestScore = p;
+        bestScore =
+          p;
 
-        best = digit;
+        best =
+          digit;
 
       }
 
@@ -3094,19 +3507,38 @@ function contractAllowsDigit(
 
   switch(contract){
 
+    /*
+      CUSTOM USER MAPPING
+    */
+
     case "OVER":
-      return digit >= 6;
+
+      return (
+        digit >= 1 &&
+        digit <= 5
+      );
+
 
     case "UNDER":
-      return digit <= 4;
+
+      return (
+        digit >= 6 &&
+        digit <= 9
+      );
+
 
     case "EVEN":
+
       return digit % 2 === 0;
 
+
     case "ODD":
+
       return digit % 2 === 1;
 
+
     default:
+
       return true;
 
   }
@@ -3183,21 +3615,74 @@ function contractMinimum(
     case "DIFFERS":
       return CONFIG.DIFFERS_MIN;
 
+
     case "MATCHES":
       return CONFIG.MATCHES_MIN;
+
 
     case "EVEN":
     case "ODD":
       return CONFIG.PARITY_MIN;
 
+
     case "OVER":
     case "UNDER":
       return CONFIG.OVER_UNDER_MIN;
+
 
     default:
       return 50;
 
   }
+
+}
+
+
+/* ================= PARITY STRATEGIC CHECK ================= */
+
+function parityStrategicCheck(
+  contract,
+  data
+){
+
+  const stats =
+    parityStats(
+      contract,
+      data
+    );
+
+
+  const parityOK =
+    stats.parityRate >=
+    CONFIG.PARITY_MIN;
+
+
+  const edgeOK =
+    stats.edge >=
+    CONFIG.PARITY_EDGE_MIN;
+
+
+  const digitOK =
+    stats.bestRate >=
+    CONFIG.PARITY_DIGIT_MIN;
+
+
+  return {
+
+    ...stats,
+
+    parityOK,
+
+    edgeOK,
+
+    digitOK,
+
+    ok:
+      parityOK &&
+      edgeOK &&
+      digitOK
+
+  };
 
 }
 
@@ -3229,8 +3714,10 @@ function analyze(){
       "WAIT"
     );
 
+
     $("instructions").textContent =
       "🔒 Unlock MATCHES before using its predicted digit.";
+
 
     return;
 
@@ -3261,7 +3748,7 @@ function analyze(){
   const predictedDigitRate =
     digitPercentages(
       data
-    )[predictedDigit];
+    )[predictedDigit] || 0;
 
 
   const quality =
@@ -3288,6 +3775,7 @@ function analyze(){
   const opposite =
     getOppositeInfo(
       contract,
+      predictedDigit,
       data
     );
 
@@ -3321,15 +3809,47 @@ function analyze(){
     CONFIG.MIN_SCORE;
 
 
-  const oppositeOK =
-    opposite.ok;
-
-
   /*
-    Confirmation requires all major
-    filters, including the opposite
-    filter for OVER / UNDER.
+    OVER/UNDER custom opposite
+    prerequisite.
+
+    EVEN/ODD use strategic
+    parity confirmation instead.
   */
+
+  let strategyOK = true;
+
+  let parityInfo = null;
+
+
+  if(
+    contract === "OVER" ||
+    contract === "UNDER"
+  ){
+
+    strategyOK =
+      opposite.ok;
+
+  }
+
+
+  if(
+    contract === "EVEN" ||
+    contract === "ODD"
+  ){
+
+    parityInfo =
+      parityStrategicCheck(
+        contract,
+        data
+      );
+
+
+    strategyOK =
+      parityInfo.ok;
+
+  }
+
 
   const filtersOK =
     probabilityOK &&
@@ -3337,12 +3857,10 @@ function analyze(){
     qualityOK &&
     agreementOK &&
     scoreOK &&
-    oppositeOK;
+    strategyOK;
 
 
-  if(
-    filtersOK
-  ){
+  if(filtersOK){
 
     confirmations =
       Math.min(
@@ -3351,12 +3869,6 @@ function analyze(){
       );
 
   }else{
-
-    /*
-      Do not continuously build a
-      fake confirmation streak while
-      conditions are failing.
-    */
 
     confirmations = 0;
 
@@ -3368,15 +3880,18 @@ function analyze(){
     score + "%"
   );
 
+
   text(
     "quality",
     quality + "%"
   );
 
+
   text(
     "agreement",
     agreement + "%"
   );
+
 
   text(
     "confirmations",
@@ -3416,21 +3931,91 @@ function analyze(){
   );
 
 
-  text(
-    "oppositeDigit",
-    opposite.digit === null
-      ? "—"
-      : opposite.digit
-  );
+  /*
+    Display all prerequisite digits,
+    never a green success bar.
+  */
+
+  if(
+    contract === "OVER" ||
+    contract === "UNDER"
+  ){
+
+    if(
+      opposite.checks.length
+    ){
+
+      text(
+        "oppositeDigit",
+        opposite.checks
+          .map(
+            x => x.digit
+          )
+          .join(", ")
+      );
 
 
-  text(
-    "oppositeRate",
-    opposite.rate === null
-      ? "—"
-      : opposite.rate.toFixed(1) +
-        "%"
-  );
+      text(
+        "oppositeRate",
+        opposite.checks
+          .map(
+            x =>
+              x.rate.toFixed(1) +
+              "%"
+          )
+          .join(" / ")
+      );
+
+    }else{
+
+      text(
+        "oppositeDigit",
+        "NONE"
+      );
+
+
+      text(
+        "oppositeRate",
+        "N/A"
+      );
+
+    }
+
+  }else if(
+    parityInfo
+  ){
+
+    text(
+      "oppositeDigit",
+      "EDGE"
+    );
+
+
+    text(
+      "oppositeRate",
+      (
+        parityInfo.edge >= 0
+          ? "+"
+          : ""
+      ) +
+      parityInfo.edge.toFixed(1) +
+      " pts"
+    );
+
+  }else{
+
+    text(
+      "oppositeDigit",
+      "—"
+    );
+
+
+    text(
+      "oppositeRate",
+      "—"
+    );
+
+  }
 
 
   text(
@@ -3461,7 +4046,9 @@ function analyze(){
 
       quality,
 
-      agreement
+      agreement,
+
+      parityInfo
 
     });
 
@@ -3487,7 +4074,10 @@ function analyze(){
 
       compatible,
 
-      oppositeOK
+      oppositeOK:
+        strategyOK,
+
+      parityInfo
 
     });
 
@@ -3519,84 +4109,110 @@ function showGoodEntry(
     signal;
 
 
-  const oppositeText =
-    signal.opposite.digit === null
-
-      ? ""
-
-      :
-`<br>
-Opposite ${signal.opposite.side} digit:
-<strong>
-${signal.opposite.digit}
-</strong>
-(${signal.opposite.rate.toFixed(1)}%)`;
-
-
-  let howTo;
+  let howTo = "";
 
 
   if(
     signal.contract === "OVER"
   ){
 
+    const checks =
+      signal.opposite.checks
+        .map(
+          x =>
+            `${x.digit} ${x.rate.toFixed(1)}%`
+        )
+        .join(" • ");
+
+
     howTo =
-`HOW TO PLACE ON DERIV:
-Choose OVER with barrier 5.
-The analyzer selected digit ${signal.predictedDigit}.
-The predicted digit is above 5.${oppositeText}`;
+`HOW TO PLACE MANUALLY:
+Contract: OVER
+Custom analyzer prediction: ${signal.predictedDigit}
+
+Required lower-digit filter:
+${checks || "NONE"}
+
+All required checked digits are below ${CONFIG.OPPOSITE_MAX_RATE}%.
+
+⚠️ This is an analyzer rule, not a guarantee of the next tick.`;
 
   }else if(
     signal.contract === "UNDER"
   ){
 
+    const checks =
+      signal.opposite.checks
+        .map(
+          x =>
+            `${x.digit} ${x.rate.toFixed(1)}%`
+        )
+        .join(" • ");
+
+
     howTo =
-`HOW TO PLACE ON DERIV:
-Choose UNDER with barrier 5.
-The analyzer selected digit ${signal.predictedDigit}.
-The predicted digit is below 5.${oppositeText}`;
+`HOW TO PLACE MANUALLY:
+Contract: UNDER
+Custom analyzer prediction: ${signal.predictedDigit}
+
+Required higher-digit filter:
+${checks || "NONE"}
+
+All required checked digits are below ${CONFIG.OPPOSITE_MAX_RATE}%.
+
+⚠️ This is an analyzer rule, not a guarantee of the next tick.`;
 
   }else if(
     signal.contract === "EVEN"
   ){
 
     howTo =
-`HOW TO PLACE ON DERIV:
-Choose EVEN.
-The analyzer selected digit ${signal.predictedDigit},
-which belongs to the EVEN class.`;
+`EVEN STRATEGY CONFIRMED:
+Predicted digit: ${signal.predictedDigit}
+EVEN rate: ${parityRateText(signal.contract)}
+Parity edge: ${signal.parityInfo
+  ? signal.parityInfo.edge.toFixed(1) + " points"
+  : "confirmed"}
+
+The selected digit is the strongest EVEN digit and the EVEN class has passed the strategic edge filter.
+
+⚠️ Analysis only — manually place any trade yourself.`;
 
   }else if(
     signal.contract === "ODD"
   ){
 
     howTo =
-`HOW TO PLACE ON DERIV:
-Choose ODD.
-The analyzer selected digit ${signal.predictedDigit},
-which belongs to the ODD class.`;
+`ODD STRATEGY CONFIRMED:
+Predicted digit: ${signal.predictedDigit}
+ODD rate: ${parityRateText(signal.contract)}
+Parity edge: ${signal.parityInfo
+  ? signal.parityInfo.edge.toFixed(1) + " points"
+  : "confirmed"}
+
+The selected digit is the strongest ODD digit and the ODD class has passed the strategic edge filter.
+
+⚠️ Analysis only — manually place any trade yourself.`;
 
   }else if(
     signal.contract === "MATCHES"
   ){
 
     howTo =
-`HOW TO PLACE ON DERIV:
-Choose MATCHES and use digit
-${signal.predictedDigit}.`;
+`HOW TO PLACE MANUALLY:
+Choose MATCHES and use digit ${signal.predictedDigit}.`;
 
   }else{
 
     howTo =
-`HOW TO PLACE ON DERIV:
-Choose DIFFERS and use
-${signal.predictedDigit} as the digit
-to differ from.`;
+`HOW TO PLACE MANUALLY:
+Choose DIFFERS.
+Analyzer reference digit: ${signal.predictedDigit}.`;
 
   }
 
 
-  $("instructions").innerHTML =
+  $("instructions").textContent =
     howTo;
 
 
@@ -3610,6 +4226,7 @@ to differ from.`;
     lastSignalKey =
       key;
 
+
     addSignalHistory(
       signal
     );
@@ -3620,6 +4237,25 @@ to differ from.`;
   scan(
     `🟢 GOOD ENTRY → ${signal.contract} → DIGIT ${signal.predictedDigit} → SCORE ${signal.score}%`
   );
+
+}
+
+
+/* ================= PARITY RATE TEXT ================= */
+
+function parityRateText(
+  contract
+){
+
+  const data =
+    ticks.slice(-500);
+
+
+  return contractRate(
+    contract,
+    data
+  ).toFixed(1) +
+  "%";
 
 }
 
@@ -3647,28 +4283,83 @@ function showWait(
       "Predicted digit does not satisfy the selected contract.";
 
   }else if(
+    (
+      info.contract === "OVER" ||
+      info.contract === "UNDER"
+    ) &&
     !info.oppositeOK
   ){
 
+    const failed =
+      info.opposite.checks
+        .filter(
+          x => !x.ok
+        )
+        .map(
+          x =>
+            `${x.digit}=${x.rate.toFixed(1)}%`
+        )
+        .join(", ");
+
+
     reason =
-      `Opposite-side digit rate ${info.opposite.rate.toFixed(1)}% is above the ${CONFIG.OPPOSITE_MAX_RATE}% filter.`;
+      `${info.contract} filter FAILED → ${failed || "required digit rate reached 10.5% or higher"}.`;
 
   }else if(
-    info.quality < CONFIG.MIN_QUALITY
+    (
+      info.contract === "EVEN" ||
+      info.contract === "ODD"
+    ) &&
+    info.parityInfo &&
+    !info.parityInfo.parityOK
+  ){
+
+    reason =
+      `${info.contract} rate ${info.parityInfo.parityRate.toFixed(1)}% is below ${CONFIG.PARITY_MIN}%.`;
+
+  }else if(
+    (
+      info.contract === "EVEN" ||
+      info.contract === "ODD"
+    ) &&
+    info.parityInfo &&
+    !info.parityInfo.edgeOK
+  ){
+
+    reason =
+      `${info.contract} edge ${info.parityInfo.edge.toFixed(1)} points is below the ${CONFIG.PARITY_EDGE_MIN}-point strategic minimum.`;
+
+  }else if(
+    (
+      info.contract === "EVEN" ||
+      info.contract === "ODD"
+    ) &&
+    info.parityInfo &&
+    !info.parityInfo.digitOK
+  ){
+
+    reason =
+      `Predicted ${info.contract} digit ${info.predictedDigit} is only ${info.predictedDigitRate.toFixed(1)}%, below the ${CONFIG.PARITY_DIGIT_MIN}% digit-strength filter.`;
+
+  }else if(
+    info.quality <
+    CONFIG.MIN_QUALITY
   ){
 
     reason =
       "Market sample quality is not strong enough.";
 
   }else if(
-    info.agreement < CONFIG.MIN_AGREEMENT
+    info.agreement <
+    CONFIG.MIN_AGREEMENT
   ){
 
     reason =
       "50/100/500 tick windows do not agree.";
 
   }else if(
-    info.score < CONFIG.MIN_SCORE
+    info.score <
+    CONFIG.MIN_SCORE
   ){
 
     reason =
@@ -3717,6 +4408,7 @@ function setDecision(
   const node =
     $("decision");
 
+
   node.textContent =
     value;
 
@@ -3759,21 +4451,26 @@ function startSignalTimer(){
 
         seconds--;
 
+
         text(
           "timer",
           seconds
         );
 
 
-        if(seconds <= 0){
+        if(
+          seconds <= 0
+        ){
 
           clearSignalTimer();
+
 
           confirmations = 0;
 
           currentSignal = null;
 
           lastSignalKey = "";
+
 
           text(
             "confirmations",
@@ -3814,6 +4511,7 @@ function clearSignalTimer(){
     signalTimer = null;
 
   }
+
 
   text(
     "timer",
@@ -3944,11 +4642,15 @@ function updateMomentum(){
     "NEUTRAL";
 
 
-  if(last > first)
+  if(
+    last > first
+  )
     value = "UP";
 
 
-  if(last < first)
+  if(
+    last < first
+  )
     value = "DOWN";
 
 
@@ -4009,10 +4711,36 @@ function updateWindows(){
         );
 
 
-      text(
-        id,
-        `READY • Hot digit ${hot} • ${p[hot].toFixed(1)}%`
-      );
+      const contract =
+        $("contractSelect").value;
+
+
+      if(
+        contract === "EVEN" ||
+        contract === "ODD"
+      ){
+
+        const stats =
+          parityStats(
+            contract,
+            data
+          );
+
+
+        text(
+          id,
+          `${contract} ${stats.parityRate.toFixed(1)}% • DIGIT ${stats.bestDigit} • EDGE ${stats.edge.toFixed(1)}`
+        );
+
+
+      }else{
+
+        text(
+          id,
+          `READY • Hot digit ${hot} • ${p[hot].toFixed(1)}%`
+        );
+
+      }
 
     }
   );
@@ -4046,8 +4774,8 @@ function updateRecentTicks(){
         item => {
 
           const digit =
-            getLastDigit(
-              item.quote
+            getLastDigitFromTick(
+              item
             );
 
 
@@ -4099,8 +4827,8 @@ function updateDashboard(){
 
   text(
     "lastDigit",
-    getLastDigit(
-      last.quote
+    getLastDigitFromTick(
+      last
     )
   );
 
@@ -4133,62 +4861,75 @@ function resetAnalysisUI(){
     "0%"
   );
 
+
   text(
     "quality",
     "0%"
   );
+
 
   text(
     "agreement",
     "0%"
   );
 
+
   text(
     "confirmations",
     "0/3"
   );
+
 
   text(
     "predictedDigit",
     "—"
   );
 
+
   text(
     "decisionContract",
     "—"
   );
+
 
   text(
     "barrier",
     "—"
   );
 
+
   text(
     "digitRate",
     "—"
   );
+
 
   text(
     "oppositeDigit",
     "—"
   );
 
+
   text(
     "oppositeRate",
     "—"
   );
+
 
   text(
     "entryScore",
     "—"
   );
 
+
   $("instructions").textContent =
     "Waiting for enough live market data...";
+
 
   setDecision(
     "WAIT"
   );
+
 
   $("timer").textContent =
     "60";
@@ -4302,9 +5043,11 @@ $("contractSelect").addEventListener(
       $("instructions").textContent =
         "🔒 MATCHES is locked. Enter activation code 19809 to unlock.";
 
+
       scan(
         "MATCHES → Locked."
       );
+
 
       return;
 
@@ -4326,9 +5069,9 @@ $("contractSelect").addEventListener(
       "CONTRACT → " +
       (
         contract === "OVER"
-          ? "OVER 5"
+          ? "OVER • PREDICT 1–5"
           : contract === "UNDER"
-            ? "UNDER 5"
+            ? "UNDER • PREDICT 6–9"
             : contract
       ) +
       " selected."
@@ -4367,6 +5110,7 @@ $("unlockMatches").addEventListener(
     ){
 
       matchesUnlocked = true;
+
 
       const option =
         Array.from(
@@ -4409,12 +5153,13 @@ $("unlockMatches").addEventListener(
 );
 
 
-/* ================= INIT ================= */
+/* ================= INIT DIGITS ================= */
 
 function initDigits(){
 
   const container =
     $("digits");
+
 
   container.innerHTML = "";
 
@@ -4461,17 +5206,41 @@ function initApp(){
 
   resetAnalysisUI();
 
+
   scan(
     "SYSTEM → Starting DERIV SIGNAL BOT PRO..."
   );
+
 
   scan(
     "SYSTEM → Analysis-only mode active."
   );
 
+
   scan(
     "SYSTEM → No automatic trade operations enabled."
   );
+
+
+  scan(
+    "STRATEGY → OVER predicts 1–5."
+  );
+
+
+  scan(
+    "STRATEGY → UNDER predicts 6–9."
+  );
+
+
+  scan(
+    "STRATEGY → OVER/UNDER prerequisite digits must be <10.5%."
+  );
+
+
+  scan(
+    "STRATEGY → EVEN/ODD use parity edge + strongest digit + multi-window confirmation."
+  );
+
 
   connectDeriv();
 
@@ -4486,6 +5255,7 @@ if(!savedLogin){
     "flex";
 
 }
+
 </script>
 
 </body>
