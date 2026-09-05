@@ -1,1252 +1,486 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DERIV SIGNAL BOT PRO</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#05070b;
-  color:#fff;
-  min-height:100vh;
-}
-
-button,
-select,
-input{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* ================= LOGIN ================= */
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DERIV SIGNAL BOT PRO</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#05070b;color:#fff;min-height:100vh}
+button,select,input{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
 #loginScreen{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at top,#17220f,#05070b 55%);
+  min-height:100vh;display:flex;justify-content:center;align-items:center;
+  padding:20px;background:radial-gradient(circle at top,#17220f,#05070b 55%)
 }
-
 .login-card{
-  width:100%;
-  max-width:420px;
-  background:#0d1118;
-  border:1px solid #26303d;
-  border-radius:24px;
-  padding:30px;
-  box-shadow:0 20px 80px rgba(0,0,0,.6);
+  width:100%;max-width:420px;background:#0d1118;border:1px solid #26303d;
+  border-radius:24px;padding:30px;box-shadow:0 20px 80px rgba(0,0,0,.6)
 }
-
-.lion{
-  font-size:64px;
-  text-align:center;
-}
-
-.login-title{
-  text-align:center;
-  font-size:25px;
-  font-weight:900;
-  margin-top:8px;
-}
-
-.login-sub{
-  text-align:center;
-  color:#8cff71;
-  font-size:12px;
-  font-weight:800;
-  margin:8px 0 25px;
-}
-
+.lion{text-align:center;font-size:64px}
+.login-title{text-align:center;font-size:25px;font-weight:900;margin-top:8px}
+.login-sub{text-align:center;color:#8cff71;font-size:12px;font-weight:800;margin:8px 0 25px}
 .input{
-  width:100%;
-  padding:14px;
-  margin-top:12px;
-  border-radius:12px;
-  border:1px solid #303b4a;
-  background:#070a0f;
-  color:#fff;
-  outline:none;
+  width:100%;padding:14px;margin-top:12px;border-radius:12px;border:1px solid #303b4a;
+  background:#070a0f;color:#fff;outline:none
 }
-
-.input:focus{
-  border-color:#62ff45;
-}
-
+.input:focus{border-color:#62ff45}
 .remember{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:15px 0;
-  color:#aab4c0;
-  font-size:13px;
+  display:flex;align-items:center;gap:8px;margin:15px 0;color:#aab4c0;font-size:13px
 }
-
 .login-btn{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:15px;
-  background:#63ff45;
-  color:#031000;
-  font-weight:900;
+  width:100%;border:0;border-radius:12px;padding:15px;background:#63ff45;
+  color:#031000;font-weight:900
 }
+.login-error{color:#ff5d5d;text-align:center;font-size:13px;margin-top:12px}
 
-.login-error{
-  color:#ff5d5d;
-  text-align:center;
-  font-size:13px;
-  margin-top:12px;
-}
-
-/* ================= APP ================= */
-
-#app{
-  display:none;
-  max-width:1250px;
-  margin:auto;
-  padding:14px;
-}
-
+#app{display:none;max-width:1250px;margin:auto;padding:14px}
 header{
-  background:#0d1118;
-  border:1px solid #26303d;
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:12px;
+  background:#0d1118;border:1px solid #26303d;border-radius:20px;
+  padding:18px;margin-bottom:12px
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.brand-lion{
-  font-size:42px;
-}
-
-.brand h1{
-  font-size:23px;
-  font-weight:950;
-}
-
-.brand p{
-  color:#70ff55;
-  font-size:11px;
-  font-weight:800;
-  margin-top:4px;
-}
-
-.header-right{
-  margin-top:15px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  align-items:center;
-}
-
+.brand{display:flex;align-items:center;gap:12px}
+.brand-lion{font-size:42px}
+.brand h1{font-size:23px;font-weight:950}
+.brand p{color:#70ff55;font-size:11px;font-weight:800;margin-top:4px}
+.header-right{margin-top:15px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .status{
-  padding:8px 12px;
-  border-radius:20px;
-  background:#101722;
-  color:#ffcc43;
-  font-size:12px;
-  font-weight:900;
+  padding:8px 12px;border-radius:20px;background:#101722;color:#ffcc43;
+  font-size:12px;font-weight:900
 }
-
-.status.live{
-  color:#62ff45;
-}
-
+.status.live{color:#62ff45}
 .trader{
-  padding:8px 12px;
-  border-radius:20px;
-  background:#101722;
-  color:#d5dce5;
-  font-size:12px;
+  padding:8px 12px;border-radius:20px;background:#101722;color:#d5dce5;font-size:12px
 }
-
 .logout{
-  border:1px solid #4b2525;
-  background:#190c0c;
-  color:#ff7070;
-  padding:8px 12px;
-  border-radius:10px;
-  font-weight:800;
+  border:1px solid #4b2525;background:#190c0c;color:#ff7070;
+  padding:8px 12px;border-radius:10px;font-weight:800
 }
-
 .warning{
-  margin-bottom:12px;
-  padding:12px;
-  border-radius:14px;
-  background:#15120a;
-  border:1px solid #59451a;
-  color:#ffd45d;
-  font-size:11px;
-  line-height:1.5;
+  margin-bottom:12px;padding:12px;border-radius:14px;background:#15120a;
+  border:1px solid #59451a;color:#ffd45d;font-size:11px;line-height:1.5
 }
 
-/* ================= GRID ================= */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:12px;
-}
-
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
 .card{
-  background:#0d1118;
-  border:1px solid #26303d;
-  border-radius:18px;
-  padding:16px;
+  background:#0d1118;border:1px solid #26303d;border-radius:18px;padding:16px
 }
-
 .span-12{grid-column:span 12}
 .span-8{grid-column:span 8}
 .span-6{grid-column:span 6}
 .span-4{grid-column:span 4}
-
 .card-title{
-  color:#8d9aaa;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1px;
-  margin-bottom:12px;
+  color:#8d9aaa;font-size:11px;font-weight:900;letter-spacing:1px;margin-bottom:12px
 }
-
-.control-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-label{
-  display:block;
-  color:#7e8998;
-  font-size:10px;
-  font-weight:800;
-  margin-bottom:5px;
-}
-
+.control-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;color:#7e8998;font-size:10px;font-weight:800;margin-bottom:5px}
 select{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #303b4a;
-  background:#070a0f;
-  color:#fff;
-  outline:none;
+  width:100%;padding:12px;border-radius:10px;border:1px solid #303b4a;
+  background:#070a0f;color:#fff;outline:none
 }
-
-.bot-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-}
-
+.bot-buttons{display:flex;gap:10px;margin-top:12px}
 .run{
-  flex:1;
-  border:0;
-  padding:13px;
-  border-radius:11px;
-  background:#63ff45;
-  color:#031000;
-  font-weight:950;
+  flex:1;border:0;padding:13px;border-radius:11px;background:#63ff45;
+  color:#031000;font-weight:950
 }
-
 .stop{
-  flex:1;
-  border:1px solid #5b2929;
-  padding:13px;
-  border-radius:11px;
-  background:#1a0c0c;
-  color:#ff6d6d;
-  font-weight:950;
+  flex:1;border:1px solid #5b2929;padding:13px;border-radius:11px;
+  background:#1a0c0c;color:#ff6d6d;font-weight:950
 }
 
-/* ================= LIVE MARKET ================= */
-
-.live-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:8px;
-}
-
+.live-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .metric{
-  background:#080b10;
-  border:1px solid #202a36;
-  border-radius:12px;
-  padding:12px;
+  background:#080b10;border:1px solid #202a36;border-radius:12px;padding:12px
 }
+.metric span{display:block;color:#7d8997;font-size:9px;font-weight:800}
+.metric strong{display:block;margin-top:7px;font-size:16px;word-break:break-word}
+.green{color:#63ff45}
+.yellow{color:#ffd45d}
+.red{color:#ff6060}
 
-.metric span{
-  display:block;
-  color:#7d8997;
-  font-size:9px;
-  font-weight:800;
-}
-
-.metric strong{
-  display:block;
-  margin-top:7px;
-  font-size:16px;
-  word-break:break-word;
-}
-
-.green{
-  color:#63ff45;
-}
-
-.yellow{
-  color:#ffd45d;
-}
-
-.red{
-  color:#ff6060;
-}
-
-/* ================= ENGINE ================= */
-
-.engine-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-}
-
+.engine-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .engine-box{
-  background:#080b10;
-  border:1px solid #202a36;
-  border-radius:12px;
-  padding:14px;
-  text-align:center;
+  background:#080b10;border:1px solid #202a36;border-radius:12px;padding:14px;text-align:center
 }
+.engine-box span{display:block;color:#7d8997;font-size:9px;font-weight:800}
+.engine-box strong{display:block;font-size:22px;margin-top:5px}
 
-.engine-box span{
-  display:block;
-  color:#7d8997;
-  font-size:9px;
-  font-weight:800;
-}
-
-.engine-box strong{
-  display:block;
-  font-size:22px;
-  margin-top:5px;
-}
-
-/* ================= ENTRY ================= */
-
-.entry{
-  text-align:center;
-}
-
-.decision{
-  font-size:27px;
-  font-weight:1000;
-  margin-bottom:12px;
-}
-
-.decision.good{
-  color:#63ff45;
-}
-
-.decision.wait{
-  color:#ffd45d;
-}
-
+.entry{text-align:center}
+.decision{font-size:27px;font-weight:1000;margin-bottom:12px}
+.decision.good{color:#63ff45}
+.decision.wait{color:#ffd45d}
 .big-digit{
-  width:115px;
-  height:115px;
-  margin:8px auto 16px;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#101722;
-  border:3px solid #34404f;
-  font-size:58px;
-  font-weight:1000;
+  width:115px;height:115px;margin:8px auto 16px;border-radius:50%;
+  display:flex;justify-content:center;align-items:center;background:#101722;
+  border:3px solid #34404f;font-size:58px;font-weight:1000
 }
-
-.entry-details{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  text-align:left;
-}
-
-.entry-item{
-  background:#080b10;
-  border-radius:10px;
-  padding:10px;
-}
-
-.entry-item span{
-  display:block;
-  color:#7d8997;
-  font-size:9px;
-  font-weight:800;
-}
-
-.entry-item strong{
-  display:block;
-  margin-top:5px;
-  font-size:14px;
-}
-
+.entry-details{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:left}
+.entry-item{background:#080b10;border-radius:10px;padding:10px}
+.entry-item span{display:block;color:#7d8997;font-size:9px;font-weight:800}
+.entry-item strong{display:block;margin-top:5px;font-size:14px}
 .instructions{
-  margin-top:12px;
-  padding:12px;
-  background:#101722;
-  border-radius:12px;
-  color:#c4ccd7;
-  font-size:12px;
-  line-height:1.6;
-  text-align:left;
+  margin-top:12px;padding:12px;background:#101722;border-radius:12px;
+  color:#c4ccd7;font-size:12px;line-height:1.6;text-align:left;white-space:pre-line
 }
+.timer{margin-top:12px;color:#63ff45;font-size:22px;font-weight:950}
 
-.timer{
-  margin-top:12px;
-  color:#63ff45;
-  font-size:22px;
-  font-weight:950;
-}
-
-/* ================= DIGITS ================= */
-
-.digits{
-  display:grid;
-  grid-template-columns:repeat(10,1fr);
-  gap:7px;
-}
-
+.digits{display:grid;grid-template-columns:repeat(10,1fr);gap:7px}
 .digit{
-  text-align:center;
-  padding:10px 4px;
-  border-radius:50%;
-  aspect-ratio:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  border:2px solid #293340;
-  background:#0a0e14;
+  text-align:center;padding:10px 4px;border-radius:50%;aspect-ratio:1;
+  display:flex;flex-direction:column;justify-content:center;
+  border:2px solid #293340;background:#0a0e14
 }
+.digit strong{font-size:17px}
+.digit small{font-size:8px;margin-top:2px;color:#aeb7c2}
+.digit.high{border-color:#63ff45;box-shadow:0 0 12px rgba(99,255,69,.25)}
+.digit.second-high{border-color:#4b9cff}
+.digit.second-low{border-color:#ffd34d}
+.digit.low{border-color:#ff4e4e}
 
-.digit strong{
-  font-size:17px;
-}
+.rates{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.rate{background:#080b10;border-radius:11px;padding:12px;text-align:center}
+.rate span{display:block;color:#8994a1;font-size:9px;font-weight:900}
+.rate strong{display:block;margin-top:5px;font-size:17px}
 
-.digit small{
-  font-size:8px;
-  margin-top:2px;
-  color:#aeb7c2;
-}
-
-.digit.high{
-  border-color:#63ff45;
-  box-shadow:0 0 12px rgba(99,255,69,.25);
-}
-
-.digit.second-high{
-  border-color:#4b9cff;
-}
-
-.digit.second-low{
-  border-color:#ffd34d;
-}
-
-.digit.low{
-  border-color:#ff4e4e;
-}
-
-/* ================= RATES ================= */
-
-.rates{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:8px;
-}
-
-.rate{
-  background:#080b10;
-  border-radius:11px;
-  padding:12px;
-  text-align:center;
-}
-
-.rate span{
-  display:block;
-  color:#8994a1;
-  font-size:9px;
-  font-weight:900;
-}
-
-.rate strong{
-  display:block;
-  margin-top:5px;
-  font-size:17px;
-}
-
-/* ================= WINDOWS ================= */
-
-.windows{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
+.windows{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .window{
-  padding:14px;
-  border-radius:11px;
-  background:#080b10;
-  border:1px solid #202a36;
+  padding:14px;border-radius:11px;background:#080b10;border:1px solid #202a36
 }
-
-.window span{
-  display:block;
-  color:#7d8997;
-  font-size:10px;
-  font-weight:900;
-}
-
-.window strong{
-  display:block;
-  margin-top:7px;
-  font-size:12px;
-}
-
-/* ================= SCANNER ================= */
+.window span{display:block;color:#7d8997;font-size:10px;font-weight:900}
+.window strong{display:block;margin-top:7px;font-size:12px}
 
 .scanner{
-  height:230px;
-  overflow:auto;
-  background:#020403;
-  border-radius:12px;
-  border:1px solid #18311a;
-  padding:12px;
-  color:#67ff67;
-  font-family:monospace;
-  font-size:11px;
-  line-height:1.7;
+  height:230px;overflow:auto;background:#020403;border-radius:12px;
+  border:1px solid #18311a;padding:12px;color:#67ff67;font-family:monospace;
+  font-size:11px;line-height:1.7
 }
-
-/* ================= RECENT ================= */
-
-.recent{
-  max-height:230px;
-  overflow:auto;
-}
-
+.recent{max-height:230px;overflow:auto}
 .tick-row{
-  padding:7px 0;
-  border-bottom:1px solid #1c2430;
-  color:#b9c2cd;
-  font-family:monospace;
-  font-size:11px;
+  padding:7px 0;border-bottom:1px solid #1c2430;color:#b9c2cd;
+  font-family:monospace;font-size:11px
 }
 
-/* ================= MATCHES ================= */
-
-.matches{
-  background:#130f08;
-  border:1px solid #493919;
-}
-
-.unlock{
-  display:flex;
-  gap:8px;
-}
-
-.unlock input{
-  flex:1;
-  margin:0;
-}
-
+.matches{background:#130f08;border:1px solid #493919}
+.unlock{display:flex;gap:8px}
+.unlock input{flex:1;margin:0}
 .unlock button{
-  border:0;
-  background:#ffd34d;
-  color:#100e00;
-  border-radius:10px;
-  padding:0 15px;
-  font-weight:950;
+  border:0;background:#ffd34d;color:#100e00;border-radius:10px;
+  padding:0 15px;font-weight:950
 }
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:850px){
-
-  .span-8,
-  .span-6,
-  .span-4{
-    grid-column:span 12;
-  }
-
-  .live-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .engine-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .digits{
-    grid-template-columns:repeat(5,1fr);
-  }
-
-  .rates{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .entry-details{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .span-8,.span-6,.span-4{grid-column:span 12}
+  .live-grid{grid-template-columns:repeat(2,1fr)}
+  .engine-grid{grid-template-columns:repeat(2,1fr)}
+  .digits{grid-template-columns:repeat(5,1fr)}
+  .rates{grid-template-columns:repeat(3,1fr)}
+  .entry-details{grid-template-columns:repeat(2,1fr)}
 }
-
 @media(max-width:520px){
-
-  .control-grid{
-    grid-template-columns:1fr;
-  }
-
-  .windows{
-    grid-template-columns:1fr;
-  }
-
-  .rates{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .brand h1{
-    font-size:19px;
-  }
+  .control-grid{grid-template-columns:1fr}
+  .windows{grid-template-columns:1fr}
+  .rates{grid-template-columns:repeat(2,1fr)}
+  .brand h1{font-size:19px}
 }
-</style>
-</head>
-
-<body>
-
-<!-- ================= LOGIN ================= -->
-
-<section id="loginScreen">
-
+</style></head><body><section id="loginScreen">
   <div class="login-card">
-
     <div class="lion">🦁</div>
+    <div class="login-title">DERIV SIGNAL BOT PRO</div>
+    <div class="login-sub">POWERED BY ELISY 254</div><input id="username" class="input" type="text"
+  placeholder="Username" autocomplete="username">
 
-    <div class="login-title">
-      DERIV SIGNAL BOT PRO
-    </div>
+<input id="password" class="input" type="password"
+  placeholder="Password" autocomplete="current-password">
 
-    <div class="login-sub">
-      POWERED BY ELISY 254
-    </div>
+<label class="remember">
+  <input id="remember" type="checkbox">
+  Save login on this device
+</label>
 
-    <input
-      id="username"
-      class="input"
-      type="text"
-      placeholder="Username"
-      autocomplete="username"
-    >
-
-    <input
-      id="password"
-      class="input"
-      type="password"
-      placeholder="Password"
-      autocomplete="current-password"
-    >
-
-    <label class="remember">
-      <input id="remember" type="checkbox">
-      Save login on this device
-    </label>
-
-    <button id="loginButton" class="login-btn">
-      LOGIN
-    </button>
-
-    <div id="loginError" class="login-error"></div>
+<button id="loginButton" class="login-btn">LOGIN</button>
+<div id="loginError" class="login-error"></div>
 
   </div>
-
-</section>
-
-
-<!-- ================= MAIN APP ================= -->
-
-<main id="app">
-
-<header>
-
+</section><main id="app"><header>
   <div class="brand">
-
     <div class="brand-lion">🦁</div>
-
     <div>
       <h1>DERIV SIGNAL BOT PRO</h1>
-
-      <p>
-        POWERED BY ELISY 254 • LIVE MARKET ANALYZER
-      </p>
+      <p>POWERED BY ELISY 254 • LIVE MARKET ANALYZER</p>
     </div>
-
-  </div>
-
-  <div class="header-right">
-
-    <div id="connectionStatus" class="status">
-      ● CONNECTING...
-    </div>
-
-    <div class="trader">
-      TRADER: <strong id="traderName">Trade23</strong>
-    </div>
-
-    <button id="logoutButton" class="logout">
-      LOGOUT
-    </button>
-
-  </div>
-
-</header>
-
-
-<div class="warning">
-⚠️ ANALYSIS ONLY • MANUAL ENTRY • LIVE MARKET DATA •
-NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
+  </div>  <div class="header-right">
+    <div id="connectionStatus" class="status">● CONNECTING...</div><div class="trader">
+  TRADER: <strong id="traderName">Trade23</strong>
 </div>
 
+<button id="logoutButton" class="logout">LOGOUT</button>
 
-<div class="grid">
-
-<!-- ================= BOT CONTROL ================= -->
-
-<section class="card span-12">
-
-  <div class="card-title">
-    🤖 BOT CONTROL
   </div>
-
-  <div class="control-grid">
-
+</header><div class="warning">
+⚠️ ANALYSIS ONLY • MANUAL ENTRY • LIVE MARKET DATA •
+NO AUTOMATIC ORDER PLACEMENT • HISTORICAL RATES DO NOT GUARANTEE THE NEXT TICK
+</div><div class="grid"><section class="card span-12">
+  <div class="card-title">🤖 BOT CONTROL</div>  <div class="control-grid">
     <div>
-
       <label>MARKET</label>
-
       <select id="marketSelect">
         <option>Connecting to Deriv...</option>
       </select>
+    </div><div>
+  <label>CONTRACT</label>
+  <select id="contractSelect">
+    <option value="DIFFERS">DIFFERS</option>
+    <option value="MATCHES">MATCHES 🔒</option>
+    <option value="EVEN">EVEN</option>
+    <option value="ODD">ODD</option>
+    <option value="OVER">OVER • PREDICT 1–5</option>
+    <option value="UNDER">UNDER • PREDICT 6–9</option>
+  </select>
+</div>
 
-    </div>
-
-    <div>
-
-      <label>CONTRACT</label>
-
-      <select id="contractSelect">
-
-        <option value="DIFFERS">
-          DIFFERS
-        </option>
-
-        <option value="MATCHES">
-          MATCHES 🔒
-        </option>
-
-        <option value="EVEN">
-          EVEN
-        </option>
-
-        <option value="ODD">
-          ODD
-        </option>
-
-        <option value="OVER">
-          OVER • PREDICT 1–5
-        </option>
-
-        <option value="UNDER">
-          UNDER • PREDICT 6–9
-        </option>
-
-      </select>
-
-    </div>
-
+  </div>  <div class="bot-buttons">
+    <button id="runBot" class="run">▶ RUN BOT</button>
+    <button id="stopBot" class="stop">■ STOP</button>
   </div>
-
-  <div class="bot-buttons">
-
-    <button id="runBot" class="run">
-      ▶ RUN BOT
-    </button>
-
-    <button id="stopBot" class="stop">
-      ■ STOP
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ================= LIVE MARKET ================= -->
-
-<section class="card span-12">
-
-  <div class="card-title">
-    📡 LIVE MARKET
-  </div>
-
-  <div class="live-grid">
-
+</section><section class="card span-12">
+  <div class="card-title">📡 LIVE MARKET</div>  <div class="live-grid">
     <div class="metric">
       <span>MARKET</span>
       <strong id="marketName">—</strong>
-    </div>
+    </div><div class="metric">
+  <span>SYMBOL</span>
+  <strong id="symbolName" class="green">—</strong>
+</div>
 
+<div class="metric">
+  <span>LIVE PRICE</span>
+  <strong id="livePrice">—</strong>
+</div>
+
+<div class="metric">
+  <span>LAST DIGIT</span>
+  <strong id="lastDigit" class="green">—</strong>
+</div>
+
+<div class="metric">
+  <span>TICKS</span>
+  <strong id="tickCount">0</strong>
+</div>
+
+  </div>  <div style="margin-top:8px">
     <div class="metric">
-      <span>SYMBOL</span>
-      <strong id="symbolName" class="green">—</strong>
-    </div>
-
-    <div class="metric">
-      <span>LIVE PRICE</span>
-      <strong id="livePrice">—</strong>
-    </div>
-
-    <div class="metric">
-      <span>LAST DIGIT</span>
-      <strong id="lastDigit" class="green">—</strong>
-    </div>
-
-    <div class="metric">
-      <span>TICKS</span>
-      <strong id="tickCount">0</strong>
-    </div>
-
-  </div>
-
-  <div style="margin-top:8px">
-
-    <div class="metric">
-
       <span>PRICE MOMENTUM</span>
-
-      <strong id="momentum">
-        NEUTRAL
-      </strong>
-
+      <strong id="momentum">NEUTRAL</strong>
     </div>
-
   </div>
-
-</section>
-
-
-<!-- ================= ENGINE ================= -->
-
-<section class="card span-12">
-
-  <div class="card-title">
-    🧠 ENGINE STATUS
-  </div>
-
-  <div class="engine-grid">
-
+</section><section class="card span-12">
+  <div class="card-title">🧠 ENGINE STATUS</div>  <div class="engine-grid">
     <div class="engine-box">
       <span>SCORE</span>
       <strong id="score" class="green">0%</strong>
-    </div>
+    </div><div class="engine-box">
+  <span>QUALITY</span>
+  <strong id="quality">0%</strong>
+</div>
 
-    <div class="engine-box">
-      <span>QUALITY</span>
-      <strong id="quality">0%</strong>
-    </div>
+<div class="engine-box">
+  <span>AGREEMENT</span>
+  <strong id="agreement">0%</strong>
+</div>
 
-    <div class="engine-box">
-      <span>AGREEMENT</span>
-      <strong id="agreement">0%</strong>
-    </div>
-
-    <div class="engine-box">
-      <span>CONFIRMATIONS</span>
-      <strong id="confirmations">0/3</strong>
-    </div>
+<div class="engine-box">
+  <span>CONFIRMATIONS</span>
+  <strong id="confirmations">0/3</strong>
+</div>
 
   </div>
+</section><section class="card span-8 entry">
+  <div class="card-title">🎯 FINAL ENTRY DECISION</div>  <div id="decision" class="decision wait">WAIT</div>  <div id="predictedDigit" class="big-digit">—</div>  <div class="entry-details"><div class="entry-item">
+  <span>CONTRACT</span>
+  <strong id="decisionContract">—</strong>
+</div>
 
-</section>
+<div class="entry-item">
+  <span>BARRIER</span>
+  <strong id="barrier">—</strong>
+</div>
 
+<div class="entry-item">
+  <span>DIGIT RATE</span>
+  <strong id="digitRate">—</strong>
+</div>
 
-<!-- ================= FINAL ENTRY ================= -->
+<div class="entry-item">
+  <span>OPPOSITE CHECK</span>
+  <strong id="oppositeDigit">—</strong>
+</div>
 
-<section class="card span-8 entry">
+<div class="entry-item">
+  <span>CHECK RATES</span>
+  <strong id="oppositeRate">—</strong>
+</div>
 
-  <div class="card-title">
-    🎯 FINAL ENTRY DECISION
-  </div>
+<div class="entry-item">
+  <span>SCORE</span>
+  <strong id="entryScore">—</strong>
+</div>
 
-  <div id="decision" class="decision wait">
-    WAIT
-  </div>
-
-  <div id="predictedDigit" class="big-digit">
-    —
-  </div>
-
-  <div class="entry-details">
-
-    <div class="entry-item">
-      <span>CONTRACT</span>
-      <strong id="decisionContract">—</strong>
-    </div>
-
-    <div class="entry-item">
-      <span>BARRIER</span>
-      <strong id="barrier">—</strong>
-    </div>
-
-    <div class="entry-item">
-      <span>DIGIT RATE</span>
-      <strong id="digitRate">—</strong>
-    </div>
-
-    <div class="entry-item">
-      <span>OPPOSITE CHECK</span>
-      <strong id="oppositeDigit">—</strong>
-    </div>
-
-    <div class="entry-item">
-      <span>CHECK RATES</span>
-      <strong id="oppositeRate">—</strong>
-    </div>
-
-    <div class="entry-item">
-      <span>SCORE</span>
-      <strong id="entryScore">—</strong>
-    </div>
-
-  </div>
-
-  <div id="instructions" class="instructions">
+  </div>  <div id="instructions" class="instructions">
     Start the bot and wait for a confirmed setup.
-  </div>
-
-  <div id="timer" class="timer">
-    60
-  </div>
-
-</section>
-
-
-<!-- ================= WINDOWS ================= -->
-
-<section class="card span-4">
-
-  <div class="card-title">
-    📊 MULTI-WINDOW CONFIRMATION
-  </div>
-
-  <div class="windows">
-
+  </div>  <div id="timer" class="timer">60</div>
+</section><section class="card span-4">
+  <div class="card-title">📊 MULTI-WINDOW CONFIRMATION</div>  <div class="windows">
     <div class="window">
       <span>50 TICKS</span>
       <strong id="window50">Waiting...</strong>
-    </div>
+    </div><div class="window">
+  <span>100 TICKS</span>
+  <strong id="window100">Waiting...</strong>
+</div>
 
-    <div class="window">
-      <span>100 TICKS</span>
-      <strong id="window100">Waiting...</strong>
-    </div>
-
-    <div class="window">
-      <span>500 TICKS</span>
-      <strong id="window500">Waiting...</strong>
-    </div>
+<div class="window">
+  <span>500 TICKS</span>
+  <strong id="window500">Waiting...</strong>
+</div>
 
   </div>
-
-</section>
-
-
-<!-- ================= DIGIT DISTRIBUTION ================= -->
-
-<section class="card span-12">
-
-  <div class="card-title">
-    🔢 LIVE DIGIT DISTRIBUTION
-  </div>
-
-  <div style="
-    color:#75808d;
-    font-size:10px;
-    margin-bottom:10px;
-  ">
+</section><section class="card span-12">
+  <div class="card-title">🔢 LIVE DIGIT DISTRIBUTION</div>  <div style="color:#75808d;font-size:10px;margin-bottom:10px">
     GREEN = HIGH • BLUE = 2ND HIGH •
     YELLOW = 2ND LOW • RED = LOW
-  </div>
-
-  <div id="digits" class="digits"></div>
-
-</section>
-
-
-<!-- ================= CONTRACT RATES ================= -->
-
-<section class="card span-12">
-
-  <div class="card-title">
-    📈 CONTRACT HISTORICAL RATES
-  </div>
-
-  <div class="rates">
-
+  </div>  <div id="digits" class="digits"></div>
+</section><section class="card span-12">
+  <div class="card-title">📈 CONTRACT HISTORICAL RATES</div>  <div class="rates">
     <div class="rate">
       <span>DIFFERS</span>
       <strong id="rate-DIFFERS">—</strong>
-    </div>
-
-    <div class="rate">
-      <span>MATCHES</span>
-      <strong id="rate-MATCHES">—</strong>
-    </div>
-
-    <div class="rate">
-      <span>EVEN</span>
-      <strong id="rate-EVEN">—</strong>
-    </div>
-
-    <div class="rate">
-      <span>ODD</span>
-      <strong id="rate-ODD">—</strong>
-    </div>
-
-    <div class="rate">
-      <span>OVER • 1–5</span>
-      <strong id="rate-OVER">—</strong>
-    </div>
-
-    <div class="rate">
-      <span>UNDER • 6–9</span>
-      <strong id="rate-UNDER">—</strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= MATCHES ================= -->
-
-<section class="card span-12 matches">
-
-  <div class="card-title">
-    🔒 MATCHES FEATURE
-  </div>
-
-  <strong>
-    🔒 MATCHES LOCKED
-  </strong>
-
-  <p style="
-    color:#9d9580;
-    font-size:11px;
-    margin:8px 0 12px;
-  ">
-    MATCHES requires activation before its predicted
-    digit can be used for manual entry.
-  </p>
-
-  <div class="unlock">
-
-    <input
-      id="activationCode"
-      class="input"
-      type="password"
-      placeholder="Activation code"
-    >
-
-    <button id="unlockMatches">
-      UNLOCK
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ================= SCANNER ================= -->
-
-<section class="card span-8">
-
-  <div class="card-title">
-    🟢 LIVE SCANNER
-  </div>
-
-  <div id="scanner" class="scanner"></div>
-
-</section>
-
-
-<!-- ================= RECENT TICKS ================= -->
-
-<section class="card span-4">
-
-  <div class="card-title">
-    ⚡ RECENT TICKS
-  </div>
-
-  <div id="recentTicks" class="recent">
-    Waiting for ticks...
-  </div>
-
-</section>
-
-
-<!-- ================= SIGNAL HISTORY ================= -->
-
-<section class="card span-12">
-
-  <div class="card-title">
-    📜 SIGNAL HISTORY
-  </div>
-
-  <div id="signalHistory" class="recent">
-    No signals yet.
-  </div>
-
-</section>
-
+    </div><div class="rate">
+  <span>MATCHES</span>
+  <strong id="rate-MATCHES">—</strong>
 </div>
 
-</main>
+<div class="rate">
+  <span>EVEN</span>
+  <strong id="rate-EVEN">—</strong>
+</div>
 
+<div class="rate">
+  <span>ODD</span>
+  <strong id="rate-ODD">—</strong>
+</div>
 
-<script>
+<div class="rate">
+  <span>OVER • 1–5</span>
+  <strong id="rate-OVER">—</strong>
+</div>
+
+<div class="rate">
+  <span>UNDER • 6–9</span>
+  <strong id="rate-UNDER">—</strong>
+</div>
+
+  </div>
+</section><section class="card span-12 matches">
+  <div class="card-title">🔒 MATCHES FEATURE</div><strong>🔒 MATCHES LOCKED</strong>
+
+  <p style="color:#9d9580;font-size:11px;margin:8px 0 12px">
+    MATCHES requires activation before its predicted
+    digit can be used for manual entry.
+  </p>  <div class="unlock">
+    <input id="activationCode" class="input"
+      type="password" placeholder="Activation code"><button id="unlockMatches">UNLOCK</button>
+
+  </div>
+</section><section class="card span-8">
+  <div class="card-title">🟢 LIVE SCANNER</div>
+  <div id="scanner" class="scanner"></div>
+</section><section class="card span-4">
+  <div class="card-title">⚡ RECENT TICKS</div>
+  <div id="recentTicks" class="recent">Waiting for ticks...</div>
+</section><section class="card span-12">
+  <div class="card-title">📜 SIGNAL HISTORY</div>
+  <div id="signalHistory" class="recent">No signals yet.</div>
+</section></div>
+</main><script>
 
 /* =========================================================
    DERIV SIGNAL BOT PRO
-   LIVE ANALYSIS ONLY
-   NO AUTOMATIC TRADING
+   FIXED LIVE DATA ENGINE
+   ANALYSIS ONLY — NO AUTOMATIC TRADING
 ========================================================= */
 
-
-/* ================= CONFIG ================= */
-
 const CONFIG = {
-
   USERNAME:"Trade23",
-
   PASSWORD:"Market23",
-
   ACTIVATION_CODE:"19809",
 
-  WS:
-    "wss://api.derivws.com/trading/v1/options/ws/public",
+  /*
+    Public Deriv market-data WebSocket.
+    No Deriv account login is used.
+  */
+  WS:"wss://api.derivws.com/trading/v1/options/ws/public",
 
   MIN_TICKS:50,
-
   ANALYSIS_TICKS:500,
 
   MIN_SCORE:60,
-
   MIN_QUALITY:70,
-
   MIN_AGREEMENT:66,
 
   REQUIRED_CONFIRMATIONS:3,
 
   DIFFERS_MIN:88,
-
   MATCHES_MIN:15,
 
   PARITY_MIN:55,
-
-  /*
-    Strategic EVEN/ODD edge.
-    Example:
-    EVEN 58% vs ODD 42%
-    = 16 point edge.
-  */
-
   PARITY_EDGE_MIN:6,
-
-  /*
-    Predicted parity digit should
-    beat the neutral 10% digit rate.
-  */
-
   PARITY_DIGIT_MIN:10.5,
 
   OVER_UNDER_MIN:55,
 
   /*
-    User's exact custom filter.
-    Strictly LESS than 10.5%.
+    STRICT:
+    every companion digit must be
+    LESS THAN 10.5%.
   */
-
   OPPOSITE_MAX_RATE:10.5,
 
   SIGNAL_SECONDS:60,
+  MAX_TICKS:1000,
 
-  MAX_TICKS:1000
+  HISTORY_REQ_ID:100,
+  SYMBOLS_REQ_ID:1
 };
 
 
 /* ================= STATE ================= */
 
-let ws = null;
+let ws=null;
+let reconnectTimer=null;
+let reconnectDelay=3000;
 
-let reconnectTimer = null;
+let requestId=10;
 
-let reconnectDelay = 3000;
+let markets=[];
+let selectedMarket="";
+let selectedMarketName="";
+let selectedPipSize=0.01;
 
-let markets = [];
+let activeSubscriptionId=null;
+let pendingHistorySymbol=null;
+let pendingSubscriptionSymbol=null;
 
-let selectedMarket = "";
+let ticks=[];
 
-let selectedMarketName = "";
+let botRunning=false;
+let matchesUnlocked=false;
 
-let selectedPipSize = 0.01;
+let confirmations=0;
+let currentSignal=null;
+let signalTimer=null;
+let lastSignalKey="";
 
-let activeSubscriptionId = null;
-
-let ticks = [];
-
-let botRunning = false;
-
-let matchesUnlocked = false;
-
-let confirmations = 0;
-
-let currentSignal = null;
-
-let signalTimer = null;
-
-let lastSignalKey = "";
-
-let signalHistory = [];
+let signalHistory=[];
 
 
 /* ================= HELPERS ================= */
@@ -1255,143 +489,91 @@ function $(id){
   return document.getElementById(id);
 }
 
-
 function text(id,value){
-
-  const node = $(id);
-
-  if(node){
-    node.textContent = value;
-  }
-
+  const node=$(id);
+  if(node) node.textContent=value;
 }
 
-
 function clamp(value,min,max){
+  return Math.max(min,Math.min(max,value));
+}
 
-  return Math.max(
-    min,
-    Math.min(max,value)
-  );
-
+function nextReqId(){
+  requestId++;
+  if(requestId>999999) requestId=10;
+  return requestId;
 }
 
 
 /* ================= LOGIN ================= */
 
 function openApp(username){
-
-  $("loginScreen").style.display = "none";
-
-  $("app").style.display = "block";
-
-  text(
-    "traderName",
-    username
-  );
-
+  $("loginScreen").style.display="none";
+  $("app").style.display="block";
+  text("traderName",username);
 }
-
 
 function doLogin(){
 
-  const username =
-    $("username").value.trim();
-
-  const password =
-    $("password").value;
-
+  const username=$("username").value.trim();
+  const password=$("password").value;
 
   if(
-    username === CONFIG.USERNAME &&
-    password === CONFIG.PASSWORD
+    username===CONFIG.USERNAME &&
+    password===CONFIG.PASSWORD
   ){
 
     if($("remember").checked){
-
-      localStorage.setItem(
-        "dsp_saved_login",
-        username
-      );
-
+      localStorage.setItem("dsp_saved_login",username);
     }else{
-
-      localStorage.removeItem(
-        "dsp_saved_login"
-      );
-
+      localStorage.removeItem("dsp_saved_login");
     }
 
-    $("loginError").textContent = "";
-
+    $("loginError").textContent="";
     openApp(username);
-
     initApp();
 
   }else{
 
-    $("loginError").textContent =
+    $("loginError").textContent=
       "Invalid username or password.";
 
   }
-
 }
-
 
 function logout(){
 
-  localStorage.removeItem(
-    "dsp_saved_login"
-  );
+  localStorage.removeItem("dsp_saved_login");
+
+  try{
+    if(ws) ws.close();
+  }catch(e){}
 
   location.reload();
-
 }
 
+$("loginButton").addEventListener("click",doLogin);
+$("logoutButton").addEventListener("click",logout);
 
-$("loginButton").addEventListener(
-  "click",
-  doLogin
-);
-
-
-$("logoutButton").addEventListener(
-  "click",
-  logout
-);
+$("password").addEventListener("keydown",event=>{
+  if(event.key==="Enter") doLogin();
+});
 
 
-$("password").addEventListener(
-  "keydown",
-  event => {
-
-    if(event.key === "Enter"){
-      doLogin();
-    }
-
-  }
-);
-
-
-/* ================= AUTO LOGIN ================= */
-
-const savedLogin =
-  localStorage.getItem(
-    "dsp_saved_login"
-  );
-
+const savedLogin=
+  localStorage.getItem("dsp_saved_login");
 
 if(savedLogin){
 
-  $("username").value =
-    savedLogin;
-
-  $("remember").checked = true;
+  $("username").value=savedLogin;
+  $("remember").checked=true;
 
   openApp(savedLogin);
-
   initApp();
+}
 
+if(!savedLogin){
+  $("loginScreen").style.display="flex";
 }
 
 
@@ -1399,30 +581,41 @@ if(savedLogin){
 
 function scan(message){
 
-  const box =
-    $("scanner");
+  const box=$("scanner");
 
-  const now =
-    new Date().toLocaleTimeString();
+  const now=new Date().toLocaleTimeString();
 
-  const div =
-    document.createElement("div");
+  const div=document.createElement("div");
 
-  div.textContent =
-    `[${now}] ${message}`;
+  div.textContent=`[${now}] ${message}`;
 
   box.prepend(div);
 
-  while(
-    box.children.length > 100
+  while(box.children.length>150){
+    box.removeChild(box.lastChild);
+  }
+}
+
+
+/* ================= SEND ================= */
+
+function send(payload){
+
+  if(
+    ws &&
+    ws.readyState===WebSocket.OPEN
   ){
 
-    box.removeChild(
-      box.lastChild
-    );
+    try{
+      ws.send(JSON.stringify(payload));
+      return true;
+    }catch(error){
+      scan("SEND ERROR → "+error.message);
+    }
 
   }
 
+  return false;
 }
 
 
@@ -1433,157 +626,89 @@ function connectDeriv(){
   if(
     ws &&
     (
-      ws.readyState === WebSocket.OPEN ||
-      ws.readyState === WebSocket.CONNECTING
+      ws.readyState===WebSocket.OPEN ||
+      ws.readyState===WebSocket.CONNECTING
     )
   ){
-
     return;
-
   }
-
 
   scan(
     "SYSTEM → Connecting to Deriv public market feed..."
   );
 
-
-  text(
-    "connectionStatus",
-    "● CONNECTING..."
-  );
-
-
-  $("connectionStatus")
-    .classList.remove("live");
-
+  text("connectionStatus","● CONNECTING...");
+  $("connectionStatus").classList.remove("live");
 
   try{
 
-    ws =
-      new WebSocket(
-        CONFIG.WS
-      );
+    ws=new WebSocket(CONFIG.WS);
 
   }catch(error){
 
-    scan(
-      "ERROR → " +
-      error.message
-    );
-
+    scan("ERROR → "+error.message);
     scheduleReconnect();
-
     return;
 
   }
 
+  ws.onopen=()=>{
 
-  ws.onopen = () => {
+    reconnectDelay=3000;
 
-    reconnectDelay = 3000;
-
-
-    $("connectionStatus")
-      .classList.add("live");
-
-
-    text(
-      "connectionStatus",
-      "● LIVE CONNECTED"
-    );
-
+    $("connectionStatus").classList.add("live");
+    text("connectionStatus","● LIVE CONNECTED");
 
     scan(
       "SYSTEM → Deriv public market connection established."
     );
 
-
+    /*
+      Discover markets first.
+    */
     send({
-
       active_symbols:"brief",
-
-      req_id:1
-
+      req_id:CONFIG.SYMBOLS_REQ_ID
     });
 
   };
 
 
-  ws.onmessage = event => {
+  ws.onmessage=event=>{
 
     let data;
 
-
     try{
-
-      data =
-        JSON.parse(
-          event.data
-        );
-
+      data=JSON.parse(event.data);
     }catch(error){
-
+      scan("ERROR → Invalid WebSocket message.");
       return;
-
     }
-
 
     handleMessage(data);
 
   };
 
 
-  ws.onerror = () => {
-
-    scan(
-      "ERROR → Deriv WebSocket error."
-    );
-
+  ws.onerror=()=>{
+    scan("ERROR → Deriv WebSocket error.");
   };
 
 
-  ws.onclose = () => {
+  ws.onclose=()=>{
 
-    activeSubscriptionId = null;
+    activeSubscriptionId=null;
+    pendingHistorySymbol=null;
+    pendingSubscriptionSymbol=null;
 
+    $("connectionStatus").classList.remove("live");
+    text("connectionStatus","● DISCONNECTED");
 
-    $("connectionStatus")
-      .classList.remove("live");
-
-
-    text(
-      "connectionStatus",
-      "● DISCONNECTED"
-    );
-
-
-    scan(
-      "SYSTEM → Deriv connection closed."
-    );
-
+    scan("SYSTEM → Deriv connection closed.");
 
     scheduleReconnect();
 
   };
-
-}
-
-
-/* ================= SEND ================= */
-
-function send(payload){
-
-  if(
-    ws &&
-    ws.readyState === WebSocket.OPEN
-  ){
-
-    ws.send(
-      JSON.stringify(payload)
-    );
-
-  }
 
 }
 
@@ -1592,24 +717,21 @@ function send(payload){
 
 function scheduleReconnect(){
 
-  if(reconnectTimer)
-    return;
+  if(reconnectTimer) return;
 
+  reconnectTimer=setTimeout(()=>{
 
-  reconnectTimer =
-    setTimeout(() => {
+    reconnectTimer=null;
 
-      reconnectTimer = null;
+    connectDeriv();
 
-      connectDeriv();
+    reconnectDelay=
+      Math.min(
+        Math.round(reconnectDelay*1.6),
+        30000
+      );
 
-      reconnectDelay =
-        Math.min(
-          reconnectDelay * 1.5,
-          30000
-        );
-
-    },reconnectDelay);
+  },reconnectDelay);
 
 }
 
@@ -1620,59 +742,69 @@ function handleMessage(data){
 
   if(data.error){
 
+    const message=
+      data.error.message ||
+      data.error.code ||
+      "Unknown Deriv error";
+
     scan(
-      "DERIV ERROR → " +
+      "DERIV ERROR → "+message+
       (
-        data.error.message ||
-        data.error.code ||
-        "Unknown error"
+        data.req_id
+          ? " | req_id="+data.req_id
+          : ""
       )
     );
 
+    /*
+      Do not reconnect for ordinary
+      request validation errors.
+    */
     return;
-
   }
 
 
-  if(
-    data.msg_type ===
-    "active_symbols"
-  ){
+  if(data.msg_type==="active_symbols"){
 
     discoverMarkets(
-      data.active_symbols || []
+      Array.isArray(data.active_symbols)
+        ? data.active_symbols
+        : []
     );
 
     return;
-
   }
 
 
-  if(
-    data.msg_type ===
-    "history"
-  ){
+  if(data.msg_type==="history"){
 
-    processHistory(
-      data
-    );
+    processHistory(data);
 
     return;
-
   }
 
 
-  if(
-    data.msg_type ===
-    "tick"
-  ){
+  if(data.msg_type==="tick"){
 
-    processTick(
-      data
-    );
+    processTick(data);
 
     return;
+  }
 
+
+  if(data.msg_type==="forget"){
+
+    activeSubscriptionId=null;
+
+    return;
+  }
+
+
+  if(data.msg_type==="forget_all"){
+
+    activeSubscriptionId=null;
+
+    return;
   }
 
 }
@@ -1682,61 +814,49 @@ function handleMessage(data){
 
 function normalizeMarket(item){
 
-  const symbol =
+  const symbol=
     item.underlying_symbol ||
     item.symbol ||
     "";
 
-
-  const name =
+  const name=
     item.underlying_symbol_name ||
     item.display_name ||
     item.name ||
     symbol;
 
-
-  const pip =
+  const pip=
     Number(
       item.pip_size ??
       item.pip ??
       0.01
     );
 
-
-  if(!symbol)
-    return null;
-
+  if(!symbol) return null;
 
   return {
-
     symbol:String(symbol),
-
     name:String(name),
-
     pipSize:
-      Number.isFinite(pip) &&
-      pip > 0
+      Number.isFinite(pip) && pip>0
         ? pip
         : 0.01
-
   };
-
 }
 
 
-/* ================= WANTED MARKETS ================= */
+/* ================= MARKET FILTER ================= */
 
 function isWantedMarket(item){
 
-  const symbol =
+  const symbol=
     String(
       item.underlying_symbol ||
       item.symbol ||
       ""
     ).toUpperCase();
 
-
-  const name =
+  const name=
     String(
       item.underlying_symbol_name ||
       item.display_name ||
@@ -1744,43 +864,27 @@ function isWantedMarket(item){
       ""
     ).toUpperCase();
 
-
-  /*
-    STANDARD VOLATILITY
-    R_10 R_25 R_50 R_75 R_100
-
-    1 SECOND VOLATILITY
-    1HZ10V
-    1HZ15V
-    1HZ25V
-    1HZ30V
-    1HZ50V
-    1HZ75V
-    1HZ90V
-    1HZ100V
-    1HZ150V
-    1HZ200V
-    1HZ250V
-    and any future 1HZ...V
-
-    JUMP
-    JD10 JD25 JD50 JD75 JD100
-  */
-
-  return (
-
+  return(
     /^R_\d+$/.test(symbol) ||
-
     /^1HZ\d+V$/.test(symbol) ||
-
     /^JD\d+$/.test(symbol) ||
-
     name.includes("VOLATILITY") ||
-
     name.includes("JUMP")
-
   );
+}
 
+
+/* ================= MARKET ORDER ================= */
+
+function marketRank(market){
+
+  const s=market.symbol.toUpperCase();
+
+  if(/^R_\d+$/.test(s)) return 1;
+  if(/^1HZ\d+V$/.test(s)) return 2;
+  if(/^JD\d+$/.test(s)) return 3;
+
+  return 4;
 }
 
 
@@ -1788,27 +892,38 @@ function isWantedMarket(item){
 
 function discoverMarkets(raw){
 
-  markets =
-    raw
-      .filter(isWantedMarket)
-      .map(normalizeMarket)
-      .filter(Boolean)
-      .sort(
-        (a,b) =>
-          a.name.localeCompare(
-            b.name,
-            undefined,
-            {
-              numeric:true
-            }
-          )
-      );
+  const map=new Map();
+
+  raw
+    .filter(isWantedMarket)
+    .map(normalizeMarket)
+    .filter(Boolean)
+    .forEach(market=>{
+      map.set(market.symbol,market);
+    });
+
+  markets=
+    Array.from(map.values())
+      .sort((a,b)=>{
+
+        const rankDiff=
+          marketRank(a)-marketRank(b);
+
+        if(rankDiff!==0)
+          return rankDiff;
+
+        return a.name.localeCompare(
+          b.name,
+          undefined,
+          {numeric:true}
+        );
+      });
 
 
   scan(
-    "MARKET DISCOVERY → " +
-    markets.length +
-    " live Volatility/Jump markets found."
+    "MARKET DISCOVERY → "+
+    markets.length+
+    " live Volatility/1s/Jump markets found."
   );
 
 
@@ -1820,34 +935,25 @@ function discoverMarkets(raw){
     markets.length
   ){
 
-    const first =
+    /*
+      Prefer R_10 as the initial
+      market when available.
+    */
+    const first=
+      markets.find(
+        m=>m.symbol==="R_10"
+      ) ||
       markets[0];
 
+    selectedMarket=first.symbol;
+    selectedMarketName=first.name;
+    selectedPipSize=first.pipSize;
 
-    selectedMarket =
-      first.symbol;
+    $("marketSelect").value=first.symbol;
 
+    updateMarketDisplay(first);
 
-    selectedMarketName =
-      first.name;
-
-
-    selectedPipSize =
-      first.pipSize;
-
-
-    $("marketSelect").value =
-      first.symbol;
-
-
-    updateMarketDisplay(
-      first
-    );
-
-
-    subscribeMarket(
-      first.symbol
-    );
+    loadMarket(first.symbol);
 
   }
 
@@ -1858,61 +964,41 @@ function discoverMarkets(raw){
 
 function populateMarkets(){
 
-  const select =
-    $("marketSelect");
+  const select=$("marketSelect");
+
+  select.innerHTML="";
+
+  if(!markets.length){
+
+    const option=
+      document.createElement("option");
+
+    option.textContent=
+      "No Volatility/Jump markets found";
+
+    select.appendChild(option);
+
+    return;
+  }
 
 
-  select.innerHTML = "";
+  markets.forEach(market=>{
 
+    const option=
+      document.createElement("option");
 
-  markets.forEach(
-    market => {
+    option.value=market.symbol;
 
-      const option =
-        document.createElement(
-          "option"
-        );
+    option.textContent=
+      `${market.name} (${market.symbol})`;
 
+    select.appendChild(option);
 
-      option.value =
-        market.symbol;
-
-
-      /*
-        Friendly name + symbol.
-        Raw symbol is NOT used as
-        the market name itself.
-      */
-
-      option.textContent =
-        `${market.name} (${market.symbol})`;
-
-
-      select.appendChild(
-        option
-      );
-
-    }
-  );
+  });
 
 
   if(selectedMarket){
-
-    const exists =
-      markets.some(
-        market =>
-          market.symbol ===
-          selectedMarket
-      );
-
-
-    if(exists){
-
-      select.value =
-        selectedMarket;
-
-    }
-
+    select.value=selectedMarket;
   }
 
 }
@@ -1922,57 +1008,24 @@ function populateMarkets(){
 
 $("marketSelect").addEventListener(
   "change",
-  () => {
+  ()=>{
 
-    const symbol =
-      $("marketSelect").value;
+    const symbol=$("marketSelect").value;
 
-
-    const market =
+    const market=
       markets.find(
-        m =>
-          m.symbol === symbol
+        m=>m.symbol===symbol
       );
 
+    if(!market) return;
 
-    if(!market)
-      return;
+    selectedMarket=market.symbol;
+    selectedMarketName=market.name;
+    selectedPipSize=market.pipSize;
 
+    updateMarketDisplay(market);
 
-    stopCurrentSubscription();
-
-
-    selectedMarket =
-      market.symbol;
-
-
-    selectedMarketName =
-      market.name;
-
-
-    selectedPipSize =
-      market.pipSize;
-
-
-    ticks = [];
-
-    confirmations = 0;
-
-    currentSignal = null;
-
-    lastSignalKey = "";
-
-    clearSignalTimer();
-
-    resetAnalysisUI();
-
-    updateMarketDisplay(
-      market
-    );
-
-    subscribeMarket(
-      market.symbol
-    );
+    loadMarket(market.symbol);
 
   }
 );
@@ -1980,142 +1033,187 @@ $("marketSelect").addEventListener(
 
 /* ================= MARKET DISPLAY ================= */
 
-function updateMarketDisplay(
-  market
-){
+function updateMarketDisplay(market){
 
-  text(
-    "marketName",
-    market.name
-  );
-
-
-  text(
-    "symbolName",
-    market.symbol
-  );
-
+  text("marketName",market.name);
+  text("symbolName",market.symbol);
 
   scan(
-    "MARKET → " +
-    market.name +
-    " [" +
-    market.symbol +
+    "MARKET → "+
+    market.name+
+    " ["+
+    market.symbol+
     "]"
   );
-
 }
 
 
-/* ================= STOP OLD SUBSCRIPTION ================= */
+/* ================= CLEAR SUBSCRIPTIONS ================= */
 
-function stopCurrentSubscription(){
+function clearTickSubscriptions(){
 
-  if(
-    activeSubscriptionId
-  ){
+  /*
+    First try to remove the exact
+    active subscription.
+  */
+  if(activeSubscriptionId){
 
     send({
-
-      forget:
-        activeSubscriptionId,
-
-      req_id:90
-
+      forget:activeSubscriptionId,
+      req_id:nextReqId()
     });
-
 
     scan(
       "LIVE → Previous tick subscription cleared."
     );
 
-
-    activeSubscriptionId =
-      null;
-
+    activeSubscriptionId=null;
   }
+
+
+  /*
+    Also clear any orphaned tick
+    subscriptions from an earlier
+    connection/session.
+  */
+  send({
+    forget_all:"ticks",
+    req_id:nextReqId()
+  });
 
 }
 
 
-/* ================= SUBSCRIBE MARKET ================= */
+/* ================= LOAD MARKET ================= */
 
-function subscribeMarket(symbol){
+function loadMarket(symbol){
 
   if(!symbol){
-
-    scan(
-      "ERROR → No valid market symbol."
-    );
-
+    scan("ERROR → No valid market symbol.");
     return;
+  }
 
+  if(symbol==="undefined"){
+    scan("ERROR → Refused invalid symbol: undefined.");
+    return;
   }
 
 
-  if(symbol === "undefined"){
-
-    scan(
-      "ERROR → Refused invalid symbol: undefined."
-    );
-
-    return;
-
-  }
-
-
-  ticks = [];
-
-  confirmations = 0;
-
-  currentSignal = null;
+  /*
+    Stop analysis while changing
+    markets.
+  */
+  botRunning=false;
+  confirmations=0;
+  currentSignal=null;
+  lastSignalKey="";
 
   clearSignalTimer();
 
+  ticks=[];
+
   resetAnalysisUI();
+
+  updateDashboardEmpty();
+
+
+  clearTickSubscriptions();
+
+
+  pendingHistorySymbol=symbol;
+  pendingSubscriptionSymbol=null;
 
 
   scan(
-    "DATA → Loading 500 ticks for " +
+    "DATA → Loading 500 historical ticks for "+
     symbol
   );
 
 
+  /*
+    IMPORTANT:
+    Do NOT send the live subscription
+    at the same time.
+
+    History loads first.
+    Subscription starts only after
+    history has returned.
+
+    No unnecessary subscribe field
+    is sent with the one-time request.
+  */
+  const historyReqId=nextReqId();
+
   send({
 
-    ticks_history:
-      symbol,
+    ticks_history:symbol,
 
-    count:
-      CONFIG.ANALYSIS_TICKS,
+    count:CONFIG.ANALYSIS_TICKS,
 
     end:"latest",
 
     style:"ticks",
 
-    subscribe:0,
-
-    req_id:10
+    req_id:historyReqId
 
   });
 
-
-  scan(
-    "LIVE → Subscribing to " +
-    symbol
-  );
+}
 
 
-  send({
+/* ================= START LIVE SUBSCRIPTION ================= */
 
-    ticks:
-      symbol,
+function startLiveSubscription(symbol){
 
-    subscribe:1,
+  if(!symbol) return;
 
-    req_id:11
+  if(
+    ws &&
+    ws.readyState===WebSocket.OPEN
+  ){
 
-  });
+    /*
+      Clear any previous tick streams
+      before creating the new one.
+    */
+    clearTickSubscriptions();
+
+    const reqId=nextReqId();
+
+    pendingSubscriptionSymbol=symbol;
+
+    scan(
+      "LIVE → Subscribing to "+symbol
+    );
+
+
+    const sent=send({
+
+      ticks:symbol,
+
+      subscribe:1,
+
+      req_id:reqId
+
+    });
+
+
+    if(!sent){
+
+      scan(
+        "LIVE ERROR → WebSocket is not ready."
+      );
+
+      return;
+    }
+
+  }else{
+
+    scan(
+      "LIVE → Waiting for Deriv connection..."
+    );
+
+  }
 
 }
 
@@ -2124,77 +1222,104 @@ function subscribeMarket(symbol){
 
 function processHistory(data){
 
+  const symbol=
+    pendingHistorySymbol ||
+    selectedMarket;
+
   if(
     !data.history ||
-    !Array.isArray(
-      data.history.prices
-    )
+    !Array.isArray(data.history.prices)
   ){
 
     scan(
-      "ERROR → No usable history returned."
+      "ERROR → No usable tick history returned for "+
+      symbol
     );
 
-    return;
+    /*
+      Still attempt live streaming so
+      the dashboard doesn't remain dead.
+    */
+    startLiveSubscription(symbol);
 
+    return;
   }
 
 
-  const prices =
-    data.history.prices;
+  const prices=data.history.prices;
 
-
-  const times =
-    Array.isArray(
-      data.history.times
-    )
+  const times=
+    Array.isArray(data.history.times)
       ? data.history.times
       : [];
 
 
-  ticks = [];
+  /*
+    New API can provide pip_size at
+    the history response level.
+  */
+  const historyPip=
+    Number(
+      data.pip_size ??
+      selectedPipSize
+    );
 
 
-  prices.forEach(
-    (price,index) => {
+  if(
+    Number.isFinite(historyPip) &&
+    historyPip>0
+  ){
 
-      const quote =
-        Number(price);
+    selectedPipSize=historyPip;
 
-
-      if(
-        !Number.isFinite(
-          quote
-        )
-      )
-        return;
+  }
 
 
-      ticks.push({
+  ticks=[];
 
-        quote,
 
-        epoch:
-          Number(
-            times[index]
-          ) ||
-          Math.floor(
-            Date.now()/1000
-          ),
+  prices.forEach((price,index)=>{
 
-        pipSize:
-          selectedPipSize
+    const quote=Number(price);
 
-      });
+    if(!Number.isFinite(quote))
+      return;
 
-    }
-  );
+    ticks.push({
+
+      quote,
+
+      epoch:
+        Number(times[index]) ||
+        Math.floor(Date.now()/1000),
+
+      pipSize:
+        selectedPipSize
+
+    });
+
+  });
+
+
+  /*
+    History belongs to the currently
+    selected market only.
+  */
+  if(symbol!==selectedMarket){
+
+    scan(
+      "HISTORY → Ignored stale response for "+
+      symbol
+    );
+
+    return;
+  }
 
 
   scan(
-    "HISTORY → Loaded " +
-    ticks.length +
-    " ticks for " +
+    "HISTORY → Loaded "+
+    ticks.length+
+    " ticks for "+
     selectedMarket
   );
 
@@ -2202,14 +1327,13 @@ function processHistory(data){
   updateDashboard();
 
 
-  if(
-    botRunning &&
-    ticks.length >= CONFIG.MIN_TICKS
-  ){
+  /*
+    NOW start the live subscription.
+  */
+  startLiveSubscription(selectedMarket);
 
-    analyze();
 
-  }
+  pendingHistorySymbol=null;
 
 }
 
@@ -2218,34 +1342,43 @@ function processHistory(data){
 
 function processTick(data){
 
-  if(!data.tick)
+  if(!data.tick) return;
+
+
+  const quote=
+    Number(data.tick.quote);
+
+  if(!Number.isFinite(quote))
     return;
 
 
-  const quote =
-    Number(
-      data.tick.quote
+  /*
+    Never mix a tick from a different
+    market into the selected market.
+  */
+  const tickSymbol=
+    String(
+      data.tick.symbol ||
+      ""
     );
 
 
   if(
-    !Number.isFinite(
-      quote
-    )
-  )
+    tickSymbol &&
+    selectedMarket &&
+    tickSymbol!==selectedMarket
+  ){
+
     return;
+  }
 
 
-  const epoch =
-    Number(
-      data.tick.epoch
-    ) ||
-    Math.floor(
-      Date.now()/1000
-    );
+  const epoch=
+    Number(data.tick.epoch) ||
+    Math.floor(Date.now()/1000);
 
 
-  const tickPip =
+  const tickPip=
     Number(
       data.tick.pip_size ??
       selectedPipSize
@@ -2260,7 +1393,7 @@ function processTick(data){
 
     pipSize:
       Number.isFinite(tickPip) &&
-      tickPip > 0
+      tickPip>0
         ? tickPip
         : selectedPipSize
 
@@ -2272,18 +1405,31 @@ function processTick(data){
     data.subscription.id
   ){
 
-    activeSubscriptionId =
+    activeSubscriptionId=
       data.subscription.id;
+
+    if(
+      pendingSubscriptionSymbol===
+      selectedMarket
+    ){
+
+      scan(
+        "LIVE → Tick subscription active for "+
+        selectedMarket
+      );
+
+      pendingSubscriptionSymbol=null;
+
+    }
 
   }
 
 
   if(
-    ticks.length >
-    CONFIG.MAX_TICKS
+    ticks.length>CONFIG.MAX_TICKS
   ){
 
-    ticks =
+    ticks=
       ticks.slice(
         -CONFIG.MAX_TICKS
       );
@@ -2296,7 +1442,7 @@ function processTick(data){
 
   if(
     botRunning &&
-    ticks.length >= CONFIG.MIN_TICKS
+    ticks.length>=CONFIG.MIN_TICKS
   ){
 
     analyze();
@@ -2308,76 +1454,51 @@ function processTick(data){
 
 /* ================= DECIMAL PRECISION ================= */
 
-function decimalPlacesFromPip(
-  pip
-){
+function decimalPlacesFromPip(pip){
 
-  const value =
-    Number(pip);
-
+  const value=Number(pip);
 
   if(
     !Number.isFinite(value) ||
-    value <= 0
+    value<=0
   )
     return 2;
 
-
   return clamp(
-
-    Math.ceil(
-      -Math.log10(value)
-    ),
-
+    Math.ceil(-Math.log10(value)),
     0,
-
     10
-
   );
-
 }
 
 
 /* ================= LAST DIGIT ================= */
 
-function getLastDigitFromTick(
-  item
-){
+function getLastDigitFromTick(item){
 
-  const quote =
-    Number(item.quote);
+  const quote=Number(item.quote);
 
-
-  if(
-    !Number.isFinite(quote)
-  )
+  if(!Number.isFinite(quote))
     return null;
 
 
-  const pip =
+  const pip=
     Number(
       item.pipSize ??
       selectedPipSize
     );
 
 
-  const decimals =
-    decimalPlacesFromPip(
-      pip
-    );
+  const decimals=
+    decimalPlacesFromPip(pip);
 
 
-  const fixed =
-    quote.toFixed(
-      decimals
-    );
+  const fixed=
+    quote.toFixed(decimals);
 
 
-  const digits =
-    fixed.replace(
-      /\D/g,
-      ""
-    );
+  const digits=
+    fixed.replace(/\D/g,"");
 
 
   if(!digits.length)
@@ -2385,9 +1506,7 @@ function getLastDigitFromTick(
 
 
   return Number(
-    digits[
-      digits.length - 1
-    ]
+    digits[digits.length-1]
   );
 
 }
@@ -2395,71 +1514,56 @@ function getLastDigitFromTick(
 
 /* ================= PRICE FORMAT ================= */
 
-function formatPrice(
-  quote
-){
+function formatPrice(quote){
 
-  const decimals =
+  const decimals=
     decimalPlacesFromPip(
       selectedPipSize
     );
 
-
-  return Number(
-    quote
-  ).toFixed(
-    decimals
-  );
-
+  return Number(quote).toFixed(decimals);
 }
 
 
 /* ================= DIGIT PERCENTAGES ================= */
 
-function digitPercentages(
-  data
-){
+function digitPercentages(data){
 
-  const counts =
-    Array(10).fill(0);
-
+  const counts=Array(10).fill(0);
 
   if(!data.length)
-    return counts.map(
-      () => 0
-    );
+    return counts.map(()=>0);
 
 
-  data.forEach(
-    item => {
-
-      const digit =
-        getLastDigitFromTick(
-          item
-        );
+  let validCount=0;
 
 
-      if(
-        digit !== null &&
-        digit >= 0 &&
-        digit <= 9
-      ){
+  data.forEach(item=>{
 
-        counts[digit]++;
+    const digit=
+      getLastDigitFromTick(item);
 
-      }
+    if(
+      digit!==null &&
+      digit>=0 &&
+      digit<=9
+    ){
+
+      counts[digit]++;
+      validCount++;
 
     }
-  );
+
+  });
+
+
+  if(!validCount)
+    return counts.map(()=>0);
 
 
   return counts.map(
-    count =>
-      (
-        count /
-        data.length *
-        100
-      )
+    count=>
+      count/validCount*100
   );
 
 }
@@ -2469,125 +1573,59 @@ function digitPercentages(
 
 function renderDigits(){
 
-  const container =
-    $("digits");
+  const container=$("digits");
+
+  const data=ticks.slice(-500);
+
+  const p=digitPercentages(data);
 
 
-  const data =
-    ticks.slice(-500);
-
-
-  const p =
-    digitPercentages(
-      data
-    );
-
-
-  const sorted =
+  const sorted=
     p
-      .map(
-        (value,digit) => ({
-          digit,
-          value
-        })
-      )
-      .sort(
-        (a,b) =>
-          b.value -
-          a.value
-      );
+      .map((value,digit)=>({
+        digit,
+        value
+      }))
+      .sort((a,b)=>b.value-a.value);
 
 
-  const highest =
-    sorted[0]?.digit;
+  const highest=sorted[0]?.digit;
+  const secondHighest=sorted[1]?.digit;
+  const lowest=sorted[9]?.digit;
+  const secondLowest=sorted[8]?.digit;
 
 
-  const secondHighest =
-    sorted[1]?.digit;
+  container.innerHTML="";
 
 
-  const lowest =
-    sorted[9]?.digit;
+  for(let digit=0;digit<=9;digit++){
+
+    const div=
+      document.createElement("div");
+
+    div.className="digit";
 
 
-  const secondLowest =
-    sorted[8]?.digit;
+    if(digit===highest)
+      div.classList.add("high");
+
+    else if(digit===secondHighest)
+      div.classList.add("second-high");
+
+    else if(digit===secondLowest)
+      div.classList.add("second-low");
+
+    else if(digit===lowest)
+      div.classList.add("low");
 
 
-  container.innerHTML = "";
-
-
-  for(
-    let digit=0;
-    digit<=9;
-    digit++
-  ){
-
-    const div =
-      document.createElement(
-        "div"
-      );
-
-
-    div.className =
-      "digit";
-
-
-    /*
-      Normal distribution colors only.
-      These colors are NOT used as
-      prerequisite confirmation signals.
-    */
-
-    if(
-      digit === highest
-    ){
-
-      div.classList.add(
-        "high"
-      );
-
-    }else if(
-      digit === secondHighest
-    ){
-
-      div.classList.add(
-        "second-high"
-      );
-
-    }else if(
-      digit === secondLowest
-    ){
-
-      div.classList.add(
-        "second-low"
-      );
-
-    }else if(
-      digit === lowest
-    ){
-
-      div.classList.add(
-        "low"
-      );
-
-    }
-
-
-    div.innerHTML = `
-
+    div.innerHTML=`
       <strong>${digit}</strong>
-
-      <small>
-        ${p[digit].toFixed(1)}%
-      </small>
-
+      <small>${p[digit].toFixed(1)}%</small>
     `;
 
 
-    container.appendChild(
-      div
-    );
+    container.appendChild(div);
 
   }
 
@@ -2596,80 +1634,45 @@ function renderDigits(){
 
 /* ================= CONTRACT RATE ================= */
 
-function contractRate(
-  contract,
-  data
-){
+function contractRate(contract,data){
 
-  const p =
-    digitPercentages(
-      data
+  const p=digitPercentages(data);
+
+  const sum=digits=>
+    digits.reduce(
+      (total,digit)=>
+        total+p[digit],
+      0
     );
-
-
-  const sum =
-    digits =>
-      digits.reduce(
-        (total,digit) =>
-          total + p[digit],
-        0
-      );
 
 
   switch(contract){
 
     case "DIFFERS":
-
-      return (
-        100 -
-        Math.max(...p)
-      );
-
+      return 100-Math.max(...p);
 
     case "MATCHES":
-
       return Math.max(...p);
 
-
     case "EVEN":
-
-      return sum(
-        [0,2,4,6,8]
-      );
-
+      return sum([0,2,4,6,8]);
 
     case "ODD":
-
-      return sum(
-        [1,3,5,7,9]
-      );
-
+      return sum([1,3,5,7,9]);
 
     /*
-      USER'S EXACT CUSTOM MAPPING:
-
-      OVER = 1,2,3,4,5
-      UNDER = 6,7,8,9
+      CUSTOM ANALYZER RULE:
+      OVER = 1–5
+      UNDER = 6–9
     */
-
     case "OVER":
-
-      return sum(
-        [1,2,3,4,5]
-      );
-
+      return sum([1,2,3,4,5]);
 
     case "UNDER":
-
-      return sum(
-        [6,7,8,9]
-      );
-
+      return sum([6,7,8,9]);
 
     default:
-
       return 0;
-
   }
 
 }
@@ -2679,97 +1682,54 @@ function contractRate(
 
 function updateContractRates(){
 
-  if(!ticks.length)
-    return;
+  if(!ticks.length) return;
 
+  const data=ticks.slice(-500);
 
-  const data =
-    ticks.slice(-500);
-
-
-  const contracts = [
-
+  [
     "DIFFERS",
     "MATCHES",
     "EVEN",
     "ODD",
     "OVER",
     "UNDER"
+  ].forEach(contract=>{
 
-  ];
-
-
-  contracts.forEach(
-    contract => {
-
-      const rate =
-        contractRate(
-          contract,
-          data
-        );
-
-
-      text(
-        "rate-" + contract,
-        rate.toFixed(1) + "%"
+    const rate=
+      contractRate(
+        contract,
+        data
       );
 
-    }
-  );
+    text(
+      "rate-"+contract,
+      rate.toFixed(1)+"%"
+    );
+
+  });
 
 }
 
 
 /* ================= ALLOWED DIGITS ================= */
 
-function allowedDigits(
-  contract
-){
+function allowedDigits(contract){
 
   switch(contract){
 
-    /*
-      EXACT USER RULE:
-      OVER predicts 1–5.
-    */
-
     case "OVER":
-
-      return [
-        1,2,3,4,5
-      ];
-
-
-    /*
-      EXACT USER RULE:
-      UNDER predicts 6–9.
-    */
+      return [1,2,3,4,5];
 
     case "UNDER":
-
-      return [
-        6,7,8,9
-      ];
-
+      return [6,7,8,9];
 
     case "EVEN":
-
-      return [
-        0,2,4,6,8
-      ];
-
+      return [0,2,4,6,8];
 
     case "ODD":
+      return [1,3,5,7,9];
 
-      return [
-        1,3,5,7,9
-      ];
-
-
-    case "MATCHES":
-    case "DIFFERS":
     default:
-
       return [
         0,1,2,3,4,
         5,6,7,8,9
@@ -2780,51 +1740,41 @@ function allowedDigits(
 }
 
 
+/* ================= DIGIT SCORE FROM DATA ================= */
+
+function digitScoreFromData(data,digit){
+
+  const d50=data.slice(-50);
+  const d100=data.slice(-100);
+  const d500=data.slice(-500);
+
+
+  const p50=
+    digitPercentages(d50)[digit]||0;
+
+  const p100=
+    digitPercentages(d100)[digit]||0;
+
+  const p500=
+    digitPercentages(d500)[digit]||0;
+
+
+  return(
+    p50*0.50+
+    p100*0.30+
+    p500*0.20
+  );
+
+}
+
+
 /* ================= DIGIT SCORE ================= */
 
-function digitScore(
-  digit
-){
+function digitScore(digit){
 
-  const d50 =
-    ticks.slice(-50);
-
-
-  const d100 =
-    ticks.slice(-100);
-
-
-  const d500 =
-    ticks.slice(-500);
-
-
-  const p50 =
-    digitPercentages(
-      d50
-    )[digit] || 0;
-
-
-  const p100 =
-    digitPercentages(
-      d100
-    )[digit] || 0;
-
-
-  const p500 =
-    digitPercentages(
-      d500
-    )[digit] || 0;
-
-
-  /*
-    Recent movement is weighted more,
-    but 500 ticks stabilize the result.
-  */
-
-  return (
-    p50 * 0.50 +
-    p100 * 0.30 +
-    p500 * 0.20
+  return digitScoreFromData(
+    ticks.slice(-500),
+    digit
   );
 
 }
@@ -2832,93 +1782,125 @@ function digitScore(
 
 /* ================= PARITY STRATEGY ================= */
 
-function parityStats(
-  contract,
-  data
-){
+function parityStats(contract,data){
 
-  const p =
-    digitPercentages(
+  const p=digitPercentages(data);
+
+  const digits=
+    contract==="EVEN"
+      ? [0,2,4,6,8]
+      : [1,3,5,7,9];
+
+  const oppositeDigits=
+    contract==="EVEN"
+      ? [1,3,5,7,9]
+      : [0,2,4,6,8];
+
+
+  const parityRate=
+    digits.reduce(
+      (sum,digit)=>sum+p[digit],
+      0
+    );
+
+
+  const oppositeRate=
+    oppositeDigits.reduce(
+      (sum,digit)=>sum+p[digit],
+      0
+    );
+
+
+  let bestDigit=digits[0];
+
+  let bestScore=
+    digitScoreFromData(
+      data,
+      bestDigit
+    );
+
+
+  digits.forEach(digit=>{
+
+    const score=
+      digitScoreFromData(
+        data,
+        digit
+      );
+
+    if(score>bestScore){
+
+      bestScore=score;
+      bestDigit=digit;
+
+    }
+
+  });
+
+
+  /*
+    Use the actual distribution rate
+    for the selected digit.
+  */
+  const bestRate=p[bestDigit]||0;
+
+
+  const edge=
+    parityRate-oppositeRate;
+
+
+  return{
+
+    parityRate,
+    oppositeRate,
+    edge,
+    bestDigit,
+    bestRate,
+    weightedDigitScore:bestScore
+
+  };
+
+}
+
+
+/* ================= PARITY STRATEGIC CHECK ================= */
+
+function parityStrategicCheck(contract,data){
+
+  const stats=
+    parityStats(
+      contract,
       data
     );
 
 
-  const digits =
-    contract === "EVEN"
-
-      ? [0,2,4,6,8]
-
-      : [1,3,5,7,9];
+  const parityOK=
+    stats.parityRate>=
+    CONFIG.PARITY_MIN;
 
 
-  const oppositeDigits =
-    contract === "EVEN"
-
-      ? [1,3,5,7,9]
-
-      : [0,2,4,6,8];
+  const edgeOK=
+    stats.edge>=
+    CONFIG.PARITY_EDGE_MIN;
 
 
-  const parityRate =
-    digits.reduce(
-      (sum,digit) =>
-        sum + p[digit],
-      0
-    );
+  const digitOK=
+    stats.bestRate>=
+    CONFIG.PARITY_DIGIT_MIN;
 
 
-  const oppositeRate =
-    oppositeDigits.reduce(
-      (sum,digit) =>
-        sum + p[digit],
-      0
-    );
+  return{
 
+    ...stats,
 
-  let bestDigit =
-    digits[0];
+    parityOK,
+    edgeOK,
+    digitOK,
 
-
-  let bestRate =
-    p[bestDigit];
-
-
-  digits.forEach(
-    digit => {
-
-      if(
-        p[digit] >
-        bestRate
-      ){
-
-        bestDigit =
-          digit;
-
-        bestRate =
-          p[digit];
-
-      }
-
-    }
-  );
-
-
-  const edge =
-    parityRate -
-    oppositeRate;
-
-
-  return {
-
-    parityRate,
-
-    oppositeRate,
-
-    edge,
-
-    bestDigit,
-
-    bestRate
+    ok:
+      parityOK &&
+      edgeOK &&
+      digitOK
 
   };
 
@@ -2927,471 +1909,252 @@ function parityStats(
 
 /* ================= PREDICT ONE DIGIT ================= */
 
-function predictOneDigit(
-  contract
-){
+function predictOneDigit(contract){
 
-  /*
-    EVEN/ODD use dedicated strategy.
-  */
+  const data=ticks.slice(-500);
+
 
   if(
-    contract === "EVEN" ||
-    contract === "ODD"
+    contract==="EVEN" ||
+    contract==="ODD"
   ){
 
-    const stats =
+    const stats=
       parityStats(
         contract,
-        ticks.slice(-500)
+        data
       );
 
 
-    return {
-
-      digit:
-        stats.bestDigit,
-
-      score:
-        stats.bestRate
-
+    return{
+      digit:stats.bestDigit,
+      score:stats.bestRate
     };
 
   }
 
 
-  const allowed =
-    allowedDigits(
-      contract
-    );
+  const allowed=
+    allowedDigits(contract);
 
 
-  let bestDigit =
-    allowed[0];
+  let bestDigit=allowed[0];
+  let bestScore=-Infinity;
 
 
-  let bestScore =
-    -Infinity;
+  allowed.forEach(digit=>{
 
+    const score=
+      digitScore(digit);
 
-  allowed.forEach(
-    digit => {
+    if(score>bestScore){
 
-      const score =
-        digitScore(
-          digit
-        );
-
-
-      if(
-        score >
-        bestScore
-      ){
-
-        bestScore =
-          score;
-
-        bestDigit =
-          digit;
-
-      }
+      bestScore=score;
+      bestDigit=digit;
 
     }
-  );
+
+  });
 
 
-  return {
-
-    digit:
-      bestDigit,
-
-    score:
-      bestScore
-
+  return{
+    digit:bestDigit,
+    score:bestScore
   };
 
 }
 
 
-/* ================= OPPOSITE CHECK DIGITS ================= */
+/* ================= CUSTOM OVER/UNDER CHECK ================= */
 
-function getOppositeDigits(
+function getSideStrategyInfo(
   contract,
+  data,
   predictedDigit
 ){
 
-  /*
-    EXACT CUSTOM OVER RULE:
-
-    OVER 5
-    check 1,2,3,4
-
-    OVER 4
-    check 1,2,3
-
-    OVER 3
-    check 1,2
-
-    OVER 2
-    check 1
-
-    OVER 1
-    check none
-  */
-
-  if(
-    contract === "OVER"
-  ){
-
-    return [
-      1,2,3,4,5
-    ].filter(
-      digit =>
-        digit < predictedDigit
-    );
-
-  }
+  const p=
+    digitPercentages(data);
 
 
-  /*
-    EXACT CUSTOM UNDER RULE:
+  if(contract==="OVER"){
 
-    UNDER 6
-    check 7,8,9
+    const group=[1,2,3,4,5];
 
-    UNDER 7
-    check 8,9
-
-    UNDER 8
-    check 9
-
-    UNDER 9
-    check none
-  */
-
-  if(
-    contract === "UNDER"
-  ){
-
-    return [
-      6,7,8,9
-    ].filter(
-      digit =>
-        digit > predictedDigit
-    );
-
-  }
+    /*
+      IMPORTANT:
+      EVERY OTHER digit in the group
+      must be below 10.5%.
+    */
+    const companions=
+      group.filter(
+        digit=>digit!==predictedDigit
+      );
 
 
-  return [];
+    const checks=
+      companions.map(
+        digit=>({
+          digit,
+          rate:p[digit],
+          ok:
+            p[digit]<
+            CONFIG.OPPOSITE_MAX_RATE
+        })
+      );
 
-}
 
+    return{
 
-/* ================= OPPOSITE FILTER ================= */
+      group,
+      companions,
+      checks,
 
-function getOppositeInfo(
-  contract,
-  predictedDigit,
-  data
-){
+      ok:
+        checks.every(
+          item=>item.ok
+        ),
 
-  /*
-    Only OVER/UNDER use this
-    custom prerequisite filter.
-  */
+      label:"OVER 5",
 
-  if(
-    contract !== "OVER" &&
-    contract !== "UNDER"
-  ){
-
-    return {
-
-      digits:[],
-
-      checks:[],
-
-      digit:null,
-
-      rate:null,
-
-      ok:true,
-
-      side:null
+      rule:
+        `Predicted ${predictedDigit}; all other OVER digits ${companions.join(", ")} must each be < ${CONFIG.OPPOSITE_MAX_RATE}%`
 
     };
 
   }
 
 
-  const p =
-    digitPercentages(
-      data
-    );
+  if(contract==="UNDER"){
+
+    const group=[6,7,8,9];
+
+    const companions=
+      group.filter(
+        digit=>digit!==predictedDigit
+      );
 
 
-  const digits =
-    getOppositeDigits(
-      contract,
-      predictedDigit
-    );
+    const checks=
+      companions.map(
+        digit=>({
+          digit,
+          rate:p[digit],
+          ok:
+            p[digit]<
+            CONFIG.OPPOSITE_MAX_RATE
+        })
+      );
 
 
-  const checks =
-    digits.map(
-      digit => ({
+    return{
 
-        digit,
+      group,
+      companions,
+      checks,
 
-        rate:p[digit],
+      ok:
+        checks.every(
+          item=>item.ok
+        ),
 
-        ok:
-          p[digit] <
-          CONFIG.OPPOSITE_MAX_RATE
+      label:"UNDER 5",
 
-      })
-    );
+      rule:
+        `Predicted ${predictedDigit}; all other UNDER digits ${companions.join(", ")} must each be < ${CONFIG.OPPOSITE_MAX_RATE}%`
 
+    };
 
-  const allOK =
-    checks.every(
-      item =>
-        item.ok
-    );
+  }
 
 
-  /*
-    No green success bar is generated
-    here. This is purely a numerical
-    prerequisite test.
-  */
-
-  return {
-
-    digits,
-
-    checks,
-
-    /*
-      Keep the first/maximum checked
-      digit available for compatibility
-      with the entry UI.
-    */
-
-    digit:
-      checks.length
-        ? checks.reduce(
-            (best,item) =>
-              item.rate >
-              best.rate
-                ? item
-                : best
-          ).digit
-        : null,
-
-    rate:
-      checks.length
-        ? Math.max(
-            ...checks.map(
-              x => x.rate
-            )
-          )
-        : null,
-
-    ok:
-      allOK,
-
-    side:
-      contract === "OVER"
-        ? "LOWER OVER DIGITS"
-        : "HIGHER UNDER DIGITS"
-
+  return{
+    group:[],
+    companions:[],
+    checks:[],
+    ok:true,
+    label:contract,
+    rule:""
   };
 
 }
 
 
-/* ================= PARITY AGREEMENT ================= */
+/* ================= COMPATIBILITY ================= */
 
-function calculateParityAgreement(
-  contract
-){
+function contractAllowsDigit(contract,digit){
 
-  const windows = [
+  switch(contract){
 
-    ticks.slice(-50),
+    case "OVER":
+      return [1,2,3,4,5].includes(digit);
 
-    ticks.slice(-100),
+    case "UNDER":
+      return [6,7,8,9].includes(digit);
 
-    ticks.slice(-500)
+    case "EVEN":
+      return digit%2===0;
 
-  ];
+    case "ODD":
+      return digit%2===1;
 
+    default:
+      return true;
 
-  const results =
-    windows.map(
-      data => {
-
-        if(
-          data.length < 10
-        )
-          return null;
-
-
-        const stats =
-          parityStats(
-            contract,
-            data
-          );
-
-
-        /*
-          A window supports the selected
-          parity only when:
-
-          1. parity >= 50%
-          2. edge is positive
-        */
-
-        return {
-
-          supported:
-            stats.parityRate >= 50 &&
-            stats.edge > 0,
-
-          bestDigit:
-            stats.bestDigit,
-
-          parityRate:
-            stats.parityRate,
-
-          edge:
-            stats.edge
-
-        };
-
-      }
-    );
-
-
-  const valid =
-    results.filter(
-      x => x !== null
-    );
-
-
-  if(valid.length < 3)
-    return 0;
-
-
-  const supported =
-    valid.filter(
-      x =>
-        x.supported
-    ).length;
-
-
-  if(supported === 3)
-    return 100;
-
-
-  if(supported === 2)
-    return 67;
-
-
-  return 0;
+  }
 
 }
 
 
-/* ================= GENERAL AGREEMENT ================= */
+/* ================= AGREEMENT ================= */
 
-function calculateAgreement(
-  contract
-){
+function calculateAgreement(contract){
 
-  /*
-    EVEN/ODD:
-    strategic parity agreement.
-  */
-
-  if(
-    contract === "EVEN" ||
-    contract === "ODD"
-  ){
-
-    return calculateParityAgreement(
-      contract
-    );
-
-  }
-
-
-  const windows = [
-
+  const windows=[
     ticks.slice(-50),
-
     ticks.slice(-100),
-
     ticks.slice(-500)
-
   ];
 
 
-  const predictions =
-    windows.map(
-      data => {
-
-        if(
-          data.length <
-          10
-        )
-          return null;
-
-
-        return predictOneDigitFromData(
-          contract,
-          data
-        );
-
-      }
-    );
-
-
-  const valid =
-    predictions.filter(
-      x => x !== null
-    );
-
-
-  if(valid.length < 3)
-    return 0;
-
-
+  /*
+    EVEN / ODD:
+    each window must support the
+    selected parity.
+  */
   if(
-    contract === "MATCHES" ||
-    contract === "DIFFERS"
+    contract==="EVEN" ||
+    contract==="ODD"
   ){
 
-    const first =
-      valid[0];
+    if(
+      windows.some(
+        window=>window.length<50
+      )
+    ){
+      return 0;
+    }
 
 
-    const same =
-      valid.filter(
-        x =>
-          x === first
-      ).length;
+    const supported=
+      windows.filter(window=>{
+
+        const stats=
+          parityStats(
+            contract,
+            window
+          );
+
+        return(
+          stats.parityRate>=50 &&
+          stats.edge>=0
+        );
+
+      }).length;
 
 
-    if(same === 3)
-      return 100;
-
-
-    if(same === 2)
-      return 67;
-
+    if(supported===3) return 100;
+    if(supported===2) return 67;
 
     return 0;
 
@@ -3399,28 +2162,91 @@ function calculateAgreement(
 
 
   /*
-    OVER/UNDER:
-    check whether each window's
-    strongest digit belongs to the
-    selected custom class.
+    OVER / UNDER:
+    each window needs its own
+    strongest predicted digit to
+    belong to the selected class.
   */
+  if(
+    contract==="OVER" ||
+    contract==="UNDER"
+  ){
 
-  const supported =
-    valid.filter(
-      digit =>
-        contractAllowsDigit(
+    if(
+      windows.some(
+        window=>window.length<50
+      )
+    ){
+      return 0;
+    }
+
+
+    const supported=
+      windows.filter(window=>{
+
+        const digit=
+          predictOneDigitFromData(
+            contract,
+            window
+          );
+
+        return contractAllowsDigit(
           contract,
           digit
-        )
-    ).length;
+        );
+
+      }).length;
 
 
-  if(supported === 3)
-    return 100;
+    if(supported===3) return 100;
+    if(supported===2) return 67;
+
+    return 0;
+
+  }
 
 
-  if(supported === 2)
-    return 67;
+  /*
+    MATCHES / DIFFERS:
+    Require the strongest reference
+    digit to remain consistent.
+  */
+  if(
+    contract==="MATCHES" ||
+    contract==="DIFFERS"
+  ){
+
+    if(
+      windows.some(
+        window=>window.length<50
+      )
+    ){
+      return 0;
+    }
+
+
+    const predictions=
+      windows.map(
+        window=>
+          predictOneDigitFromData(
+            contract,
+            window
+          )
+      );
+
+
+    const same=
+      predictions.filter(
+        digit=>digit===predictions[0]
+      ).length;
+
+
+    if(same===3) return 100;
+    if(same===2) return 67;
+
+    return 0;
+
+  }
 
 
   return 0;
@@ -3435,14 +2261,9 @@ function predictOneDigitFromData(
   data
 ){
 
-  /*
-    EVEN/ODD use the parity strategy
-    inside each window.
-  */
-
   if(
-    contract === "EVEN" ||
-    contract === "ODD"
+    contract==="EVEN" ||
+    contract==="ODD"
   ){
 
     return parityStats(
@@ -3453,44 +2274,28 @@ function predictOneDigitFromData(
   }
 
 
-  const allowed =
-    allowedDigits(
-      contract
-    );
+  const allowed=
+    allowedDigits(contract);
 
 
-  let best =
-    allowed[0];
+  let best=allowed[0];
+  let bestScore=-Infinity;
 
 
-  let bestScore =
-    -Infinity;
+  allowed.forEach(digit=>{
+
+    const p=
+      digitPercentages(data)[digit]||0;
 
 
-  allowed.forEach(
-    digit => {
+    if(p>bestScore){
 
-      const p =
-        digitPercentages(
-          data
-        )[digit] || 0;
-
-
-      if(
-        p >
-        bestScore
-      ){
-
-        bestScore =
-          p;
-
-        best =
-          digit;
-
-      }
+      bestScore=p;
+      best=digit;
 
     }
-  );
+
+  });
 
 
   return best;
@@ -3498,50 +2303,53 @@ function predictOneDigitFromData(
 }
 
 
-/* ================= CONTRACT COMPATIBILITY ================= */
+/* ================= QUALITY ================= */
 
-function contractAllowsDigit(
-  contract,
-  digit
-){
+function calculateQuality(data){
 
-  switch(contract){
-
-    /*
-      CUSTOM USER MAPPING
-    */
-
-    case "OVER":
-
-      return (
-        digit >= 1 &&
-        digit <= 5
-      );
+  if(!data.length)
+    return 0;
 
 
-    case "UNDER":
-
-      return (
-        digit >= 6 &&
-        digit <= 9
-      );
-
-
-    case "EVEN":
-
-      return digit % 2 === 0;
-
-
-    case "ODD":
-
-      return digit % 2 === 1;
+  /*
+    Sample quality:
+    500 ticks = full sample quality.
+  */
+  const sampleQuality=
+    clamp(
+      data.length/500,
+      0,
+      1
+    )*60;
 
 
-    default:
+  const p=
+    digitPercentages(data);
 
-      return true;
 
-  }
+  /*
+    A distribution with one digit
+    dominating excessively is less
+    stable for this analyzer.
+
+    Lower spread = higher stability.
+  */
+  const maxRate=Math.max(...p);
+  const minRate=Math.min(...p);
+
+  const spread=maxRate-minRate;
+
+  const stability=
+    clamp(
+      1-spread/20,
+      0,
+      1
+    )*40;
+
+
+  return Math.round(
+    sampleQuality+stability
+  );
 
 }
 
@@ -3557,78 +2365,56 @@ function calculateScore(
 
   let baseline;
 
+  if(contract==="MATCHES")
+    baseline=10;
 
-  if(
-    contract === "MATCHES"
-  ){
+  else if(contract==="DIFFERS")
+    baseline=90;
 
-    baseline = 10;
-
-  }else if(
-    contract === "DIFFERS"
-  ){
-
-    baseline = 90;
-
-  }else{
-
-    baseline = 50;
-
-  }
+  else
+    baseline=50;
 
 
-  const edge =
-    probability -
-    baseline;
+  const edge=
+    probability-baseline;
 
 
-  const edgeScore =
+  const edgeScore=
     clamp(
-      50 +
-      edge * 5,
+      50+edge*5,
       0,
       100
     );
 
 
   return Math.round(
-
-    edgeScore * 0.55 +
-
-    quality * 0.25 +
-
-    agreement * 0.20
-
+    edgeScore*0.55+
+    quality*0.25+
+    agreement*0.20
   );
 
 }
 
 
-/* ================= CONTRACT MINIMUM ================= */
+/* ================= MINIMUM ================= */
 
-function contractMinimum(
-  contract
-){
+function contractMinimum(contract){
 
   switch(contract){
 
     case "DIFFERS":
       return CONFIG.DIFFERS_MIN;
 
-
     case "MATCHES":
       return CONFIG.MATCHES_MIN;
-
 
     case "EVEN":
     case "ODD":
       return CONFIG.PARITY_MIN;
 
-
     case "OVER":
     case "UNDER":
       return CONFIG.OVER_UNDER_MIN;
-
 
     default:
       return 50;
@@ -3638,132 +2424,103 @@ function contractMinimum(
 }
 
 
-/* ================= PARITY STRATEGIC CHECK ================= */
-
-function parityStrategicCheck(
-  contract,
-  data
-){
-
-  const stats =
-    parityStats(
-      contract,
-      data
-    );
-
-
-  const parityOK =
-    stats.parityRate >=
-    CONFIG.PARITY_MIN;
-
-
-  const edgeOK =
-    stats.edge >=
-    CONFIG.PARITY_EDGE_MIN;
-
-
-  const digitOK =
-    stats.bestRate >=
-    CONFIG.PARITY_DIGIT_MIN;
-
-
-  return {
-
-    ...stats,
-
-    parityOK,
-
-    edgeOK,
-
-    digitOK,
-
-    ok:
-      parityOK &&
-      edgeOK &&
-      digitOK
-
-  };
-
-}
-
-
 /* ================= ANALYSIS ================= */
 
 function analyze(){
 
+  /*
+    Do not analyze partial data.
+  */
   if(
-    ticks.length <
+    ticks.length<
     CONFIG.MIN_TICKS
   ){
-
     return;
-
   }
 
 
-  const contract =
+  const contract=
     $("contractSelect").value;
 
 
   if(
-    contract === "MATCHES" &&
+    contract==="MATCHES" &&
     !matchesUnlocked
   ){
 
-    setDecision(
-      "WAIT"
-    );
+    setDecision("WAIT");
 
-
-    $("instructions").textContent =
+    $("instructions").textContent=
       "🔒 Unlock MATCHES before using its predicted digit.";
-
 
     return;
 
   }
 
 
-  const data =
+  /*
+    GOOD ENTRY requires the full
+    500-tick analysis dataset.
+  */
+  if(
+    ticks.length<
+    CONFIG.ANALYSIS_TICKS
+  ){
+
+    const remaining=
+      CONFIG.ANALYSIS_TICKS-
+      ticks.length;
+
+    setDecision("WAIT");
+
+    $("instructions").textContent=
+      `Collecting full analysis sample. ${ticks.length}/${CONFIG.ANALYSIS_TICKS} ticks loaded — ${remaining} more required.`;
+
+    text(
+      "score",
+      "0%"
+    );
+
+    return;
+
+  }
+
+
+  const data=
     ticks.slice(-500);
 
 
-  const probability =
+  const probability=
     contractRate(
       contract,
       data
     );
 
 
-  const prediction =
+  const prediction=
     predictOneDigit(
       contract
     );
 
 
-  const predictedDigit =
+  const predictedDigit=
     prediction.digit;
 
 
-  const predictedDigitRate =
-    digitPercentages(
-      data
-    )[predictedDigit] || 0;
+  const predictedDigitRate=
+    digitPercentages(data)
+      [predictedDigit]||0;
 
 
-  const quality =
-    calculateQuality(
-      data
-    );
+  const quality=
+    calculateQuality(data);
 
 
-  const agreement =
-    calculateAgreement(
-      contract
-    );
+  const agreement=
+    calculateAgreement(contract);
 
 
-  const score =
+  const score=
     calculateScore(
       contract,
       probability,
@@ -3772,86 +2529,84 @@ function analyze(){
     );
 
 
-  const opposite =
-    getOppositeInfo(
-      contract,
-      predictedDigit,
-      data
-    );
-
-
-  const compatible =
+  const compatible=
     contractAllowsDigit(
       contract,
       predictedDigit
     );
 
 
-  const probabilityOK =
-    probability >=
-    contractMinimum(
-      contract
-    );
+  const probabilityOK=
+    probability>=
+    contractMinimum(contract);
 
 
-  const qualityOK =
-    quality >=
-    CONFIG.MIN_QUALITY;
+  const qualityOK=
+    quality>=CONFIG.MIN_QUALITY;
 
 
-  const agreementOK =
-    agreement >=
-    CONFIG.MIN_AGREEMENT;
+  const agreementOK=
+    agreement>=CONFIG.MIN_AGREEMENT;
 
 
-  const scoreOK =
-    score >=
-    CONFIG.MIN_SCORE;
+  const scoreOK=
+    score>=CONFIG.MIN_SCORE;
+
+
+  let strategyOK=true;
+
+  let sideInfo=null;
+
+  let parityInfo=null;
 
 
   /*
-    OVER/UNDER custom opposite
-    prerequisite.
-
-    EVEN/ODD use strategic
-    parity confirmation instead.
+    OVER/UNDER:
+    ALL OTHER digits in the same
+    group must be <10.5%.
   */
-
-  let strategyOK = true;
-
-  let parityInfo = null;
-
-
   if(
-    contract === "OVER" ||
-    contract === "UNDER"
+    contract==="OVER" ||
+    contract==="UNDER"
   ){
 
-    strategyOK =
-      opposite.ok;
+    sideInfo=
+      getSideStrategyInfo(
+        contract,
+        data,
+        predictedDigit
+      );
+
+    strategyOK=
+      sideInfo.ok;
 
   }
 
 
+  /*
+    EVEN/ODD:
+    parity >=55
+    edge >=6
+    strongest digit >=10.5
+  */
   if(
-    contract === "EVEN" ||
-    contract === "ODD"
+    contract==="EVEN" ||
+    contract==="ODD"
   ){
 
-    parityInfo =
+    parityInfo=
       parityStrategicCheck(
         contract,
         data
       );
 
-
-    strategyOK =
+    strategyOK=
       parityInfo.ok;
 
   }
 
 
-  const filtersOK =
+  const filtersOK=
     probabilityOK &&
     compatible &&
     qualityOK &&
@@ -3862,41 +2617,25 @@ function analyze(){
 
   if(filtersOK){
 
-    confirmations =
+    confirmations=
       Math.min(
-        confirmations + 1,
+        confirmations+1,
         CONFIG.REQUIRED_CONFIRMATIONS
       );
 
   }else{
 
-    confirmations = 0;
+    confirmations=0;
 
   }
 
 
-  text(
-    "score",
-    score + "%"
-  );
-
-
-  text(
-    "quality",
-    quality + "%"
-  );
-
-
-  text(
-    "agreement",
-    agreement + "%"
-  );
-
-
+  text("score",score+"%");
+  text("quality",quality+"%");
+  text("agreement",agreement+"%");
   text(
     "confirmations",
-    confirmations +
-    "/" +
+    confirmations+"/"+
     CONFIG.REQUIRED_CONFIRMATIONS
   );
 
@@ -3916,8 +2655,8 @@ function analyze(){
   text(
     "barrier",
     (
-      contract === "OVER" ||
-      contract === "UNDER"
+      contract==="OVER" ||
+      contract==="UNDER"
     )
       ? "5"
       : "—"
@@ -3926,107 +2665,68 @@ function analyze(){
 
   text(
     "digitRate",
-    predictedDigitRate.toFixed(1) +
-    "%"
+    predictedDigitRate.toFixed(1)+"%"
   );
 
 
-  /*
-    Display all prerequisite digits,
-    never a green success bar.
-  */
+  if(sideInfo){
 
-  if(
-    contract === "OVER" ||
-    contract === "UNDER"
-  ){
-
-    if(
-      opposite.checks.length
-    ){
-
-      text(
-        "oppositeDigit",
-        opposite.checks
-          .map(
-            x => x.digit
-          )
-          .join(", ")
-      );
+    text(
+      "oppositeDigit",
+      sideInfo.checks.length
+        ? sideInfo.checks
+            .map(x=>x.digit)
+            .join(", ")
+        : "NONE"
+    );
 
 
-      text(
-        "oppositeRate",
-        opposite.checks
-          .map(
-            x =>
-              x.rate.toFixed(1) +
-              "%"
-          )
-          .join(" / ")
-      );
+    text(
+      "oppositeRate",
+      sideInfo.checks.length
+        ? sideInfo.checks
+            .map(
+              x=>x.rate.toFixed(1)+"%"
+            )
+            .join(" / ")
+        : "N/A"
+    );
 
-    }else{
-
-      text(
-        "oppositeDigit",
-        "NONE"
-      );
-
-
-      text(
-        "oppositeRate",
-        "N/A"
-      );
-
-    }
-
-  }else if(
-    parityInfo
-  ){
+  }else if(parityInfo){
 
     text(
       "oppositeDigit",
       "EDGE"
     );
 
-
     text(
       "oppositeRate",
       (
-        parityInfo.edge >= 0
+        parityInfo.edge>=0
           ? "+"
           : ""
-      ) +
-      parityInfo.edge.toFixed(1) +
+      )+
+      parityInfo.edge.toFixed(1)+
       " pts"
     );
 
   }else{
 
-    text(
-      "oppositeDigit",
-      "—"
-    );
-
-
-    text(
-      "oppositeRate",
-      "—"
-    );
+    text("oppositeDigit","—");
+    text("oppositeRate","—");
 
   }
 
 
   text(
     "entryScore",
-    score + "%"
+    score+"%"
   );
 
 
-  const good =
+  const good=
     filtersOK &&
-    confirmations >=
+    confirmations>=
     CONFIG.REQUIRED_CONFIRMATIONS;
 
 
@@ -4035,20 +2735,13 @@ function analyze(){
     showGoodEntry({
 
       contract,
-
       predictedDigit,
-
       predictedDigitRate,
-
-      opposite,
-
+      sideInfo,
+      parityInfo,
       score,
-
       quality,
-
-      agreement,
-
-      parityInfo
+      agreement
 
     });
 
@@ -4057,27 +2750,16 @@ function analyze(){
     showWait({
 
       contract,
-
       predictedDigit,
-
       predictedDigitRate,
-
-      opposite,
-
+      sideInfo,
+      parityInfo,
       score,
-
       quality,
-
       agreement,
-
       probability,
-
       compatible,
-
-      oppositeOK:
-        strategyOK,
-
-      parityInfo
+      strategyOK
 
     });
 
@@ -4088,148 +2770,130 @@ function analyze(){
 
 /* ================= GOOD ENTRY ================= */
 
-function showGoodEntry(
-  signal
-){
+function showGoodEntry(signal){
 
-  const key =
-    [
-      selectedMarket,
-      signal.contract,
-      signal.predictedDigit
-    ].join("|");
+  const key=[
+    selectedMarket,
+    signal.contract,
+    signal.predictedDigit
+  ].join("|");
 
 
-  setDecision(
-    "GOOD ENTRY"
-  );
+  setDecision("GOOD ENTRY");
+
+  currentSignal=signal;
 
 
-  currentSignal =
-    signal;
-
-
-  let howTo = "";
+  let howTo="";
 
 
   if(
-    signal.contract === "OVER"
+    signal.contract==="OVER" ||
+    signal.contract==="UNDER"
   ){
 
-    const checks =
-      signal.opposite.checks
+    const checks=
+      signal.sideInfo.checks
         .map(
-          x =>
-            `${x.digit} ${x.rate.toFixed(1)}%`
+          x=>
+            `Digit ${x.digit}: ${x.rate.toFixed(1)}%`
         )
-        .join(" • ");
+        .join("\n");
 
 
-    howTo =
-`HOW TO PLACE MANUALLY:
-Contract: OVER
-Custom analyzer prediction: ${signal.predictedDigit}
+    howTo=
+`GOOD ENTRY CONFIRMED
 
-Required lower-digit filter:
+Contract: ${signal.contract}
+Predicted digit: ${signal.predictedDigit}
+Barrier reference: 5
+
+Required companion-digit filter:
 ${checks || "NONE"}
 
-All required checked digits are below ${CONFIG.OPPOSITE_MAX_RATE}%.
+Every other digit in the selected group is below ${CONFIG.OPPOSITE_MAX_RATE}%.
 
-⚠️ This is an analyzer rule, not a guarantee of the next tick.`;
+50/100/500 confirmation: ${signal.agreement}%
+Quality: ${signal.quality}%
+Score: ${signal.score}%
 
-  }else if(
-    signal.contract === "UNDER"
-  ){
-
-    const checks =
-      signal.opposite.checks
-        .map(
-          x =>
-            `${x.digit} ${x.rate.toFixed(1)}%`
-        )
-        .join(" • ");
-
-
-    howTo =
-`HOW TO PLACE MANUALLY:
-Contract: UNDER
-Custom analyzer prediction: ${signal.predictedDigit}
-
-Required higher-digit filter:
-${checks || "NONE"}
-
-All required checked digits are below ${CONFIG.OPPOSITE_MAX_RATE}%.
-
-⚠️ This is an analyzer rule, not a guarantee of the next tick.`;
+⚠️ Analysis only. Historical probability cannot guarantee the next tick.
+Place any trade manually on Deriv.`;
 
   }else if(
-    signal.contract === "EVEN"
+    signal.contract==="EVEN" ||
+    signal.contract==="ODD"
   ){
 
-    howTo =
-`EVEN STRATEGY CONFIRMED:
+    howTo=
+`${signal.contract} STRATEGY CONFIRMED
+
 Predicted digit: ${signal.predictedDigit}
-EVEN rate: ${parityRateText(signal.contract)}
-Parity edge: ${signal.parityInfo
-  ? signal.parityInfo.edge.toFixed(1) + " points"
-  : "confirmed"}
 
-The selected digit is the strongest EVEN digit and the EVEN class has passed the strategic edge filter.
+${signal.contract} rate:
+${signal.parityInfo.parityRate.toFixed(1)}%
 
-⚠️ Analysis only — manually place any trade yourself.`;
+Opposite parity:
+${signal.parityInfo.oppositeRate.toFixed(1)}%
+
+Parity edge:
+${signal.parityInfo.edge.toFixed(1)} points
+
+Strongest ${signal.contract} digit:
+${signal.predictedDigit}
+
+Digit rate:
+${signal.parityInfo.bestRate.toFixed(1)}%
+
+Required parity:
+>= ${CONFIG.PARITY_MIN}%
+
+Required edge:
+>= ${CONFIG.PARITY_EDGE_MIN} points
+
+Required digit strength:
+>= ${CONFIG.PARITY_DIGIT_MIN}%
+
+⚠️ Analysis only. No automatic order is placed.`;
 
   }else if(
-    signal.contract === "ODD"
+    signal.contract==="MATCHES"
   ){
 
-    howTo =
-`ODD STRATEGY CONFIRMED:
+    howTo=
+`MATCHES CONFIRMED
+
 Predicted digit: ${signal.predictedDigit}
-ODD rate: ${parityRateText(signal.contract)}
-Parity edge: ${signal.parityInfo
-  ? signal.parityInfo.edge.toFixed(1) + " points"
-  : "confirmed"}
 
-The selected digit is the strongest ODD digit and the ODD class has passed the strategic edge filter.
+Use the displayed digit only as the analyzer's reference.
 
-⚠️ Analysis only — manually place any trade yourself.`;
-
-  }else if(
-    signal.contract === "MATCHES"
-  ){
-
-    howTo =
-`HOW TO PLACE MANUALLY:
-Choose MATCHES and use digit ${signal.predictedDigit}.`;
+⚠️ Analysis only. Place any trade manually.`;
 
   }else{
 
-    howTo =
-`HOW TO PLACE MANUALLY:
-Choose DIFFERS.
-Analyzer reference digit: ${signal.predictedDigit}.`;
+    howTo=
+`DIFFERS CONFIRMED
+
+Analyzer reference digit:
+${signal.predictedDigit}
+
+⚠️ Analysis only. Place any trade manually.`;
 
   }
 
 
-  $("instructions").textContent =
+  $("instructions").textContent=
     howTo;
 
 
   startSignalTimer();
 
 
-  if(
-    key !== lastSignalKey
-  ){
+  if(key!==lastSignalKey){
 
-    lastSignalKey =
-      key;
+    lastSignalKey=key;
 
-
-    addSignalHistory(
-      signal
-    );
+    addSignalHistory(signal);
 
   }
 
@@ -4241,157 +2905,120 @@ Analyzer reference digit: ${signal.predictedDigit}.`;
 }
 
 
-/* ================= PARITY RATE TEXT ================= */
-
-function parityRateText(
-  contract
-){
-
-  const data =
-    ticks.slice(-500);
-
-
-  return contractRate(
-    contract,
-    data
-  ).toFixed(1) +
-  "%";
-
-}
-
-
 /* ================= WAIT ================= */
 
-function showWait(
-  info
-){
+function showWait(info){
 
-  setDecision(
-    "WAIT"
-  );
+  setDecision("WAIT");
 
-
-  let reason =
+  let reason=
     "Waiting for stronger confirmation.";
 
 
-  if(
-    !info.compatible
-  ){
+  if(!info.compatible){
 
-    reason =
+    reason=
       "Predicted digit does not satisfy the selected contract.";
 
   }else if(
     (
-      info.contract === "OVER" ||
-      info.contract === "UNDER"
+      info.contract==="OVER" ||
+      info.contract==="UNDER"
     ) &&
-    !info.oppositeOK
+    info.sideInfo &&
+    !info.sideInfo.ok
   ){
 
-    const failed =
-      info.opposite.checks
-        .filter(
-          x => !x.ok
-        )
+    const failed=
+      info.sideInfo.checks
+        .filter(x=>!x.ok)
         .map(
-          x =>
+          x=>
             `${x.digit}=${x.rate.toFixed(1)}%`
         )
         .join(", ");
 
 
-    reason =
-      `${info.contract} filter FAILED → ${failed || "required digit rate reached 10.5% or higher"}.`;
+    reason=
+      `${info.contract} prerequisite FAILED → ${failed || "a companion digit reached 10.5% or higher"}.`;
 
   }else if(
     (
-      info.contract === "EVEN" ||
-      info.contract === "ODD"
+      info.contract==="EVEN" ||
+      info.contract==="ODD"
     ) &&
     info.parityInfo &&
     !info.parityInfo.parityOK
   ){
 
-    reason =
+    reason=
       `${info.contract} rate ${info.parityInfo.parityRate.toFixed(1)}% is below ${CONFIG.PARITY_MIN}%.`;
 
   }else if(
     (
-      info.contract === "EVEN" ||
-      info.contract === "ODD"
+      info.contract==="EVEN" ||
+      info.contract==="ODD"
     ) &&
     info.parityInfo &&
     !info.parityInfo.edgeOK
   ){
 
-    reason =
-      `${info.contract} edge ${info.parityInfo.edge.toFixed(1)} points is below the ${CONFIG.PARITY_EDGE_MIN}-point strategic minimum.`;
+    reason=
+      `${info.contract} edge ${info.parityInfo.edge.toFixed(1)} points is below ${CONFIG.PARITY_EDGE_MIN} points.`;
 
   }else if(
     (
-      info.contract === "EVEN" ||
-      info.contract === "ODD"
+      info.contract==="EVEN" ||
+      info.contract==="ODD"
     ) &&
     info.parityInfo &&
     !info.parityInfo.digitOK
   ){
 
-    reason =
-      `Predicted ${info.contract} digit ${info.predictedDigit} is only ${info.predictedDigitRate.toFixed(1)}%, below the ${CONFIG.PARITY_DIGIT_MIN}% digit-strength filter.`;
+    reason=
+      `Strongest ${info.contract} digit ${info.predictedDigit} is only ${info.predictedDigitRate.toFixed(1)}%, below ${CONFIG.PARITY_DIGIT_MIN}%.`;
 
   }else if(
-    info.quality <
+    info.quality<
     CONFIG.MIN_QUALITY
   ){
 
-    reason =
-      "Market sample quality is not strong enough.";
+    reason=
+      `Sample quality ${info.quality}% is below ${CONFIG.MIN_QUALITY}%.`;
 
   }else if(
-    info.agreement <
+    info.agreement<
     CONFIG.MIN_AGREEMENT
   ){
 
-    reason =
-      "50/100/500 tick windows do not agree.";
+    reason=
+      `50/100/500 windows agree only ${info.agreement}%. Need ${CONFIG.MIN_AGREEMENT}% or higher.`;
 
   }else if(
-    info.score <
+    info.score<
     CONFIG.MIN_SCORE
   ){
 
-    reason =
-      "Signal score is below the required threshold.";
+    reason=
+      `Signal score ${info.score}% is below ${CONFIG.MIN_SCORE}%.`;
 
   }else if(
-    info.probability <
-    contractMinimum(
-      info.contract
-    )
+    info.probability<
+    contractMinimum(info.contract)
   ){
 
-    reason =
-      "Selected contract historical rate is below its threshold.";
+    reason=
+      `Historical ${info.contract} rate ${info.probability.toFixed(1)}% is below its required threshold.`;
 
   }
 
 
-  $("instructions").textContent =
-    reason;
+  $("instructions").textContent=reason;
 
 
-  if(
-    ticks.length >=
-    CONFIG.MIN_TICKS
-  ){
-
-    scan(
-      `SCAN → ${info.contract} → PREDICTED DIGIT ${info.predictedDigit} → SCORE ${info.score}% → WAIT`
-    );
-
-  }
+  scan(
+    `SCAN → ${info.contract} → DIGIT ${info.predictedDigit} → SCORE ${info.score}% → WAIT`
+  );
 
 
   clearSignalTimer();
@@ -4399,28 +3026,21 @@ function showWait(
 }
 
 
-/* ================= DECISION UI ================= */
+/* ================= DECISION ================= */
 
-function setDecision(
-  value
-){
+function setDecision(value){
 
-  const node =
-    $("decision");
+  const node=$("decision");
 
-
-  node.textContent =
-    value;
-
+  node.textContent=value;
 
   node.classList.remove(
     "good",
     "wait"
   );
 
-
   node.classList.add(
-    value === "GOOD ENTRY"
+    value==="GOOD ENTRY"
       ? "good"
       : "wait"
   );
@@ -4428,74 +3048,47 @@ function setDecision(
 }
 
 
-/* ================= SIGNAL TIMER ================= */
+/* ================= TIMER ================= */
 
 function startSignalTimer(){
 
   clearSignalTimer();
 
+  let seconds=CONFIG.SIGNAL_SECONDS;
 
-  let seconds =
-    CONFIG.SIGNAL_SECONDS;
-
-
-  text(
-    "timer",
-    seconds
-  );
+  text("timer",seconds);
 
 
-  signalTimer =
-    setInterval(
-      () => {
+  signalTimer=
+    setInterval(()=>{
 
-        seconds--;
+      seconds--;
+
+      text("timer",seconds);
 
 
-        text(
-          "timer",
-          seconds
+      if(seconds<=0){
+
+        clearSignalTimer();
+
+        confirmations=0;
+        currentSignal=null;
+        lastSignalKey="";
+
+        text("confirmations","0/3");
+
+        setDecision("WAIT");
+
+        $("instructions").textContent=
+          "⏰ SIGNAL EXPIRED — RE-SCAN REQUIRED";
+
+        scan(
+          "SIGNAL → EXPIRED → RE-SCAN REQUIRED"
         );
 
+      }
 
-        if(
-          seconds <= 0
-        ){
-
-          clearSignalTimer();
-
-
-          confirmations = 0;
-
-          currentSignal = null;
-
-          lastSignalKey = "";
-
-
-          text(
-            "confirmations",
-            "0/3"
-          );
-
-
-          setDecision(
-            "WAIT"
-          );
-
-
-          $("instructions").textContent =
-            "⏰ SIGNAL EXPIRED — RE-SCAN REQUIRED";
-
-
-          scan(
-            "SIGNAL → EXPIRED → RE-SCAN REQUIRED"
-          );
-
-        }
-
-      },
-      1000
-    );
+    },1000);
 
 }
 
@@ -4504,56 +3097,38 @@ function clearSignalTimer(){
 
   if(signalTimer){
 
-    clearInterval(
-      signalTimer
-    );
-
-    signalTimer = null;
+    clearInterval(signalTimer);
+    signalTimer=null;
 
   }
 
-
-  text(
-    "timer",
-    "60"
-  );
+  text("timer","60");
 
 }
 
 
 /* ================= SIGNAL HISTORY ================= */
 
-function addSignalHistory(
-  signal
-){
+function addSignalHistory(signal){
 
   signalHistory.unshift({
 
     time:
-      new Date()
-        .toLocaleTimeString(),
+      new Date().toLocaleTimeString(),
 
-    market:
-      selectedMarketName,
+    market:selectedMarketName,
 
-    contract:
-      signal.contract,
+    contract:signal.contract,
 
-    digit:
-      signal.predictedDigit,
+    digit:signal.predictedDigit,
 
-    score:
-      signal.score
+    score:signal.score
 
   });
 
 
-  signalHistory =
-    signalHistory.slice(
-      0,
-      20
-    );
-
+  signalHistory=
+    signalHistory.slice(0,20);
 
   renderSignalHistory();
 
@@ -4562,40 +3137,32 @@ function addSignalHistory(
 
 function renderSignalHistory(){
 
-  const box =
-    $("signalHistory");
-
+  const box=$("signalHistory");
 
   if(!signalHistory.length){
 
-    box.textContent =
-      "No signals yet.";
-
+    box.textContent="No signals yet.";
     return;
 
   }
 
 
-  box.innerHTML =
+  box.innerHTML=
     signalHistory
-      .map(
-        signal => `
+      .map(signal=>`
 
-          <div class="tick-row">
+        <div class="tick-row">
+          [${signal.time}]
+          ${signal.market}
+          →
+          ${signal.contract}
+          →
+          DIGIT ${signal.digit}
+          →
+          SCORE ${signal.score}%
+        </div>
 
-            [${signal.time}]
-            ${signal.market}
-            →
-            ${signal.contract}
-            →
-            DIGIT ${signal.digit}
-            →
-            SCORE ${signal.score}%
-
-          </div>
-
-        `
-      )
+      `)
       .join("");
 
 }
@@ -4605,59 +3172,31 @@ function renderSignalHistory(){
 
 function updateMomentum(){
 
-  const recent =
-    ticks.slice(-20);
+  const recent=ticks.slice(-20);
 
+  if(recent.length<2){
 
-  if(
-    recent.length <
-    2
-  ){
-
-    text(
-      "momentum",
-      "NEUTRAL"
-    );
-
+    text("momentum","NEUTRAL");
     return;
 
   }
 
 
-  const first =
+  const first=
+    Number(recent[0].quote);
+
+  const last=
     Number(
-      recent[0].quote
+      recent[recent.length-1].quote
     );
 
 
-  const last =
-    Number(
-      recent[
-        recent.length - 1
-      ].quote
-    );
+  let value="NEUTRAL";
 
+  if(last>first) value="UP";
+  if(last<first) value="DOWN";
 
-  let value =
-    "NEUTRAL";
-
-
-  if(
-    last > first
-  )
-    value = "UP";
-
-
-  if(
-    last < first
-  )
-    value = "DOWN";
-
-
-  text(
-    "momentum",
-    value
-  );
+  text("momentum",value);
 
 }
 
@@ -4666,84 +3205,96 @@ function updateMomentum(){
 
 function updateWindows(){
 
-  const configs = [
-
+  const configs=[
     [50,"window50"],
-
     [100,"window100"],
-
     [500,"window500"]
-
   ];
 
 
-  configs.forEach(
-    ([size,id]) => {
+  configs.forEach(([size,id])=>{
 
-      const data =
-        ticks.slice(-size);
+    const data=ticks.slice(-size);
 
+    if(data.length<size){
 
-      if(
-        data.length <
-        size
-      ){
+      text(
+        id,
+        `Waiting... ${data.length}/${size}`
+      );
 
-        text(
-          id,
-          `Waiting... ${data.length}/${size}`
-        );
+      return;
 
-        return;
-
-      }
+    }
 
 
-      const p =
-        digitPercentages(
+    const contract=
+      $("contractSelect").value;
+
+
+    if(
+      contract==="EVEN" ||
+      contract==="ODD"
+    ){
+
+      const stats=
+        parityStats(
+          contract,
           data
         );
 
 
-      const hot =
+      text(
+        id,
+        `${contract} ${stats.parityRate.toFixed(1)}% • DIGIT ${stats.bestDigit} • EDGE ${stats.edge.toFixed(1)}`
+      );
+
+
+    }else if(
+      contract==="OVER" ||
+      contract==="UNDER"
+    ){
+
+      const predicted=
+        predictOneDigitFromData(
+          contract,
+          data
+        );
+
+
+      const side=
+        getSideStrategyInfo(
+          contract,
+          data,
+          predicted
+        );
+
+
+      text(
+        id,
+        `${contract} • DIGIT ${predicted} • GROUP ${contractRate(contract,data).toFixed(1)}% • FILTER ${side.ok?"PASS":"WAIT"}`
+      );
+
+
+    }else{
+
+      const p=
+        digitPercentages(data);
+
+      const hot=
         p.indexOf(
           Math.max(...p)
         );
 
 
-      const contract =
-        $("contractSelect").value;
-
-
-      if(
-        contract === "EVEN" ||
-        contract === "ODD"
-      ){
-
-        const stats =
-          parityStats(
-            contract,
-            data
-          );
-
-
-        text(
-          id,
-          `${contract} ${stats.parityRate.toFixed(1)}% • DIGIT ${stats.bestDigit} • EDGE ${stats.edge.toFixed(1)}`
-        );
-
-
-      }else{
-
-        text(
-          id,
-          `READY • Hot digit ${hot} • ${p[hot].toFixed(1)}%`
-        );
-
-      }
+      text(
+        id,
+        `READY • Hot digit ${hot} • ${p[hot].toFixed(1)}%`
+      );
 
     }
-  );
+
+  });
 
 }
 
@@ -4752,13 +3303,11 @@ function updateWindows(){
 
 function updateRecentTicks(){
 
-  const box =
-    $("recentTicks");
-
+  const box=$("recentTicks");
 
   if(!ticks.length){
 
-    box.textContent =
+    box.textContent=
       "Waiting for ticks...";
 
     return;
@@ -4766,44 +3315,34 @@ function updateRecentTicks(){
   }
 
 
-  box.innerHTML =
+  box.innerHTML=
     ticks
       .slice(-25)
       .reverse()
-      .map(
-        item => {
+      .map(item=>{
 
-          const digit =
-            getLastDigitFromTick(
-              item
-            );
+        const digit=
+          getLastDigitFromTick(item);
 
 
-          return `
+        return`
 
-            <div class="tick-row">
+          <div class="tick-row">
+            ${formatPrice(item.quote)}
+            →
+            DIGIT
+            <strong>${digit}</strong>
+          </div>
 
-              ${formatPrice(
-                item.quote
-              )}
-              →
-              DIGIT
-              <strong>
-                ${digit}
-              </strong>
+        `;
 
-            </div>
-
-          `;
-
-        }
-      )
+      })
       .join("");
 
 }
 
 
-/* ================= UPDATE DASHBOARD ================= */
+/* ================= DASHBOARD ================= */
 
 function updateDashboard(){
 
@@ -4811,25 +3350,19 @@ function updateDashboard(){
     return;
 
 
-  const last =
-    ticks[
-      ticks.length - 1
-    ];
+  const last=
+    ticks[ticks.length-1];
 
 
   text(
     "livePrice",
-    formatPrice(
-      last.quote
-    )
+    formatPrice(last.quote)
   );
 
 
   text(
     "lastDigit",
-    getLastDigitFromTick(
-      last
-    )
+    getLastDigitFromTick(last)
   );
 
 
@@ -4840,99 +3373,47 @@ function updateDashboard(){
 
 
   updateMomentum();
-
   updateWindows();
-
   renderDigits();
-
   updateContractRates();
-
   updateRecentTicks();
 
 }
 
 
-/* ================= RESET UI ================= */
+function updateDashboardEmpty(){
+
+  text("livePrice","—");
+  text("lastDigit","—");
+  text("tickCount","0");
+  text("momentum","NEUTRAL");
+
+}
+
+
+/* ================= RESET ================= */
 
 function resetAnalysisUI(){
 
-  text(
-    "score",
-    "0%"
-  );
+  text("score","0%");
+  text("quality","0%");
+  text("agreement","0%");
+  text("confirmations","0/3");
 
+  text("predictedDigit","—");
+  text("decisionContract","—");
+  text("barrier","—");
+  text("digitRate","—");
+  text("oppositeDigit","—");
+  text("oppositeRate","—");
+  text("entryScore","—");
 
-  text(
-    "quality",
-    "0%"
-  );
-
-
-  text(
-    "agreement",
-    "0%"
-  );
-
-
-  text(
-    "confirmations",
-    "0/3"
-  );
-
-
-  text(
-    "predictedDigit",
-    "—"
-  );
-
-
-  text(
-    "decisionContract",
-    "—"
-  );
-
-
-  text(
-    "barrier",
-    "—"
-  );
-
-
-  text(
-    "digitRate",
-    "—"
-  );
-
-
-  text(
-    "oppositeDigit",
-    "—"
-  );
-
-
-  text(
-    "oppositeRate",
-    "—"
-  );
-
-
-  text(
-    "entryScore",
-    "—"
-  );
-
-
-  $("instructions").textContent =
+  $("instructions").textContent=
     "Waiting for enough live market data...";
 
+  setDecision("WAIT");
 
-  setDecision(
-    "WAIT"
-  );
-
-
-  $("timer").textContent =
-    "60";
+  text("timer","60");
 
 }
 
@@ -4941,7 +3422,7 @@ function resetAnalysisUI(){
 
 $("runBot").addEventListener(
   "click",
-  () => {
+  ()=>{
 
     if(!selectedMarket){
 
@@ -4955,7 +3436,7 @@ $("runBot").addEventListener(
 
 
     if(
-      ticks.length <
+      ticks.length<
       CONFIG.MIN_TICKS
     ){
 
@@ -4963,22 +3444,41 @@ $("runBot").addEventListener(
         `BOT → Waiting for enough live market data (${ticks.length}/${CONFIG.MIN_TICKS}).`
       );
 
+      $("instructions").textContent=
+        `Collecting live data: ${ticks.length}/${CONFIG.MIN_TICKS} minimum ticks.`;
+
       return;
 
     }
 
 
-    botRunning = true;
+    /*
+      The bot can start scanning from
+      50 ticks, but GOOD ENTRY still
+      requires the full 500-tick dataset.
+    */
+    botRunning=true;
 
-    confirmations = 0;
+    confirmations=0;
+    currentSignal=null;
+    lastSignalKey="";
 
-    currentSignal = null;
-
-    lastSignalKey = "";
 
     scan(
       "🤖 BOT → LIVE ANALYSIS STARTED"
     );
+
+
+    if(
+      ticks.length<
+      CONFIG.ANALYSIS_TICKS
+    ){
+
+      scan(
+        `BOT → Building full 500-tick analysis sample (${ticks.length}/500).`
+      );
+
+    }
 
 
     analyze();
@@ -4991,26 +3491,20 @@ $("runBot").addEventListener(
 
 $("stopBot").addEventListener(
   "click",
-  () => {
+  ()=>{
 
-    botRunning = false;
+    botRunning=false;
 
-    confirmations = 0;
-
-    currentSignal = null;
+    confirmations=0;
+    currentSignal=null;
 
     clearSignalTimer();
 
-    setDecision(
-      "WAIT"
-    );
+    setDecision("WAIT");
 
-    text(
-      "confirmations",
-      "0/3"
-    );
+    text("confirmations","0/3");
 
-    $("instructions").textContent =
+    $("instructions").textContent=
       "Bot stopped. Live market data remains connected.";
 
     scan(
@@ -5025,68 +3519,60 @@ $("stopBot").addEventListener(
 
 $("contractSelect").addEventListener(
   "change",
-  () => {
+  ()=>{
 
-    const contract =
+    const contract=
       $("contractSelect").value;
 
 
     if(
-      contract === "MATCHES" &&
+      contract==="MATCHES" &&
       !matchesUnlocked
     ){
 
-      $("contractSelect").value =
-        "DIFFERS";
+      $("contractSelect").value="DIFFERS";
 
-
-      $("instructions").textContent =
+      $("instructions").textContent=
         "🔒 MATCHES is locked. Enter activation code 19809 to unlock.";
 
-
-      scan(
-        "MATCHES → Locked."
-      );
-
+      scan("MATCHES → Locked.");
 
       return;
 
     }
 
 
-    confirmations = 0;
-
-    currentSignal = null;
-
-    lastSignalKey = "";
+    confirmations=0;
+    currentSignal=null;
+    lastSignalKey="";
 
     clearSignalTimer();
 
     resetAnalysisUI();
 
-
     scan(
-      "CONTRACT → " +
+      "CONTRACT → "+
       (
-        contract === "OVER"
+        contract==="OVER"
           ? "OVER • PREDICT 1–5"
-          : contract === "UNDER"
+          : contract==="UNDER"
             ? "UNDER • PREDICT 6–9"
             : contract
-      ) +
+      )+
       " selected."
     );
 
 
     if(
       botRunning &&
-      ticks.length >=
-      CONFIG.MIN_TICKS
+      ticks.length>=CONFIG.MIN_TICKS
     ){
 
       analyze();
 
     }
+
+    updateWindows();
 
   }
 );
@@ -5096,42 +3582,34 @@ $("contractSelect").addEventListener(
 
 $("unlockMatches").addEventListener(
   "click",
-  () => {
+  ()=>{
 
-    const code =
+    const code=
       $("activationCode")
         .value
         .trim();
 
 
-    if(
-      code ===
-      CONFIG.ACTIVATION_CODE
-    ){
+    if(code===CONFIG.ACTIVATION_CODE){
 
-      matchesUnlocked = true;
+      matchesUnlocked=true;
 
 
-      const option =
+      const option=
         Array.from(
           $("contractSelect").options
         ).find(
-          option =>
-            option.value ===
-            "MATCHES"
+          option=>
+            option.value==="MATCHES"
         );
 
 
       if(option){
-
-        option.textContent =
-          "MATCHES 🔓";
-
+        option.textContent="MATCHES 🔓";
       }
 
 
-      $("activationCode").value =
-        "";
+      $("activationCode").value="";
 
 
       scan(
@@ -5139,12 +3617,12 @@ $("unlockMatches").addEventListener(
       );
 
 
-      $("instructions").textContent =
+      $("instructions").textContent=
         "MATCHES unlocked. You can now select MATCHES.";
 
     }else{
 
-      $("instructions").textContent =
+      $("instructions").textContent=
         "❌ Invalid activation code.";
 
     }
@@ -5153,15 +3631,13 @@ $("unlockMatches").addEventListener(
 );
 
 
-/* ================= INIT DIGITS ================= */
+/* ================= DIGIT INIT ================= */
 
 function initDigits(){
 
-  const container =
-    $("digits");
+  const container=$("digits");
 
-
-  container.innerHTML = "";
+  container.innerHTML="";
 
 
   for(
@@ -5170,32 +3646,80 @@ function initDigits(){
     digit++
   ){
 
-    const div =
-      document.createElement(
-        "div"
-      );
+    const div=
+      document.createElement("div");
 
+    div.className="digit";
 
-    div.className =
-      "digit";
-
-
-    div.innerHTML = `
-
+    div.innerHTML=`
       <strong>${digit}</strong>
-
       <small>0.0%</small>
-
     `;
 
-
-    container.appendChild(
-      div
-    );
+    container.appendChild(div);
 
   }
 
 }
+
+
+/* ================= CONNECTION WATCHDOG ================= */
+
+let lastLiveTickAt=0;
+
+setInterval(()=>{
+
+  if(
+    !botRunning ||
+    !selectedMarket
+  ){
+    return;
+  }
+
+
+  if(!lastLiveTickAt)
+    return;
+
+
+  const age=
+    Date.now()-
+    lastLiveTickAt;
+
+
+  /*
+    If the connection appears stale
+    for more than 20 seconds, let the
+    normal reconnect lifecycle handle it.
+  */
+  if(age>20000){
+
+    scan(
+      "WATCHDOG → No live tick received for 20 seconds."
+    );
+
+  }
+
+},10000);
+
+
+/*
+  Update timestamp whenever a tick
+  arrives.
+*/
+const originalProcessTick=processTick;
+
+
+/*
+  Wrapper keeps the existing function
+  while recording last-live-tick time.
+*/
+processTick=function(data){
+
+  lastLiveTickAt=Date.now();
+
+  originalProcessTick(data);
+
+};
 
 
 /* ================= APP INIT ================= */
@@ -5203,60 +3727,51 @@ function initDigits(){
 function initApp(){
 
   initDigits();
-
   resetAnalysisUI();
-
 
   scan(
     "SYSTEM → Starting DERIV SIGNAL BOT PRO..."
   );
 
-
   scan(
     "SYSTEM → Analysis-only mode active."
   );
-
 
   scan(
     "SYSTEM → No automatic trade operations enabled."
   );
 
+  scan(
+    "SYSTEM → Public Deriv market feed requires no account login."
+  );
 
   scan(
     "STRATEGY → OVER predicts 1–5."
   );
 
-
   scan(
     "STRATEGY → UNDER predicts 6–9."
   );
 
-
   scan(
-    "STRATEGY → OVER/UNDER prerequisite digits must be <10.5%."
+    "STRATEGY → Every other digit in the selected OVER/UNDER group must be <10.5%."
   );
 
-
   scan(
-    "STRATEGY → EVEN/ODD use parity edge + strongest digit + multi-window confirmation."
+    "STRATEGY → EVEN/ODD require parity >=55%, edge >=6 points and strongest digit >=10.5%."
   );
 
+  scan(
+    "STRATEGY → GOOD ENTRY requires 50/100/500 confirmation and 3 consecutive confirmations."
+  );
+
+  scan(
+    "SYSTEM → Loading historical data before live subscription."
+  );
 
   connectDeriv();
 
 }
 
-
-/* ================= INITIAL LOGIN SCREEN ================= */
-
-if(!savedLogin){
-
-  $("loginScreen").style.display =
-    "flex";
-
-}
-
-</script>
-
-</body>
+</script></body>
   </html>
