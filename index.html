@@ -1,808 +1,737 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>DERIV SIGNAL BOT PRO</title>
-
-<style>
+<title>DERIV SIGNAL BOT PRO</title><style>
 *{box-sizing:border-box}
+:root{
+  --bg:#05070b;
+  --panel:#0c1119;
+  --panel2:#111824;
+  --line:#202b3a;
+  --text:#edf4ff;
+  --muted:#8d9aad;
+  --green:#20e58a;
+  --red:#ff4d67;
+  --yellow:#ffd34d;
+  --blue:#4da3ff;
+}
 body{
   margin:0;
+  background:radial-gradient(circle at top,#101a28 0,#05070b 48%,#020305 100%);
+  color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
-  background:#05070b;
-  color:#f4f7fb;
 }
 button,input,select{font:inherit}
 button{cursor:pointer}
-
-.app{
-  max-width:1250px;
-  margin:auto;
-  padding:14px;
-}
-
 .hidden{display:none!important}
+.muted{color:var(--muted)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.yellow{color:var(--yellow)}
+.blue{color:var(--blue)}
 
-.card{
-  background:#0c1119;
-  border:1px solid #202a38;
-  border-radius:18px;
-  padding:16px;
-  margin-bottom:14px;
-  box-shadow:0 8px 30px rgba(0,0,0,.22);
-}
-
-.login{
+#loginScreen{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:18px;
+  padding:20px;
 }
-
-.login-card{
+.loginBox{
   width:100%;
-  max-width:420px;
-  text-align:center;
+  max-width:430px;
+  background:rgba(12,17,25,.96);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
 }
-
-.logo{
-  font-size:30px;
+.brand{
+  text-align:center;
+  font-size:26px;
   font-weight:900;
   letter-spacing:1px;
 }
-
-.brand{
-  color:#54ff91;
+.power{
+  text-align:center;
+  color:var(--green);
   font-weight:800;
+  font-size:12px;
   margin-top:7px;
+  letter-spacing:1px;
 }
-
-.subtitle{
-  color:#8d9bad;
-  font-size:13px;
-  margin:10px 0 20px;
+.loginLogo{
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  margin:0 auto 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0b1621;
+  border:1px solid #26384b;
+  font-size:38px;
 }
-
 .field{
-  margin:10px 0;
-  text-align:left;
+  margin-top:15px;
 }
-
 .field label{
   display:block;
-  color:#8d9bad;
   font-size:12px;
-  margin-bottom:6px;
+  color:var(--muted);
+  margin-bottom:7px;
 }
-
 input,select{
   width:100%;
-  padding:13px;
-  border-radius:11px;
-  border:1px solid #293546;
-  background:#080c12;
-  color:#fff;
+  background:#070b11;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px 14px;
   outline:none;
 }
-
 input:focus,select:focus{
-  border-color:#54ff91;
+  border-color:#31506d;
 }
-
-.primary{
-  width:100%;
-  border:0;
-  padding:14px;
-  border-radius:12px;
-  background:#54ff91;
-  color:#041008;
-  font-weight:900;
-  margin-top:12px;
-}
-
-.secondary{
-  border:1px solid #2c3949;
-  background:#101722;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:10px;
-}
-
-.danger{
-  border:1px solid #702d36;
-  background:#241015;
-  color:#ff8993;
-}
-
-.header{
+.check{
   display:flex;
   align-items:center;
+  gap:9px;
+  margin-top:14px;
+  font-size:12px;
+  color:var(--muted);
+}
+.check input{width:auto}
+.primary,.secondary,.danger{
+  border:0;
+  border-radius:12px;
+  padding:13px 15px;
+  font-weight:900;
+}
+.primary{
+  background:var(--green);
+  color:#03140c;
+}
+.secondary{
+  background:#172231;
+  color:#dceaff;
+  border:1px solid #2a394d;
+}
+.danger{
+  background:#35131b;
+  color:#ff8ea0;
+  border:1px solid #60202c;
+}
+.full{width:100%}
+.loginBtn{margin-top:18px}
+.loginMsg{
+  min-height:18px;
+  text-align:center;
+  margin-top:12px;
+  font-size:12px;
+}
+
+#app{
+  display:none;
+  min-height:100vh;
+}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(5,7,11,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  padding:13px 16px;
+}
+.topInner{
+  max-width:1400px;
+  margin:auto;
+  display:flex;
   justify-content:space-between;
   gap:12px;
-  flex-wrap:wrap;
-}
-
-.status{
-  display:flex;
   align-items:center;
-  gap:8px;
-  font-size:12px;
-  color:#aab5c3;
+}
+.topTitle{
+  font-size:17px;
+  font-weight:900;
+}
+.topSub{
+  color:var(--green);
+  font-size:10px;
+  margin-top:3px;
+  font-weight:800;
+}
+.userPill{
+  border:1px solid var(--line);
+  background:#0c121b;
+  border-radius:999px;
+  padding:8px 11px;
+  font-size:11px;
+  color:#b9c7d9;
 }
 
-.dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#777;
+.container{
+  max-width:1400px;
+  margin:auto;
+  padding:15px;
 }
-
-.dot.live{
-  background:#54ff91;
-  box-shadow:0 0 12px #54ff91;
-}
-
-.dot.bad{
-  background:#ff5665;
-}
-
-.warning{
-  color:#ffd76a;
-  font-size:12px;
-  line-height:1.5;
-}
-
 .grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(12,1fr);
   gap:12px;
 }
-
-@media(max-width:850px){
-  .grid{grid-template-columns:repeat(2,1fr)}
+.card{
+  background:linear-gradient(180deg,rgba(17,24,36,.97),rgba(9,13,20,.97));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+  box-shadow:0 12px 35px rgba(0,0,0,.22);
 }
+.col12{grid-column:span 12}
+.col8{grid-column:span 8}
+.col6{grid-column:span 6}
+.col4{grid-column:span 4}
+.col3{grid-column:span 3}
 
-@media(max-width:520px){
-  .grid{grid-template-columns:1fr}
+.cardTitle{
+  font-size:12px;
+  color:#b7c4d6;
+  font-weight:900;
+  letter-spacing:.6px;
+  text-transform:uppercase;
 }
-
-.metric{
-  background:#080d14;
-  border:1px solid #202b39;
-  border-radius:14px;
-  padding:13px;
+.big{
+  font-size:38px;
+  font-weight:1000;
+  line-height:1;
 }
-
-.metric small{
-  color:#7f8b9c;
-  display:block;
-  font-size:11px;
+.marketHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
 }
-
-.metric strong{
-  display:block;
-  margin-top:7px;
-  font-size:20px;
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:10px;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#101923;
+  border:1px solid #253445;
+}
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--red);
+}
+.dot.live{
+  background:var(--green);
+  box-shadow:0 0 10px rgba(32,229,138,.8);
 }
 
 .controls{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-@media(max-width:650px){
-  .controls{grid-template-columns:1fr}
-}
-
-.engine{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-}
-
-.engine-state{
-  font-weight:900;
-  color:#54ff91;
-}
-
-.scan{
-  height:170px;
-  overflow:auto;
-  background:#020403;
-  border:1px solid #17231b;
-  border-radius:12px;
-  padding:10px;
-  font-family:monospace;
-  font-size:12px;
-  color:#54ff91;
-}
-
-.entry{
-  border:2px solid #273243;
-  background:linear-gradient(145deg,#0d131c,#080c12);
-  border-radius:22px;
-  padding:20px;
-}
-
-.entry.good{
-  border-color:#54ff91;
-  box-shadow:0 0 30px rgba(84,255,145,.13);
-}
-
-.entry.wait{
-  border-color:#394556;
-}
-
-.entry.expired{
-  border-color:#ff5665;
-}
-
-.entry-title{
-  font-size:14px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.entry-main{
-  display:grid;
-  grid-template-columns:150px 1fr;
-  gap:20px;
-  align-items:center;
-}
-
-@media(max-width:650px){
-  .entry-main{grid-template-columns:1fr}
-}
-
-.big-number{
-  width:145px;
-  height:145px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  background:#101823;
-  border:4px solid #54ff91;
-  font-size:48px;
-  font-weight:900;
-}
-
-.big-label{
-  text-align:center;
-  color:#7f8b9c;
-  font-size:11px;
-  margin-top:8px;
-}
-
-.entry-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:2fr 1fr auto auto;
   gap:9px;
+  margin-top:12px;
+}
+.controls button{
+  white-space:nowrap;
 }
 
-@media(max-width:650px){
-  .entry-grid{grid-template-columns:1fr 1fr}
+.metricGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:12px;
 }
-
-.entry-item{
+.metric{
   background:#080d14;
-  border:1px solid #202b39;
-  border-radius:10px;
-  padding:10px;
+  border:1px solid #1b2635;
+  border-radius:12px;
+  padding:11px;
 }
-
-.entry-item span{
-  display:block;
-  color:#7f8b9c;
+.metricLabel{
+  color:var(--muted);
   font-size:10px;
 }
-
-.entry-item strong{
-  display:block;
+.metricValue{
   margin-top:5px;
+  font-weight:900;
   font-size:15px;
 }
 
-.countdown{
-  font-size:34px!important;
-  color:#54ff91;
+.entry{
+  position:relative;
+  overflow:hidden;
 }
-
-.reason{
-  margin-top:12px;
-  padding:12px;
-  background:#070b11;
-  border-radius:12px;
-  border:1px solid #202b39;
-  line-height:1.5;
-  color:#cbd5e1;
-  font-size:13px;
+.entry.good{
+  border-color:#1b7651;
+  box-shadow:0 0 35px rgba(32,229,138,.08);
 }
-
-.manual{
-  margin-top:12px;
-  padding:12px;
-  border-radius:12px;
-  background:#0a1410;
-  border:1px solid #21482f;
-  color:#b8f8c9;
-  line-height:1.6;
-  font-size:12px;
+.entry.wait{
+  border-color:#303b4c;
 }
-
-.windows{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+.entry.expired{
+  border-color:#712534;
+}
+.entryTop{
+  display:flex;
+  justify-content:space-between;
   gap:10px;
 }
-
-@media(max-width:650px){
-  .windows{grid-template-columns:1fr}
+.signalBadge{
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:900;
+  background:#111a24;
+  border:1px solid #29384a;
+}
+.signalBadge.good{
+  color:var(--green);
+  border-color:#1e6c4b;
+}
+.signalBadge.bad{
+  color:var(--red);
+  border-color:#692433;
 }
 
-.window{
+.entryMain{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:18px;
+  align-items:center;
+  margin-top:18px;
+}
+.entryCircle{
+  width:122px;
+  height:122px;
+  border-radius:50%;
+  border:2px solid #2c4256;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle,#122031,#070b11 70%);
+}
+.entryCircle .number{
+  font-size:42px;
+  font-weight:1000;
+}
+.entryCircle .label{
+  color:var(--muted);
+  font-size:9px;
+  font-weight:900;
+  margin-top:4px;
+}
+.entryRows{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+.entryRow{
   background:#080d14;
-  border:1px solid #202b39;
-  border-radius:13px;
-  padding:12px;
+  border:1px solid #1b2635;
+  border-radius:10px;
+  padding:10px;
 }
+.entryRow span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  text-transform:uppercase;
+}
+.entryRow strong{
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+}
+.reason{
+  margin-top:12px;
+  padding:11px;
+  border-radius:11px;
+  background:#070c12;
+  border:1px solid #1b2635;
+  font-size:11px;
+  line-height:1.55;
+}
+.manual{
+  margin-top:10px;
+  padding:11px;
+  border-radius:11px;
+  background:#0a1119;
+  border:1px solid #263447;
+  font-size:11px;
+  line-height:1.6;
+}
+.manual strong{color:var(--yellow)}
 
-.window.pass{
-  border-color:#54ff91;
+.countdown{
+  margin-top:13px;
+  font-size:27px;
+  font-weight:1000;
+  letter-spacing:1px;
 }
-
-.window.fail{
-  border-color:#63303a;
-}
-
-.window h4{
-  margin:0 0 8px;
-}
-
-.window-text{
-  font-size:12px;
-  color:#aeb8c6;
-  line-height:1.5;
-}
+.countdown.safe{color:var(--green)}
+.countdown.warn{color:var(--yellow)}
+.countdown.dead{color:var(--red)}
 
 .digits{
   display:grid;
   grid-template-columns:repeat(10,1fr);
-  gap:8px;
+  gap:7px;
+  margin-top:12px;
 }
-
-@media(max-width:700px){
-  .digits{grid-template-columns:repeat(5,1fr)}
-}
-
 .digit{
   aspect-ratio:1;
   border-radius:50%;
-  background:#111925;
-  border:1px solid #293647;
   display:flex;
   flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  border:1px solid #273547;
+  background:#0a1018;
   font-weight:900;
 }
-
-.digit small{
-  font-size:10px;
-  color:#8290a3;
-  margin-top:3px;
-}
-
+.digit b{font-size:16px}
+.digit span{font-size:8px;color:var(--muted);margin-top:3px}
 .digit.hot{
-  border-color:#54ff91;
+  border-color:#1d8159;
+  box-shadow:0 0 15px rgba(32,229,138,.1);
 }
-
+.digit.blue{
+  border-color:#2866a1;
+}
+.digit.yellow{
+  border-color:#8b7321;
+}
 .digit.cold{
-  border-color:#ff5665;
+  border-color:#7b2735;
 }
 
-.table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:12px;
+.windowGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px;
 }
-
-.table th,.table td{
-  padding:9px;
-  border-bottom:1px solid #202a37;
-  text-align:left;
+.window{
+  background:#080d14;
+  border:1px solid #1c2735;
+  border-radius:12px;
+  padding:11px;
+}
+.window h4{
+  margin:0;
+  font-size:11px;
+}
+.window .line{
+  margin-top:7px;
+  color:#b7c4d6;
+  font-size:10px;
+  line-height:1.5;
 }
 
 .lock{
-  border:1px solid #674d19;
-  background:#151108;
-  border-radius:15px;
-  padding:14px;
+  border-color:#634b1e;
+  background:linear-gradient(180deg,#17140b,#0c0e11);
+}
+.lockTitle{
+  color:var(--yellow);
+  font-weight:1000;
+}
+.buyBtn{
+  margin-top:12px;
+  background:var(--yellow);
+  color:#171100;
+  border:0;
+  border-radius:11px;
+  padding:12px 14px;
+  font-weight:1000;
+  width:100%;
 }
 
-.unlock{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
+.log{
+  height:180px;
+  overflow:auto;
+  background:#05080c;
+  border:1px solid #182231;
+  border-radius:11px;
+  padding:10px;
+  font-family:monospace;
+  font-size:10px;
+  line-height:1.55;
 }
-
-.unlock input{flex:1}
+.logLine{color:#5dffab}
+.logWarn{color:#ffd34d}
+.logErr{color:#ff7084}
 
 .history{
-  max-height:230px;
+  max-height:260px;
   overflow:auto;
 }
-
-.history-row{
-  padding:9px;
-  border-bottom:1px solid #1d2632;
-  font-size:12px;
+.historyItem{
+  display:grid;
+  grid-template-columns:80px 1fr 70px;
+  gap:8px;
+  padding:9px 0;
+  border-bottom:1px solid #17212e;
+  font-size:10px;
 }
-
-.good-text{color:#54ff91}
-.bad-text{color:#ff6875}
-.muted{color:#7f8b9c}
-
-.checkline{
-  font-family:monospace;
-  color:#b7c2d1;
-  margin-top:6px;
-}
+.historyItem:last-child{border-bottom:0}
 
 .footer{
   text-align:center;
-  color:#657286;
-  font-size:11px;
-  padding:18px;
+  color:#65758b;
+  font-size:10px;
+  padding:20px 5px 35px;
 }
-</style>
-</head>
 
-<body>
+@media(max-width:900px){
+  .col8,.col6,.col4,.col3{grid-column:span 12}
+  .controls{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .topTitle{font-size:14px}
+  .userPill{font-size:9px}
+  .metricGrid{grid-template-columns:repeat(2,1fr)}
+  .entryMain{grid-template-columns:1fr}
+  .entryCircle{margin:auto}
+  .entryRows{grid-template-columns:1fr 1fr}
+  .windowGrid{grid-template-columns:1fr}
+  .digits{gap:4px}
+  .digit b{font-size:13px}
+  .digit span{font-size:7px}
+}
+</style></head><body><!-- LOGIN --><section id="loginScreen">
+  <div class="loginBox">
+    <div class="loginLogo">🦁</div>
+    <div class="brand">DERIV SIGNAL BOT PRO</div>
+    <div class="power">POWERED BY ELISY 254</div><div class="field">
+  <label>USERNAME / EMAIL</label>
+  <input id="loginUser" type="text" autocomplete="username" placeholder="Enter username">
+</div>
 
-<!-- LOGIN -->
-<section id="loginScreen" class="login">
-  <div class="card login-card">
-    <div class="logo">DERIV SIGNAL BOT PRO</div>
-    <div class="brand">POWERED BY ELISY 254</div>
-    <div class="subtitle">
-      LIVE MARKET ANALYSIS • MANUAL ENTRY
-    </div>
+<div class="field">
+  <label>PASSWORD</label>
+  <input id="loginPass" type="password" autocomplete="current-password" placeholder="Enter password">
+</div>
 
-    <div class="field">
-      <label>USERNAME</label>
-      <input id="loginUser" type="text" placeholder="Enter username">
-    </div>
+<label class="check">
+  <input id="saveLogin" type="checkbox">
+  Save login on this device
+</label>
 
-    <div class="field">
-      <label>PASSWORD</label>
-      <input id="loginPass" type="password" placeholder="Enter password">
-    </div>
+<button id="loginBtn" class="primary full loginBtn">LOGIN</button>
+<div id="loginMsg" class="loginMsg"></div>
 
-    <label style="display:flex;gap:8px;align-items:center;text-align:left;font-size:12px;color:#9aa7b7">
-      <input id="saveLogin" type="checkbox" style="width:auto">
-      Save login on this device
-    </label>
-
-    <button class="primary" id="loginBtn">LOGIN</button>
-
-    <div id="loginMsg" class="bad-text" style="margin-top:10px;font-size:12px"></div>
   </div>
-</section>
-
-<!-- APP -->
-<main id="app" class="app hidden">
-
-  <div class="card">
-    <div class="header">
+</section><!-- APP --><section id="app"><header class="topbar">
+  <div class="topInner">
+    <div>
+      <div class="topTitle">DERIV SIGNAL BOT PRO</div>
+      <div class="topSub">LIVE MARKET ANALYSIS • MANUAL ENTRY</div>
+    </div>
+    <div class="userPill">TRADER: <strong id="traderName">Trade23</strong></div>
+  </div>
+</header><main class="container"><div class="grid">  <!-- MARKET CONTROL -->  <div class="card col12">
+    <div class="marketHead">
       <div>
-        <div class="logo" style="font-size:22px">DERIV SIGNAL BOT PRO</div>
-        <div class="brand" style="font-size:12px">POWERED BY ELISY 254</div>
-      </div>
-
-      <div style="display:flex;gap:8px;align-items:center">
-        <div class="status">
-          <span id="statusDot" class="dot"></span>
-          <span id="connectionStatus">DISCONNECTED</span>
+        <div class="cardTitle">Market Control</div>
+        <div id="marketName" style="font-size:18px;font-weight:1000;margin-top:5px">
+          Connecting...
         </div>
-        <button id="logoutBtn" class="secondary danger">LOGOUT</button>
-      </div>
-    </div>
-
-    <div style="margin-top:10px;font-size:12px;color:#9aa7b7">
-      TRADER: <strong id="traderName">Trade23</strong>
-    </div>
+        <div id="marketSymbol" class="muted" style="font-size:10px;margin-top:3px">—</div>
+      </div>  <div class="status">
+    <span id="liveDot" class="dot"></span>
+    <span id="connectionText">DISCONNECTED</span>
   </div>
+</div>
 
-  <div class="card warning">
-    ⚠️ <strong>ANALYSIS ONLY.</strong>
-    This application reads public live market data and produces analytical setups.
-    It does not place trades, access Deriv balances, or guarantee results.
-    Always verify the market, contract and barrier yourself before manually trading.
+<div class="controls">
+  <select id="marketSelect"></select>
+
+  <select id="contractSelect">
+    <option value="OVER">OVER</option>
+    <option value="UNDER">UNDER</option>
+    <option value="EVEN">EVEN</option>
+    <option value="ODD">ODD</option>
+    <option value="MATCHES">MATCHES 🔐</option>
+    <option value="DIFFERS">DIFFERS</option>
+    <option value="RISE">RISE</option>
+    <option value="FALL">FALL</option>
+  </select>
+
+  <button id="scanBtn" class="primary">RUN ANALYSIS</button>
+  <button id="logoutBtn" class="secondary">LOGOUT</button>
+</div>
+
+<div class="metricGrid">
+  <div class="metric">
+    <div class="metricLabel">LIVE PRICE</div>
+    <div id="livePrice" class="metricValue">—</div>
   </div>
+  <div class="metric">
+    <div class="metricLabel">LAST DIGIT</div>
+    <div id="lastDigit" class="metricValue green">—</div>
+  </div>
+  <div class="metric">
+    <div class="metricLabel">TICKS LOADED</div>
+    <div id="tickCount" class="metricValue">0</div>
+  </div>
+  <div class="metric">
+    <div class="metricLabel">SCANNER</div>
+    <div id="scannerStatus" class="metricValue">IDLE</div>
+  </div>
+</div>
 
-  <!-- CONTROLS -->
-  <div class="card">
-    <div class="controls">
-
-      <div class="field">
-        <label>LIVE MARKET</label>
-        <select id="marketSelect">
-          <option>Discovering markets...</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>CONTRACT STRATEGY</label>
-        <select id="contractSelect">
-          <option value="OVER">OVER • 5 → 4 → 3 → 2 → 1</option>
-          <option value="UNDER">UNDER • 6 → 7 → 8</option>
-          <option value="EVEN">EVEN • CONFIRMATION</option>
-          <option value="ODD">ODD • CONFIRMATION</option>
-          <option value="MATCHES">MATCHES 🔐</option>
-          <option value="DIFFERS">DIFFERS • CONFIRMATION</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="engine">
-      <div>
-        <span class="muted">ENGINE:</span>
-        <span id="engineState" class="engine-state">READY</span>
-      </div>
-
-      <div>
-        <span class="muted">SCANNER:</span>
-        <span id="scannerState" class="good-text">STOPPED</span>
-      </div>
+  </div>  <!-- ENTRY -->  <div class="card col8 entry wait" id="entryCard"><div class="entryTop">
+  <div>
+    <div class="cardTitle">FINAL ENTRY DECISION</div>
+    <div id="entryContract" style="font-size:22px;font-weight:1000;margin-top:5px">
+      WAIT
     </div>
   </div>
 
-  <!-- LIVE METRICS -->
-  <div class="card">
-    <h3>📡 LIVE MARKET</h3>
+  <div id="signalBadge" class="signalBadge">WAIT</div>
+</div>
 
-    <div class="grid">
-      <div class="metric">
-        <small>MARKET</small>
-        <strong id="metricMarket">—</strong>
-      </div>
+<div class="entryMain">
 
-      <div class="metric">
-        <small>SYMBOL</small>
-        <strong id="metricSymbol">—</strong>
-      </div>
-
-      <div class="metric">
-        <small>LIVE PRICE</small>
-        <strong id="livePrice">—</strong>
-      </div>
-
-      <div class="metric">
-        <small>LAST DIGIT</small>
-        <strong id="lastDigit">—</strong>
-      </div>
-
-      <div class="metric">
-        <small>LIVE TICKS</small>
-        <strong id="tickCount">0</strong>
-      </div>
-
-      <div class="metric">
-        <small>HISTORY</small>
-        <strong id="historyCount">0</strong>
-      </div>
-
-      <div class="metric">
-        <small>RSI(14)</small>
-        <strong id="rsi">—</strong>
-      </div>
-
-      <div class="metric">
-        <small>MOMENTUM</small>
-        <strong id="momentum">—</strong>
-      </div>
-    </div>
+  <div class="entryCircle">
+    <div id="entryNumber" class="number">—</div>
+    <div id="entryNumberLabel" class="label">BARRIER</div>
   </div>
 
-  <!-- ENTRY -->
-  <div id="entryCard" class="card entry wait">
+  <div class="entryRows">
 
-    <div class="entry-title" id="entryTitle">
-      ⏳ WAITING FOR A CONFIRMED SETUP
+    <div class="entryRow">
+      <span>Market</span>
+      <strong id="entryMarket">—</strong>
     </div>
 
-    <div class="entry-main">
-
-      <div>
-        <div id="bigNumber" class="big-number">—</div>
-        <div id="bigLabel" class="big-label">ENTRY</div>
-      </div>
-
-      <div>
-
-        <div class="entry-grid">
-
-          <div class="entry-item">
-            <span>CONTRACT</span>
-            <strong id="entryContract">—</strong>
-          </div>
-
-          <div class="entry-item">
-            <span>BARRIER / DIGIT</span>
-            <strong id="entryBarrier">—</strong>
-          </div>
-
-          <div class="entry-item">
-            <span>CONFIDENCE</span>
-            <strong id="entryConfidence">—</strong>
-          </div>
-
-          <div class="entry-item">
-            <span>COUNTDOWN</span>
-            <strong id="countdown" class="countdown">—</strong>
-          </div>
-
-          <div class="entry-item">
-            <span>AGREEMENT</span>
-            <strong id="entryAgreement">—</strong>
-          </div>
-
-          <div class="entry-item">
-            <span>QUALITY</span>
-            <strong id="entryQuality">—</strong>
-          </div>
-
-        </div>
-
-        <div class="reason">
-          <strong>🧠 REASON</strong>
-          <div id="entryReason" style="margin-top:6px">
-            Waiting for enough live data...
-          </div>
-        </div>
-
-        <div class="manual">
-          <strong>📦 MANUAL ENTRY</strong>
-          <div id="manualInstructions" style="margin-top:5px">
-            Wait for GOOD ENTRY. Then open Deriv manually, select the same market and contract,
-            verify the barrier/digit, choose your own stake and duration, and place the trade yourself.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- CONFIRMATIONS -->
-  <div class="card">
-    <h3>📊 MULTI-WINDOW CONFIRMATION</h3>
-
-    <div class="windows">
-      <div id="window50" class="window">
-        <h4>50 TICKS</h4>
-        <div class="window-text">Waiting...</div>
-      </div>
-
-      <div id="window100" class="window">
-        <h4>100 TICKS</h4>
-        <div class="window-text">Waiting...</div>
-      </div>
-
-      <div id="window500" class="window">
-        <h4>500 TICKS</h4>
-        <div class="window-text">Waiting...</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DIGITS -->
-  <div class="card">
-    <h3>🔢 LIVE DIGIT DISTRIBUTION</h3>
-    <div id="digitGrid" class="digits"></div>
-  </div>
-
-  <!-- CONTRACT RATES -->
-  <div class="card">
-    <h3>📈 HISTORICAL CONTRACT REFERENCE</h3>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>CONTRACT</th>
-          <th>RATE</th>
-          <th>STATUS</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>EVEN</td>
-          <td id="rate-EVEN">—</td>
-          <td id="status-EVEN">—</td>
-        </tr>
-        <tr>
-          <td>ODD</td>
-          <td id="rate-ODD">—</td>
-          <td id="status-ODD">—</td>
-        </tr>
-        <tr>
-          <td>OVER</td>
-          <td id="rate-OVER">—</td>
-          <td id="status-OVER">—</td>
-        </tr>
-        <tr>
-          <td>UNDER</td>
-          <td id="rate-UNDER">—</td>
-          <td id="status-UNDER">—</td>
-        </tr>
-        <tr>
-          <td>MATCHES</td>
-          <td id="rate-MATCHES">—</td>
-          <td id="status-MATCHES">🔐 LOCKED</td>
-        </tr>
-        <tr>
-          <td>DIFFERS</td>
-          <td id="rate-DIFFERS">—</td>
-          <td id="status-DIFFERS">—</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- MATCHES LOCK -->
-  <div id="matchesLock" class="card lock hidden">
-    <strong>🔐 MATCHES LOCKED</strong>
-
-    <div class="muted" style="margin-top:7px">
-      Enter the activation code to unlock MATCHES analysis.
+    <div class="entryRow">
+      <span>Contract</span>
+      <strong id="entryType">—</strong>
     </div>
 
-    <div class="unlock">
-      <input id="matchesCode" type="password" placeholder="Activation code">
-      <button id="unlockMatches" class="secondary">UNLOCK</button>
+    <div class="entryRow">
+      <span>Ticks</span>
+      <strong id="entryTicks">—</strong>
     </div>
 
-    <div id="unlockMsg" style="margin-top:8px;font-size:12px"></div>
-  </div>
-
-  <!-- SCANNER -->
-  <div class="card">
-    <div class="header">
-      <h3 style="margin:0">🟢 LIVE SCANNER</h3>
-      <button id="clearScanner" class="secondary">CLEAR</button>
+    <div class="entryRow">
+      <span>Confidence</span>
+      <strong id="entryConfidence">—</strong>
     </div>
 
-    <div id="scanner" class="scan"></div>
+    <div class="entryRow">
+      <span>Agreement</span>
+      <strong id="entryAgreement">—</strong>
+    </div>
+
+    <div class="entryRow">
+      <span>Quality</span>
+      <strong id="entryQuality">—</strong>
+    </div>
+
+  </div>
+</div>
+
+<div id="entryReason" class="reason">
+  Waiting for enough live market data...
+</div>
+
+<div class="manual">
+  <strong>MANUAL ENTRY ONLY</strong><br>
+  Open Deriv manually → select the same market → select the contract shown above →
+  enter/verify the displayed digit or barrier → choose your own stake and duration →
+  place the trade manually before the signal expires.
+  <br><br>
+  <span class="muted">
+    The bot does not place trades, does not control your Deriv account,
+    and does not guarantee a winning result.
+  </span>
+</div>
+
+<div id="countdown" class="countdown">—</div>
+
+  </div>  <!-- MATCHES -->  <div id="matchesLock" class="card col4 lock hidden">
+    <div class="lockTitle">🔐 MATCHES LOCKED</div><div class="muted" style="margin-top:8px;font-size:11px;line-height:1.5">
+  MATCHES digit-match analysis is a premium feature.
+  Contact ELISY 254 to purchase access.
+</div>
+
+<button id="buyMatches" class="buyBtn">
+  BUY MATCHES → WHATSAPP
+</button>
+
+<div id="unlockMsg" class="muted" style="margin-top:8px;font-size:10px">
+  After purchase, access can be activated for your session.
+</div>
+
+  </div>  <!-- LIVE DIGITS -->  <div class="card col12">
+    <div class="cardTitle">LIVE DIGIT DISTRIBUTION</div>
+    <div class="muted" style="font-size:10px;margin-top:4px">
+      Actual live tick distribution from the selected Deriv market.
+    </div><div id="digitGrid" class="digits"></div>
+
+  </div>  <!-- WINDOWS -->  <div class="card col12">
+    <div class="cardTitle">MULTI-WINDOW CONFIRMATION</div><div id="windowGrid" class="windowGrid">
+  <div class="window">
+    <h4>50 TICKS</h4>
+    <div class="line">Waiting...</div>
+  </div>
+  <div class="window">
+    <h4>100 TICKS</h4>
+    <div class="line">Waiting...</div>
+  </div>
+  <div class="window">
+    <h4>500 TICKS</h4>
+    <div class="line">Waiting...</div>
+  </div>
+</div>
+
+  </div>  <!-- CONTRACT RATES -->  <div class="card col6">
+    <div class="cardTitle">CONTRACT REFERENCE</div><div class="metricGrid">
+  <div class="metric">
+    <div class="metricLabel">OVER</div>
+    <div id="rateOver" class="metricValue">—</div>
   </div>
 
-  <!-- RECENT TICKS -->
-  <div class="card">
-    <h3>🕒 RECENT TICKS</h3>
-    <div id="recentTicks" class="history"></div>
+  <div class="metric">
+    <div class="metricLabel">UNDER</div>
+    <div id="rateUnder" class="metricValue">—</div>
   </div>
 
-  <!-- SIGNAL HISTORY -->
-  <div class="card">
-    <h3>📜 SIGNAL HISTORY</h3>
-    <div id="signalHistory" class="history"></div>
+  <div class="metric">
+    <div class="metricLabel">EVEN</div>
+    <div id="rateEven" class="metricValue">—</div>
   </div>
 
-  <div class="footer">
-    DERIV SIGNAL BOT PRO • POWERED BY ELISY 254<br>
-    ANALYSIS ONLY • MANUAL ENTRY • NO GUARANTEED RESULTS
+  <div class="metric">
+    <div class="metricLabel">ODD</div>
+    <div id="rateOdd" class="metricValue">—</div>
   </div>
+</div>
 
-</main>
-
-<script>
+  </div>  <!-- SCANNER -->  <div class="card col6">
+    <div class="cardTitle">LIVE SCANNER</div>
+    <div id="scannerLog" class="log" style="margin-top:10px"></div>
+  </div>  <!-- HISTORY -->  <div class="card col12">
+    <div class="cardTitle">SIGNAL HISTORY</div>
+    <div id="signalHistory" class="history" style="margin-top:8px"></div>
+  </div></div><div class="footer">
+  DERIV SIGNAL BOT PRO • POWERED BY ELISY 254<br>
+  ANALYSIS ONLY • MANUAL ENTRY • LIVE MARKET DATA
+</div></main>
+</section><script>
 "use strict";
 
 /* =========================================================
@@ -810,32 +739,33 @@ input:focus,select:focus{
 ========================================================= */
 
 const CONFIG = {
-  LOGIN_USER: "Trade23",
-  LOGIN_PASS: "Market23",
+  USERNAME: "Trade23",
+  PASSWORD: "Market23",
 
-  MATCHES_CODE: "19809",
+  /* Internal feature value.
+     It is never rendered into the UI. */
+  MATCHES_CODE_INTERNAL: "19809",
 
-  HISTORY_SIZE: 500,
+  /* WhatsApp purchase destination */
+  WHATSAPP_NUMBER: "254701859605",
+
+  HISTORY_TICKS: 500,
+  MIN_ANALYSIS_TICKS: 50,
+
+  SCAN_INTERVAL: 1200,
+  SIGNAL_SECONDS: 60,
+
+  OPPOSITE_MAX_RATE: 10.5,
 
   OVER_BARRIERS: [5,4,3,2,1],
   UNDER_BARRIERS: [6,7,8],
-
-  OPPOSITE_MAX_RATE: 10.5,
 
   PARITY_MIN: 55,
   PARITY_EDGE_MIN: 6,
   PARITY_DIGIT_MIN: 10.5,
 
-  DIFFERS_MIN: 88,
   MATCHES_MIN: 15,
-
-  MIN_QUALITY: 70,
-  MIN_AGREEMENT: 66,
-  MIN_SCORE: 60,
-
-  CONFIRMATIONS_REQUIRED: 3,
-
-  SIGNAL_SECONDS: 60
+  DIFFERS_MIN: 88
 };
 
 /* =========================================================
@@ -844,96 +774,202 @@ const CONFIG = {
 
 let ws = null;
 let reconnectTimer = null;
-let reconnectAttempt = 0;
-
-let requestId = 1000;
+let reconnectAttempts = 0;
 
 let markets = [];
 let selectedSymbol = "";
 let selectedMarketName = "";
 let selectedPipSize = 0.01;
 
-let ticks = [];
-
-let activeSubscriptionId = null;
+let tickData = [];
+let activeSubscriptionId = "";
 
 let scanTimer = null;
-let analysisBusy = false;
+let countdownTimer = null;
+let countdownEnd = 0;
 
 let matchesUnlocked = false;
 
-let signalCountdownTimer = null;
-let signalExpiresAt = 0;
-
-let lastSignalKey = "";
-let signalConfirmationCount = 0;
-
 let lastAnalysis = null;
 
-let scannerLastText = "";
+let activeSignalKey = "";
+let expiredSignalKey = "";
+let signalLoggedKey = "";
+
+let lastLiveTickAt = 0;
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 const $ = id => document.getElementById(id);
-
-function nextReqId(){
-  requestId++;
-  return requestId;
-}
 
 function clamp(v,min,max){
   return Math.max(min,Math.min(max,v));
 }
 
-function escapeHtml(value){
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+function escapeHtml(str){
+  return String(str ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function nowTime(){
+  return new Date().toLocaleTimeString();
+}
+
+function logScanner(message,type=""){
+  const div=document.createElement("div");
+  div.className =
+    type==="err" ? "logErr" :
+    type==="warn" ? "logWarn" : "logLine";
+
+  div.textContent=`[${nowTime()}] ${message}`;
+
+  $("scannerLog").prepend(div);
+
+  while($("scannerLog").children.length>80){
+    $("scannerLog").lastChild.remove();
+  }
+}
+
+function decimalPlacesFromPip(pip){
+  const value=Number(pip);
+
+  if(!Number.isFinite(value)||value<=0) return 2;
+
+  return clamp(
+    Math.ceil(-Math.log10(value)),
+    0,
+    10
+  );
+}
+
+function getLastDigitFromTick(item){
+  const quote=Number(item.quote);
+
+  if(!Number.isFinite(quote)) return null;
+
+  const pip=Number(item.pipSize ?? selectedPipSize);
+  const decimals=decimalPlacesFromPip(pip);
+
+  const fixed=quote.toFixed(decimals);
+  const digits=fixed.replace(/\D/g,"");
+
+  if(!digits.length) return null;
+
+  return Number(digits[digits.length-1]);
 }
 
 /* =========================================================
-   LOGIN
+   LOCAL LOGIN
 ========================================================= */
 
-function login(){
-  const user = $("loginUser").value.trim();
-  const pass = $("loginPass").value;
+function showApp(){
+  $("loginScreen").style.display="none";
+  $("app").style.display="block";
+  $("traderName").textContent=CONFIG.USERNAME;
 
-  if(user !== CONFIG.LOGIN_USER || pass !== CONFIG.LOGIN_PASS){
-    $("loginMsg").textContent = "Invalid username or password.";
-    return;
-  }
-
-  if($("saveLogin").checked){
-    localStorage.setItem("elisy_saved_login","1");
-  }else{
-    localStorage.removeItem("elisy_saved_login");
-  }
-
-  startApp();
-}
-
-function startApp(){
-  $("loginScreen").classList.add("hidden");
-  $("app").classList.remove("hidden");
-  $("traderName").textContent = CONFIG.LOGIN_USER;
-
-  initDigitGrid();
+  startScanner();
   connectDeriv();
 }
 
-function logout(){
-  localStorage.removeItem("elisy_saved_login");
+function showLogin(){
+  $("app").style.display="none";
+  $("loginScreen").style.display="flex";
+}
+
+function doLogin(){
+  const username=$("loginUser").value.trim();
+  const password=$("loginPass").value;
+
+  if(username===CONFIG.USERNAME && password===CONFIG.PASSWORD){
+
+    if($("saveLogin").checked){
+      localStorage.setItem(
+        "deriv_signal_saved_login",
+        "1"
+      );
+    }else{
+      localStorage.removeItem(
+        "deriv_signal_saved_login"
+      );
+    }
+
+    $("loginMsg").textContent="Login successful.";
+    $("loginMsg").className="loginMsg green";
+
+    setTimeout(showApp,250);
+
+  }else{
+    $("loginMsg").textContent="Invalid login details.";
+    $("loginMsg").className="loginMsg red";
+  }
+}
+
+$("loginBtn").addEventListener("click",doLogin);
+
+$("loginPass").addEventListener("keydown",e=>{
+  if(e.key==="Enter") doLogin();
+});
+
+$("logoutBtn").addEventListener("click",()=>{
+  localStorage.removeItem("deriv_signal_saved_login");
 
   stopScanner();
-  disconnectDeriv();
+  stopCountdown();
 
-  $("app").classList.add("hidden");
-  $("loginScreen").classList.remove("hidden");
+  if(ws){
+    try{ws.close()}catch(e){}
+  }
 
-  $("loginUser").value = "";
-  $("loginPass").value = "";
+  ws=null;
+  showLogin();
+});
+
+/* =========================================================
+   WHATSAPP MATCHES PURCHASE
+========================================================= */
+
+$("buyMatches").addEventListener("click",()=>{
+  const message =
+    "Hello ELISY 254, I want to buy MATCHES access for DERIV SIGNAL BOT PRO.";
+
+  const url =
+    "https://wa.me/" +
+    CONFIG.WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(url,"_blank");
+});
+
+/* =========================================================
+   MATCHES LOCK
+========================================================= */
+
+function showMatchesLock(){
+  $("matchesLock").classList.toggle(
+    "hidden",
+    $("contractSelect").value!=="MATCHES"
+  );
+}
+
+function activateMatchesInternal(code){
+  /* Internal activation function.
+     The activation value is never displayed. */
+
+  if(code===CONFIG.MATCHES_CODE_INTERNAL){
+    matchesUnlocked=true;
+    $("unlockMsg").textContent="MATCHES access active for this session.";
+    $("unlockMsg").className="green";
+    return true;
+  }
+
+  return false;
 }
 
 /* =========================================================
@@ -941,163 +977,105 @@ function logout(){
 ========================================================= */
 
 function connectDeriv(){
-  clearTimeout(reconnectTimer);
 
   if(ws){
-    try{ ws.close(); }catch(e){}
-    ws = null;
+    try{ws.close()}catch(e){}
+    ws=null;
   }
 
   setConnection(false,"CONNECTING...");
+  logScanner("Connecting to Deriv public market feed...");
 
-  logScanner("Connecting to Deriv public live market feed...");
+  ws=new WebSocket(
+    "wss://api.derivws.com/trading/v1/options/ws/public"
+  );
 
-  try{
-    ws = new WebSocket(
-      "wss://api.derivws.com/trading/v1/options/ws/public"
-    );
-  }catch(err){
-    setConnection(false,"CONNECTION ERROR");
-    scheduleReconnect();
-    return;
-  }
+  ws.onopen=()=>{
+    reconnectAttempts=0;
 
-  ws.addEventListener("open",()=>{
-    reconnectAttempt = 0;
+    setConnection(true,"LIVE");
 
-    setConnection(true,"CONNECTED");
-
-    logScanner("Deriv WebSocket connected.");
+    logScanner("Deriv public feed connected.");
 
     requestActiveSymbols();
+  };
 
-    startScanner();
-  });
-
-  ws.addEventListener("message",event=>{
+  ws.onmessage=e=>{
     try{
-      const data = JSON.parse(event.data);
+      const data=JSON.parse(e.data);
       handleDerivMessage(data);
     }catch(err){
-      logScanner("Invalid WebSocket message.");
+      logScanner("Invalid market response received.","err");
     }
-  });
+  };
 
-  ws.addEventListener("error",()=>{
-    setConnection(false,"SOCKET ERROR");
-  });
+  ws.onerror=()=>{
+    setConnection(false,"ERROR");
+    logScanner("Deriv WebSocket error.","err");
+  };
 
-  ws.addEventListener("close",()=>{
+  ws.onclose=()=>{
     setConnection(false,"DISCONNECTED");
+    logScanner("Deriv feed disconnected.","warn");
 
-    stopScanner();
-
-    if(!document.hidden){
-      scheduleReconnect();
-    }
-  });
-}
-
-function disconnectDeriv(){
-  clearTimeout(reconnectTimer);
-
-  if(ws){
-    try{
-      ws.close();
-    }catch(e){}
-  }
-
-  ws = null;
-
-  setConnection(false,"DISCONNECTED");
+    scheduleReconnect();
+  };
 }
 
 function scheduleReconnect(){
-  clearTimeout(reconnectTimer);
 
-  reconnectAttempt++;
+  if(reconnectTimer) return;
 
-  const delay = Math.min(
+  reconnectAttempts++;
+
+  const delay=Math.min(
     30000,
-    Math.round(3000 * Math.pow(1.6,reconnectAttempt-1))
+    Math.round(
+      3000 * Math.pow(1.6,reconnectAttempts-1)
+    )
   );
 
   logScanner(
-    "Reconnect scheduled in " +
-    Math.round(delay/1000) +
-    " seconds..."
+    `Reconnecting in ${Math.round(delay/1000)}s...`,
+    "warn"
   );
 
-  reconnectTimer = setTimeout(connectDeriv,delay);
+  reconnectTimer=setTimeout(()=>{
+    reconnectTimer=null;
+    connectDeriv();
+  },delay);
 }
 
-function send(data){
-  if(!ws || ws.readyState !== WebSocket.OPEN){
-    return false;
-  }
-
-  try{
-    ws.send(JSON.stringify(data));
-    return true;
-  }catch(err){
-    return false;
-  }
-}
-
-function requestActiveSymbols(){
-  send({
-    active_symbols:"brief",
-    req_id:nextReqId()
-  });
-
-  logScanner("Requesting automatic Deriv market discovery...");
-}
-
-function handleDerivMessage(data){
-
-  if(data.error){
-    logScanner(
-      "Deriv error: " +
-      (data.error.message || "Unknown error")
-    );
-    return;
-  }
-
-  if(data.active_symbols){
-    processActiveSymbols(data.active_symbols);
-    return;
-  }
-
-  if(data.history){
-    processHistory(data);
-    return;
-  }
-
-  if(data.tick){
-    processLiveTick(data);
-    return;
-  }
-
-  if(data.subscription){
-    if(data.subscription.id){
-      activeSubscriptionId = data.subscription.id;
-    }
-  }
+function setConnection(live,text){
+  $("connectionText").textContent=text;
+  $("liveDot").className=live ? "dot live" : "dot";
 }
 
 /* =========================================================
-   MARKET DISCOVERY
+   ACTIVE SYMBOL DISCOVERY
 ========================================================= */
+
+function requestActiveSymbols(){
+
+  if(!ws || ws.readyState!==WebSocket.OPEN) return;
+
+  ws.send(JSON.stringify({
+    active_symbols:"brief",
+    req_id:Date.now()
+  }));
+
+  logScanner("Requesting live market discovery...");
+}
 
 function isWantedMarket(item){
 
-  const symbol = String(
+  const symbol=String(
     item.underlying_symbol ||
     item.symbol ||
     ""
   ).toUpperCase();
 
-  const name = String(
+  const name=String(
     item.underlying_symbol_name ||
     item.display_name ||
     item.name ||
@@ -1115,81 +1093,77 @@ function isWantedMarket(item){
 
 function friendlyMarketName(item){
 
-  const symbol = String(
+  const symbol=String(
     item.underlying_symbol ||
     item.symbol ||
     ""
-  );
+  ).toUpperCase();
 
-  const rawName = String(
+  const rawName=String(
     item.underlying_symbol_name ||
     item.display_name ||
     item.name ||
-    ""
+    symbol
   );
 
-  if(/^1HZ\d+V$/i.test(symbol)){
-    const n = symbol.match(/^1HZ(\d+)V$/i);
+  const oneSecond=symbol.match(/^1HZ(\d+)V$/);
 
-    if(n){
-      return "Volatility " + n[1] + " (1s) Index";
-    }
+  if(oneSecond){
+    return `Volatility ${oneSecond[1]} (1s) Index`;
   }
 
-  if(/^R_\d+$/i.test(symbol)){
-    return "Volatility " + symbol.split("_")[1] + " Index";
+  if(/^R_\d+$/.test(symbol)){
+    const n=symbol.substring(2);
+    return `Volatility ${n} Index`;
   }
 
-  if(/^JD\d+$/i.test(symbol)){
-    return "Jump " + symbol.replace(/^JD/i,"") + " Index";
+  const jump=symbol.match(/^JD(\d+)$/);
+
+  if(jump){
+    return `Jump ${jump[1]} Index`;
   }
 
-  return rawName || symbol;
+  return rawName;
 }
 
 function processActiveSymbols(list){
 
-  const found = [];
+  const wanted=list
+    .filter(isWantedMarket)
+    .map(item=>{
 
-  for(const item of list){
+      const symbol=
+        item.underlying_symbol ||
+        item.symbol;
 
-    if(!isWantedMarket(item)) continue;
+      return {
+        symbol,
+        name:friendlyMarketName(item),
+        pipSize:
+          Number(
+            item.pip_size ??
+            item.pip ??
+            0.01
+          )
+      };
+    })
+    .filter(x=>x.symbol);
 
-    const symbol = String(
-      item.underlying_symbol ||
-      item.symbol ||
-      ""
+  const unique=new Map();
+
+  wanted.forEach(m=>{
+    unique.set(m.symbol,m);
+  });
+
+  markets=[...unique.values()]
+    .sort((a,b)=>
+      a.name.localeCompare(b.name)
     );
-
-    if(!symbol) continue;
-
-    const name = friendlyMarketName(item);
-
-    const pip = Number(
-      item.pip_size ??
-      item.pip ??
-      0.01
-    );
-
-    if(found.some(x=>x.symbol===symbol)) continue;
-
-    found.push({
-      symbol,
-      name,
-      pipSize:Number.isFinite(pip) && pip>0 ? pip : 0.01
-    });
-  }
-
-  found.sort((a,b)=>a.name.localeCompare(b.name));
-
-  markets = found;
 
   renderMarkets();
 
   logScanner(
-    "Market discovery complete: " +
-    markets.length +
-    " live Volatility/Jump markets found."
+    `${markets.length} live Volatility/1s/Jump markets discovered.`
   );
 
   if(!selectedSymbol && markets.length){
@@ -1199,546 +1173,441 @@ function processActiveSymbols(list){
 
 function renderMarkets(){
 
-  const select = $("marketSelect");
+  const select=$("marketSelect");
+  const old=selectedSymbol;
 
-  select.innerHTML = "";
+  select.innerHTML="";
 
-  if(!markets.length){
-    const option = document.createElement("option");
-    option.textContent = "No supported markets found";
-    select.appendChild(option);
-    return;
-  }
+  markets.forEach(m=>{
+    const option=document.createElement("option");
 
-  for(const market of markets){
-
-    const option = document.createElement("option");
-
-    option.value = market.symbol;
-    option.textContent =
-      market.name +
-      " • " +
-      market.symbol;
+    option.value=m.symbol;
+    option.textContent=m.name;
 
     select.appendChild(option);
-  }
+  });
 
-  if(selectedSymbol){
-    select.value = selectedSymbol;
+  if(old && markets.some(m=>m.symbol===old)){
+    select.value=old;
+  }else if(markets.length){
+    select.value=markets[0].symbol;
   }
 }
+
+$("marketSelect").addEventListener("change",()=>{
+  selectMarket($("marketSelect").value);
+});
 
 /* =========================================================
    MARKET SWITCH
 ========================================================= */
 
-function selectMarket(symbol){
+function clearTickState(){
 
-  const market = markets.find(x=>x.symbol===symbol);
+  tickData=[];
 
-  if(!market) return;
+  lastAnalysis=null;
 
-  selectedSymbol = market.symbol;
-  selectedMarketName = market.name;
-  selectedPipSize = market.pipSize;
-
-  ticks = [];
-
-  activeSubscriptionId = null;
-
-  signalConfirmationCount = 0;
-  lastSignalKey = "";
+  activeSignalKey="";
+  expiredSignalKey="";
+  signalLoggedKey="";
 
   stopCountdown();
 
-  $("metricMarket").textContent = market.name;
-  $("metricSymbol").textContent = market.symbol;
+  $("livePrice").textContent="—";
+  $("lastDigit").textContent="—";
+  $("tickCount").textContent="0";
 
-  $("livePrice").textContent = "—";
-  $("lastDigit").textContent = "—";
-  $("tickCount").textContent = "0";
-  $("historyCount").textContent = "0";
+  renderDigits([]);
 
-  resetEntry();
+  $("entryContract").textContent="WAIT";
+  $("entryNumber").textContent="—";
+  $("entryNumberLabel").textContent="BARRIER";
+  $("entryReason").textContent=
+    "Loading fresh live market data...";
 
-  clearWindows();
+  $("entryConfidence").textContent="—";
+  $("entryAgreement").textContent="—";
+  $("entryQuality").textContent="—";
 
-  logScanner(
-    "Selected market: " +
-    market.name +
-    " [" +
-    market.symbol +
-    "]"
+  $("entryCard").className="card col8 entry wait";
+  $("signalBadge").textContent="WAIT";
+  $("signalBadge").className="signalBadge";
+}
+
+function forgetTickSubscriptions(){
+
+  if(!ws || ws.readyState!==WebSocket.OPEN) return;
+
+  if(activeSubscriptionId){
+
+    ws.send(JSON.stringify({
+      forget:activeSubscriptionId,
+      req_id:Date.now()
+    }));
+
+  }else{
+
+    ws.send(JSON.stringify({
+      forget_all:"ticks",
+      req_id:Date.now()
+    }));
+
+  }
+
+  activeSubscriptionId="";
+}
+
+function selectMarket(symbol){
+
+  const market=markets.find(
+    m=>m.symbol===symbol
   );
 
-  loadHistory();
+  if(!market) return;
+
+  selectedSymbol=market.symbol;
+  selectedMarketName=market.name;
+  selectedPipSize=market.pipSize;
+
+  $("marketSelect").value=symbol;
+  $("marketName").textContent=market.name;
+  $("marketSymbol").textContent=symbol;
+
+  clearTickState();
+
+  forgetTickSubscriptions();
+
+  logScanner(
+    `Selected ${market.name} (${symbol}).`
+  );
+
+  if(ws && ws.readyState===WebSocket.OPEN){
+    loadHistory();
+  }
 }
 
 /* =========================================================
-   HISTORY + LIVE TICKS
+   HISTORY
 ========================================================= */
 
 function loadHistory(){
 
   if(!selectedSymbol) return;
 
-  if(activeSubscriptionId){
-    send({
-      forget:activeSubscriptionId,
-      req_id:nextReqId()
-    });
+  if(!ws || ws.readyState!==WebSocket.OPEN) return;
 
-    activeSubscriptionId = null;
-  }
+  const reqId=Date.now();
 
-  ticks = [];
-
-  $("historyCount").textContent = "0";
-
-  send({
+  ws.send(JSON.stringify({
     ticks_history:selectedSymbol,
-    count:CONFIG.HISTORY_SIZE,
+    count:CONFIG.HISTORY_TICKS,
     end:"latest",
     style:"ticks",
-    req_id:nextReqId()
-  });
+    req_id:reqId
+  }));
 
   logScanner(
-    "Loading " +
-    CONFIG.HISTORY_SIZE +
-    " historical ticks..."
+    `Loading ${CONFIG.HISTORY_TICKS} historical ticks...`
   );
 }
 
-function processHistory(data){
+/* =========================================================
+   LIVE TICKS
+========================================================= */
 
-  const prices = data.history?.prices || [];
-  const times = data.history?.times || [];
-
-  ticks = [];
-
-  for(let i=0;i<prices.length;i++){
-
-    const quote = Number(prices[i]);
-
-    if(!Number.isFinite(quote)) continue;
-
-    ticks.push({
-      quote,
-      epoch:Number(times[i] || Date.now()/1000),
-      pipSize:selectedPipSize
-    });
-  }
-
-  ticks = ticks.slice(-CONFIG.HISTORY_SIZE);
-
-  $("historyCount").textContent = ticks.length;
-
-  logScanner(
-    "History loaded: " +
-    ticks.length +
-    " ticks."
-  );
-
-  subscribeLiveTicks();
-  updateAllDisplays();
-}
-
-function subscribeLiveTicks(){
+function subscribeTicks(){
 
   if(!selectedSymbol) return;
 
-  send({
+  if(!ws || ws.readyState!==WebSocket.OPEN) return;
+
+  const reqId=Date.now()+1;
+
+  ws.send(JSON.stringify({
     ticks:selectedSymbol,
     subscribe:1,
-    req_id:nextReqId()
-  });
+    req_id:reqId
+  }));
 
   logScanner(
-    "Live tick subscription started for " +
-    selectedSymbol
+    `Live tick subscription active for ${selectedSymbol}.`
   );
 }
 
-function processLiveTick(data){
+function handleHistory(data){
 
-  if(!data.tick) return;
+  const prices=data.history?.prices || [];
+  const times=data.history?.times || [];
 
-  const quote = Number(data.tick.quote);
+  if(!prices.length){
+    logScanner("No historical ticks returned.","warn");
+    return;
+  }
+
+  tickData=prices.map((price,i)=>({
+    quote:Number(price),
+    epoch:Number(times[i] || Date.now()/1000),
+    pipSize:selectedPipSize
+  })).filter(x=>Number.isFinite(x.quote));
+
+  $("tickCount").textContent=tickData.length;
+
+  logScanner(
+    `History loaded: ${tickData.length} ticks.`
+  );
+
+  subscribeTicks();
+
+  runAnalysis();
+}
+
+function handleLiveTick(tick){
+
+  const quote=Number(tick.quote);
 
   if(!Number.isFinite(quote)) return;
 
-  const pip = Number(
-    data.tick.pip_size ??
+  const pip=Number(
+    tick.pip_size ??
     selectedPipSize
   );
 
-  const item = {
+  const item={
     quote,
     epoch:Number(
-      data.tick.epoch ??
+      tick.epoch ??
       Date.now()/1000
     ),
-    pipSize:
-      Number.isFinite(pip) && pip>0
-        ? pip
-        : selectedPipSize
+    pipSize:pip
   };
 
-  ticks.push(item);
+  tickData.push(item);
 
-  if(ticks.length > CONFIG.HISTORY_SIZE){
-    ticks = ticks.slice(-CONFIG.HISTORY_SIZE);
+  if(tickData.length>CONFIG.HISTORY_TICKS){
+    tickData=tickData.slice(
+      -CONFIG.HISTORY_TICKS
+    );
   }
 
-  if(data.subscription?.id){
-    activeSubscriptionId = data.subscription.id;
+  lastLiveTickAt=Date.now();
+
+  $("livePrice").textContent=
+    quote.toFixed(
+      decimalPlacesFromPip(pip)
+    );
+
+  const digit=getLastDigitFromTick(item);
+
+  $("lastDigit").textContent=
+    digit===null ? "—" : digit;
+
+  $("tickCount").textContent=tickData.length;
+
+  processTick(item);
+}
+
+/* =========================================================
+   MESSAGE HANDLER
+========================================================= */
+
+function handleDerivMessage(data){
+
+  if(data.error){
+
+    logScanner(
+      data.error.message ||
+      "Deriv API error.",
+      "err"
+    );
+
+    return;
   }
 
-  $("tickCount").textContent = ticks.length;
+  if(data.active_symbols){
 
-  updateLiveMetrics(item);
-  updateRecentTicks();
+    processActiveSymbols(
+      data.active_symbols
+    );
 
-  if(ticks.length >= 50){
-    runAnalysis();
+    return;
+  }
+
+  if(data.history){
+
+    handleHistory(data);
+
+    return;
+  }
+
+  if(data.tick){
+
+    if(data.subscription?.id){
+      activeSubscriptionId=
+        data.subscription.id;
+    }
+
+    handleLiveTick(data.tick);
   }
 }
 
 /* =========================================================
-   DIGIT CALCULATION
+   TICK PROCESSING
 ========================================================= */
 
-function decimalPlacesFromPip(pip){
+function processTick(item){
 
-  const value = Number(pip);
+  if(!tickData.length) return;
 
-  if(!Number.isFinite(value) || value<=0){
-    return 2;
+  renderDigits(tickData);
+
+  if(
+    Date.now()-lastLiveTickAt >
+    5000
+  ){
+    setConnection(false,"STALE");
+  }else{
+    setConnection(true,"LIVE");
   }
-
-  return clamp(
-    Math.ceil(-Math.log10(value)),
-    0,
-    10
-  );
 }
 
-function getLastDigitFromTick(item){
-
-  const quote = Number(item.quote);
-
-  if(!Number.isFinite(quote)){
-    return null;
-  }
-
-  const pip = Number(
-    item.pipSize ??
-    selectedPipSize
-  );
-
-  const decimals = decimalPlacesFromPip(pip);
-
-  const fixed = quote.toFixed(decimals);
-
-  const digits = fixed.replace(/\D/g,"");
-
-  if(!digits.length) return null;
-
-  return Number(
-    digits[digits.length-1]
-  );
-}
-
-function digitsFromData(data){
-
-  return data
-    .map(getLastDigitFromTick)
-    .filter(d=>Number.isInteger(d) && d>=0 && d<=9);
-}
+/* =========================================================
+   DIGIT STATISTICS
+========================================================= */
 
 function digitCounts(data){
 
-  const counts = Array(10).fill(0);
+  const counts=
+    Array(10).fill(0);
 
-  for(const digit of digitsFromData(data)){
-    counts[digit]++;
-  }
+  data.forEach(item=>{
+    const d=getLastDigitFromTick(item);
+
+    if(d!==null){
+      counts[d]++;
+    }
+  });
 
   return counts;
 }
 
 function digitPercentages(data){
 
-  const counts = digitCounts(data);
+  const counts=digitCounts(data);
 
-  const total = counts.reduce((a,b)=>a+b,0);
+  const total=counts.reduce(
+    (a,b)=>a+b,
+    0
+  );
 
-  if(!total){
-    return Array(10).fill(0);
-  }
+  if(!total) return Array(10).fill(0);
 
   return counts.map(
-    n => n/total*100
+    c=>c/total*100
   );
 }
-
-/* =========================================================
-   RSI + MOMENTUM
-========================================================= */
-
-function calculateRSI(data,period=14){
-
-  if(data.length < period+1){
-    return null;
-  }
-
-  const prices = data.map(x=>Number(x.quote));
-
-  let gains = 0;
-  let losses = 0;
-
-  for(let i=prices.length-period;i<prices.length;i++){
-
-    const change = prices[i]-prices[i-1];
-
-    if(change>=0){
-      gains += change;
-    }else{
-      losses += Math.abs(change);
-    }
-  }
-
-  const avgGain = gains/period;
-  const avgLoss = losses/period;
-
-  if(avgLoss===0){
-    return 100;
-  }
-
-  const rs = avgGain/avgLoss;
-
-  return 100-(100/(1+rs));
-}
-
-function calculateMomentum(data){
-
-  if(data.length<20){
-    return null;
-  }
-
-  const recent = data.slice(-10);
-  const older = data.slice(-20,-10);
-
-  const recentAvg =
-    recent.reduce((s,x)=>s+Number(x.quote),0) /
-    recent.length;
-
-  const olderAvg =
-    older.reduce((s,x)=>s+Number(x.quote),0) /
-    older.length;
-
-  if(recentAvg>olderAvg) return "BULLISH";
-  if(recentAvg<olderAvg) return "BEARISH";
-
-  return "NEUTRAL";
-}
-
-/* =========================================================
-   QUALITY
-========================================================= */
-
-function calculateQuality(data){
-
-  if(!data.length) return 0;
-
-  const sampleQuality =
-    clamp(data.length/500,0,1)*60;
-
-  const p = digitPercentages(data);
-
-  const max = Math.max(...p);
-  const min = Math.min(...p);
-
-  const spread = max-min;
-
-  const stability =
-    clamp(
-      1-(spread/20),
-      0,
-      1
-    )*40;
-
-  return Math.round(
-    clamp(
-      sampleQuality+stability,
-      0,
-      100
-    )
-  );
-}
-
-/* =========================================================
-   PARITY STRATEGY
-========================================================= */
 
 function parityStats(data){
 
-  const p = digitPercentages(data);
+  const p=digitPercentages(data);
 
-  const even =
-    [0,2,4,6,8]
-      .reduce((s,d)=>s+p[d],0);
+  const even=
+    p[0]+p[2]+p[4]+p[6]+p[8];
 
-  const odd =
-    [1,3,5,7,9]
-      .reduce((s,d)=>s+p[d],0);
+  const odd=
+    p[1]+p[3]+p[5]+p[7]+p[9];
 
   return {
     even,
-    odd,
-    edge:Math.abs(even-odd)
+    odd
   };
 }
 
-function strongestDigitInGroup(data,group){
+function renderDigits(data){
 
-  const p = digitPercentages(data);
+  const p=digitPercentages(data);
 
-  let best = null;
+  const ranked=p
+    .map((rate,digit)=>({
+      digit,
+      rate
+    }))
+    .sort((a,b)=>b.rate-a.rate);
 
-  for(const d of group){
+  const highest=
+    ranked[0]?.digit;
 
-    if(
-      best===null ||
-      p[d]>p[best]
-    ){
-      best=d;
-    }
-  }
+  const secondHighest=
+    ranked[1]?.digit;
 
-  return {
-    digit:best,
-    rate:best===null?0:p[best]
-  };
-}
+  const secondLowest=
+    ranked[8]?.digit;
 
-function parityStrategy(contract,data){
+  const lowest=
+    ranked[9]?.digit;
 
-  const stats = parityStats(data);
+  $("digitGrid").innerHTML=
+    p.map((rate,digit)=>{
 
-  const selected =
-    contract==="EVEN"
-      ? stats.even
-      : stats.odd;
+      let cls="";
 
-  const opposite =
-    contract==="EVEN"
-      ? stats.odd
-      : stats.even;
+      if(digit===highest) cls="hot";
+      else if(digit===secondHighest) cls="blue";
+      else if(digit===secondLowest) cls="yellow";
+      else if(digit===lowest) cls="cold";
 
-  const group =
-    contract==="EVEN"
-      ? [0,2,4,6,8]
-      : [1,3,5,7,9];
+      return `
+        <div class="digit ${cls}">
+          <b>${digit}</b>
+          <span>${rate.toFixed(1)}%</span>
+        </div>
+      `;
 
-  const strongest =
-    strongestDigitInGroup(
-      data,
-      group
-    );
-
-  const minRateOK =
-    selected >= CONFIG.PARITY_MIN;
-
-  const edgeOK =
-    stats.edge >= CONFIG.PARITY_EDGE_MIN;
-
-  const digitOK =
-    strongest.rate >= CONFIG.PARITY_DIGIT_MIN;
-
-  return {
-    ok:
-      minRateOK &&
-      edgeOK &&
-      digitOK,
-
-    selected,
-    opposite,
-    edge:stats.edge,
-    strongest,
-
-    reason:
-      `${contract} ${selected.toFixed(1)}% vs ` +
-      `${contract==="EVEN"?"ODD":"EVEN"} ` +
-      `${opposite.toFixed(1)}%. ` +
-      `Edge ${stats.edge.toFixed(1)}pp ` +
-      `(required ${CONFIG.PARITY_EDGE_MIN}pp). ` +
-      `Strongest ${contract.toLowerCase()} digit ` +
-      `${strongest.digit} = ` +
-      `${strongest.rate.toFixed(1)}%.`
-  };
+    }).join("");
 }
 
 /* =========================================================
    OVER / UNDER BARRIER LADDER
 ========================================================= */
 
-function barrierChecksFor(
-  barrier,
-  contract,
-  percentages
-){
+function getBarrierStrategy(contract,data){
 
-  const checked =
-    contract==="OVER"
-      ? Array.from(
-          {length:barrier},
-          (_,d)=>d
-        )
-      : Array.from(
-          {length:9-barrier},
-          (_,i)=>barrier+1+i
-        );
+  const p=digitPercentages(data);
 
-  return checked.map(d=>({
-    digit:d,
-    rate:percentages[d] || 0,
-    ok:
-      (percentages[d] || 0) <
-      CONFIG.OPPOSITE_MAX_RATE
-  }));
-}
-
-function getBarrierStrategy(
-  contract,
-  data
-){
-
-  const percentages =
-    digitPercentages(data);
-
-  const candidates =
+  const candidates=
     contract==="OVER"
       ? CONFIG.OVER_BARRIERS
       : CONFIG.UNDER_BARRIERS;
 
-  const attempts = [];
+  const attempts=[];
 
   for(const barrier of candidates){
 
-    const checks =
-      barrierChecksFor(
-        barrier,
-        contract,
-        percentages
-      );
+    const checked=
+      contract==="OVER"
+        ? Array.from(
+            {length:barrier},
+            (_,d)=>d
+          )
+        : Array.from(
+            {length:9-barrier},
+            (_,i)=>barrier+1+i
+          );
 
-    const ok =
+    const checks=
+      checked.map(d=>({
+        digit:d,
+        rate:p[d] || 0,
+        ok:(p[d] || 0) <
+          CONFIG.OPPOSITE_MAX_RATE
+      }));
+
+    const ok=
       checks.every(x=>x.ok);
 
     attempts.push({
       barrier,
+      checked,
       checks,
       ok
     });
@@ -1749,8 +1618,7 @@ function getBarrierStrategy(
         ok:true,
         barrier,
         checks,
-        checkedDigits:
-          checks.map(x=>x.digit),
+        checkedDigits:checked,
         attempts
       };
     }
@@ -1765,1469 +1633,1082 @@ function getBarrierStrategy(
   };
 }
 
-function formatChecks(checks){
+function barrierReason(contract,strategy){
 
-  return checks
-    .map(x =>
-      `${x.digit}=${x.rate.toFixed(1)}%`
-    )
-    .join(" | ");
-}
+  if(!strategy.ok){
 
-function barrierFailureReason(
-  result,
-  contract
-){
+    const ladder=
+      contract==="OVER"
+        ? "5 → 4 → 3 → 2 → 1"
+        : "6 → 7 → 8";
 
-  const ladder =
-    contract==="OVER"
-      ? "OVER 5 → 4 → 3 → 2 → 1"
-      : "UNDER 6 → 7 → 8";
-
-  if(!result.attempts.length){
-    return "No barrier analysis available.";
+    return `NO ${contract} IN THIS MARKET • ${ladder} FAILED`;
   }
 
-  const failed =
-    result.attempts
-      .map(a =>
-        `${contract} ${a.barrier} FAILED ` +
-        `(${formatChecks(a.checks)})`
+  const checks=
+    strategy.checks
+      .map(x=>
+        `${x.digit} ${x.rate.toFixed(1)}%`
       )
-      .join(" → ");
+      .join(", ");
 
-  return (
-    `🚫 NO ${contract} IN THIS MARKET. ` +
-    `${ladder} was tested using the strict ` +
-    `<${CONFIG.OPPOSITE_MAX_RATE}% filter. ` +
-    failed
-  );
-}
-
-function barrierPassReason(
-  result,
-  contract
-){
-
-  return (
-    `${contract} ${result.barrier} passed. ` +
-    `Checked digits: ` +
-    `${formatChecks(result.checks)}. ` +
-    `Every checked digit is below ` +
-    `${CONFIG.OPPOSITE_MAX_RATE}%. ` +
-    `The ladder selected the first valid barrier ` +
-    `from ${contract==="OVER"?"5 down to 1":"6 up to 8"}.`
-  );
+  return `${contract} ${strategy.barrier} • CHECK ${checks} • PASS`;
 }
 
 /* =========================================================
-   MATCHES STRATEGY
+   EVEN / ODD
 ========================================================= */
 
-function matchesStrategy(data){
+function getParityStrategy(contract,data){
 
-  const p = digitPercentages(data);
+  const p=digitPercentages(data);
+  const parity=parityStats(data);
 
-  let hot = 0;
+  const selected=
+    contract==="EVEN"
+      ? parity.even
+      : parity.odd;
 
-  for(let d=1;d<10;d++){
-    if(p[d]>p[hot]){
-      hot=d;
-    }
-  }
+  const opposite=
+    contract==="EVEN"
+      ? parity.odd
+      : parity.even;
 
-  const rate = p[hot];
+  const edge=selected-opposite;
+
+  const selectedDigits=
+    contract==="EVEN"
+      ? [0,2,4,6,8]
+      : [1,3,5,7,9];
+
+  const strongest=
+    selectedDigits
+      .map(d=>({
+        digit:d,
+        rate:p[d]
+      }))
+      .sort((a,b)=>b.rate-a.rate)[0];
+
+  const ok=
+    selected>=CONFIG.PARITY_MIN &&
+    edge>=CONFIG.PARITY_EDGE_MIN &&
+    strongest.rate>=CONFIG.PARITY_DIGIT_MIN;
 
   return {
-    ok:
-      matchesUnlocked &&
-      rate >= CONFIG.MATCHES_MIN,
-
-    digit:hot,
-    rate,
-
-    reason:
-      `Hot digit ${hot} appears at ` +
-      `${rate.toFixed(1)}%. ` +
-      `MATCHES requires at least ` +
-      `${CONFIG.MATCHES_MIN}% and multi-window confirmation.`
+    ok,
+    selected,
+    opposite,
+    edge,
+    strongest
   };
 }
 
 /* =========================================================
-   DIFFERS STRATEGY
+   MATCHES / DIFFERS
 ========================================================= */
 
-function differsStrategy(data){
+function getHotDigit(data){
 
-  const p = digitPercentages(data);
+  const p=digitPercentages(data);
 
-  let hot = 0;
+  let digit=0;
 
-  for(let d=1;d<10;d++){
-    if(p[d]>p[hot]){
-      hot=d;
-    }
+  for(let i=1;i<10;i++){
+    if(p[i]>p[digit]) digit=i;
   }
 
-  const matchRate = p[hot];
-  const differsRate = 100-matchRate;
+  return {
+    digit,
+    rate:p[digit]
+  };
+}
+
+function getMatchesStrategy(data){
+
+  if(!matchesUnlocked){
+    return {
+      ok:false,
+      locked:true
+    };
+  }
+
+  const hot=getHotDigit(data);
 
   return {
-    ok:
-      differsRate >= CONFIG.DIFFERS_MIN,
+    ok:hot.rate>=CONFIG.MATCHES_MIN,
+    locked:false,
+    digit:hot.digit,
+    rate:hot.rate
+  };
+}
 
-    digit:hot,
-    matchRate,
-    differsRate,
+function getDiffersStrategy(data){
 
-    reason:
-      `Avoid digit ${hot}: it accounts for ` +
-      `${matchRate.toFixed(1)}% of the sample. ` +
-      `DIFFERS reference rate is ` +
-      `${differsRate.toFixed(1)}% ` +
-      `(minimum ${CONFIG.DIFFERS_MIN}%).`
+  const hot=getHotDigit(data);
+
+  const differs=100-hot.rate;
+
+  return {
+    ok:differs>=CONFIG.DIFFERS_MIN,
+    hotDigit:hot.digit,
+    hotRate:hot.rate,
+    differs
   };
 }
 
 /* =========================================================
-   AGREEMENT
+   RISE / FALL
 ========================================================= */
 
-function calculateAgreement(
-  contract,
-  windows
-){
+function directionalProbability(data){
 
-  if(
-    contract==="OVER" ||
-    contract==="UNDER"
-  ){
+  if(data.length<2){
+    return {
+      rise:50,
+      fall:50
+    };
+  }
 
-    const results =
-      windows.map(
-        w=>getBarrierStrategy(
+  let rise=0;
+  let fall=0;
+
+  for(let i=1;i<data.length;i++){
+
+    const a=Number(data[i-1].quote);
+    const b=Number(data[i].quote);
+
+    if(b>a) rise++;
+    else if(b<a) fall++;
+  }
+
+  const total=rise+fall;
+
+  if(!total){
+    return {
+      rise:50,
+      fall:50
+    };
+  }
+
+  return {
+    rise:rise/total*100,
+    fall:fall/total*100
+  };
+}
+
+/* =========================================================
+   QUALITY
+========================================================= */
+
+function calculateQuality(data){
+
+  const sampleQuality=
+    clamp(
+      data.length/500,
+      0,
+      1
+    )*60;
+
+  const p=digitPercentages(data);
+
+  const spread=
+    Math.max(...p)-
+    Math.min(...p);
+
+  const stability=
+    clamp(
+      1-spread/20,
+      0,
+      1
+    )*40;
+
+  return Math.round(
+    sampleQuality+stability
+  );
+}
+
+/* =========================================================
+   MULTI WINDOW
+========================================================= */
+
+function getWindows(){
+
+  return [
+    {
+      label:"50 TICKS",
+      data:tickData.slice(-50)
+    },
+    {
+      label:"100 TICKS",
+      data:tickData.slice(-100)
+    },
+    {
+      label:"500 TICKS",
+      data:tickData.slice(-500)
+    }
+  ];
+}
+
+function getAgreement(contract,windows){
+
+  if(contract==="OVER" || contract==="UNDER"){
+
+    const results=
+      windows.map(w=>
+        getBarrierStrategy(
           contract,
           w.data
         )
       );
 
-    const valid =
+    const valid=
       results.filter(r=>r.ok);
 
     if(valid.length===3){
 
-      const same =
-        results[0].barrier===results[1].barrier &&
-        results[1].barrier===results[2].barrier;
+      const same=
+        results[0].barrier===
+        results[1].barrier &&
+        results[1].barrier===
+        results[2].barrier;
 
       return same ? 100 : 67;
     }
 
     if(valid.length===2){
 
-      const bars =
+      const bars=
         valid.map(r=>r.barrier);
 
-      return bars[0]===bars[1] ? 67 : 0;
+      return bars[0]===bars[1]
+        ? 67
+        : 0;
     }
 
     return 0;
   }
 
-  const results =
-    windows.map(w=>{
-      if(
-        contract==="EVEN" ||
-        contract==="ODD"
-      ){
-        return parityStrategy(
+  if(contract==="EVEN" || contract==="ODD"){
+
+    const results=
+      windows.map(w=>
+        getParityStrategy(
           contract,
           w.data
-        );
-      }
+        )
+      );
 
-      if(contract==="MATCHES"){
-        return matchesStrategy(w.data);
-      }
+    const valid=
+      results.filter(r=>r.ok);
 
-      if(contract==="DIFFERS"){
-        return differsStrategy(w.data);
-      }
+    if(valid.length===3) return 100;
+    if(valid.length===2) return 67;
 
-      return {ok:false};
-    });
+    return 0;
+  }
 
-  const passed =
-    results.filter(r=>r.ok).length;
+  if(contract==="MATCHES"){
 
-  if(passed===3) return 100;
-  if(passed===2) return 67;
+    if(!matchesUnlocked) return 0;
+
+    const results=
+      windows.map(w=>
+        getMatchesStrategy(w.data)
+      );
+
+    const valid=
+      results.filter(r=>r.ok);
+
+    if(valid.length===3){
+
+      const same=
+        results[0].digit===
+        results[1].digit &&
+        results[1].digit===
+        results[2].digit;
+
+      return same ? 100 : 67;
+    }
+
+    if(valid.length===2){
+
+      const digits=
+        valid.map(r=>r.digit);
+
+      return digits[0]===digits[1]
+        ? 67
+        : 0;
+    }
+
+    return 0;
+  }
+
+  if(contract==="DIFFERS"){
+
+    const results=
+      windows.map(w=>
+        getDiffersStrategy(w.data)
+      );
+
+    const valid=
+      results.filter(r=>r.ok);
+
+    if(valid.length===3) return 100;
+    if(valid.length===2) return 67;
+
+    return 0;
+  }
 
   return 0;
 }
 
 /* =========================================================
-   SCORE
+   WINDOW UI
 ========================================================= */
 
-function calculateScore(
-  contract,
-  strategy,
-  quality,
-  agreement,
-  data
-){
+function updateWindows(contract){
 
-  if(
-    contract==="OVER" ||
-    contract==="UNDER"
-  ){
+  const windows=getWindows();
 
-    if(!strategy.ok){
-      return 0;
-    }
+  $("windowGrid").innerHTML=
+    windows.map(w=>{
 
-    const worst =
-      Math.max(
-        ...strategy.checks.map(
-          x=>x.rate
-        )
-      );
+      if(w.data.length<20){
 
-    const margin =
-      CONFIG.OPPOSITE_MAX_RATE-worst;
-
-    const filterStrength =
-      clamp(
-        margin /
-        CONFIG.OPPOSITE_MAX_RATE *
-        100,
-        0,
-        100
-      );
-
-    return Math.round(
-      filterStrength*0.45 +
-      quality*0.30 +
-      agreement*0.25
-    );
-  }
-
-  let probability = 0;
-
-  if(contract==="EVEN"){
-    probability =
-      parityStrategy(
-        "EVEN",
-        data
-      ).selected;
-  }
-
-  if(contract==="ODD"){
-    probability =
-      parityStrategy(
-        "ODD",
-        data
-      ).selected;
-  }
-
-  if(contract==="MATCHES"){
-    probability =
-      matchesStrategy(data).rate;
-  }
-
-  if(contract==="DIFFERS"){
-    probability =
-      differsStrategy(data).differsRate;
-  }
-
-  return Math.round(
-    probability*0.55 +
-    quality*0.25 +
-    agreement*0.20
-  );
-}
-
-/* =========================================================
-   MAIN ANALYSIS
-========================================================= */
-
-function runAnalysis(){
-
-  if(analysisBusy) return;
-
-  if(ticks.length<50){
-    $("engineState").textContent =
-      "WAITING FOR 50+ TICKS";
-    return;
-  }
-
-  analysisBusy = true;
-
-  try{
-
-    const contract =
-      $("contractSelect").value;
-
-    if(
-      contract==="MATCHES" &&
-      !matchesUnlocked
-    ){
-      showLocked();
-      return;
-    }
-
-    const windows = [
-      {
-        size:50,
-        data:ticks.slice(-50)
-      },
-      {
-        size:100,
-        data:ticks.slice(-100)
-      },
-      {
-        size:500,
-        data:ticks.slice(-500)
-      }
-    ];
-
-    const latestData =
-      windows[2].data;
-
-    const quality =
-      calculateQuality(
-        latestData
-      );
-
-    const agreement =
-      calculateAgreement(
-        contract,
-        windows
-      );
-
-    let strategy;
-    let barrier = null;
-    let predictedDigit = null;
-    let strategyOK = false;
-    let reason = "";
-
-    if(
-      contract==="OVER" ||
-      contract==="UNDER"
-    ){
-
-      strategy =
-        getBarrierStrategy(
-          contract,
-          latestData
-        );
-
-      strategyOK = strategy.ok;
-
-      barrier = strategy.barrier;
-
-      reason = strategy.ok
-        ? barrierPassReason(
-            strategy,
-            contract
-          )
-        : barrierFailureReason(
-            strategy,
-            contract
-          );
-
-    }else if(
-      contract==="EVEN" ||
-      contract==="ODD"
-    ){
-
-      strategy =
-        parityStrategy(
-          contract,
-          latestData
-        );
-
-      strategyOK = strategy.ok;
-
-      predictedDigit =
-        strategy.strongest.digit;
-
-      reason = strategy.reason;
-
-    }else if(contract==="MATCHES"){
-
-      strategy =
-        matchesStrategy(
-          latestData
-        );
-
-      strategyOK = strategy.ok;
-
-      predictedDigit =
-        strategy.digit;
-
-      reason = strategy.reason;
-
-    }else if(contract==="DIFFERS"){
-
-      strategy =
-        differsStrategy(
-          latestData
-        );
-
-      strategyOK = strategy.ok;
-
-      predictedDigit =
-        strategy.digit;
-
-      reason = strategy.reason;
-    }
-
-    const score =
-      calculateScore(
-        contract,
-        strategy,
-        quality,
-        agreement,
-        latestData
-      );
-
-    const threeConfirm =
-      agreement>=CONFIG.MIN_AGREEMENT;
-
-    const enoughQuality =
-      quality>=CONFIG.MIN_QUALITY;
-
-    const enoughScore =
-      score>=CONFIG.MIN_SCORE;
-
-    const has500 =
-      windows[2].data.length>=500;
-
-    const good =
-      strategyOK &&
-      threeConfirm &&
-      enoughQuality &&
-      enoughScore &&
-      has500;
-
-    const signalKey =
-      contract +
-      "|" +
-      (barrier ?? predictedDigit ?? "NONE");
-
-    if(good){
-
-      if(signalKey===lastSignalKey){
-        signalConfirmationCount++;
-      }else{
-        lastSignalKey=signalKey;
-        signalConfirmationCount=1;
+        return `
+          <div class="window">
+            <h4>${w.label}</h4>
+            <div class="line">
+              Waiting for more ticks...
+            </div>
+          </div>
+        `;
       }
 
-    }else{
-      signalConfirmationCount=0;
-      lastSignalKey="";
-    }
-
-    const confirmed =
-      good &&
-      signalConfirmationCount>=
-      CONFIG.CONFIRMATIONS_REQUIRED;
-
-    const analysis = {
-      contract,
-      strategy,
-      barrier,
-      predictedDigit,
-      quality,
-      agreement,
-      score,
-      strategyOK,
-      good,
-      confirmed,
-      reason,
-      windows
-    };
-
-    lastAnalysis = analysis;
-
-    updateWindows(
-      contract,
-      windows
-    );
-
-    updateEntry(
-      analysis
-    );
-
-    updateContractRates(
-      latestData
-    );
-
-    updateAllDisplays();
-
-    $("engineState").textContent =
-      confirmed
-        ? "GOOD ENTRY CONFIRMED"
-        : good
-          ? "CONFIRMING SIGNAL"
-          : "SCANNING";
-
-    if(confirmed){
-
-      const signalKeyFinal =
-        contract +
-        "|" +
-        (barrier ??
-        predictedDigit ??
-        "NONE");
-
-      startSignalCountdown();
+      let text="";
 
       if(
-        !lastAnalysis.logged
+        contract==="OVER" ||
+        contract==="UNDER"
       ){
-        addSignalHistory(
-          analysis
-        );
 
-        lastAnalysis.logged=true;
-      }
-    }
-
-  }finally{
-    analysisBusy=false;
-  }
-}
-
-/* =========================================================
-   ENTRY UI
-========================================================= */
-
-function updateEntry(a){
-
-  const card = $("entryCard");
-
-  card.classList.remove(
-    "good",
-    "wait",
-    "expired"
-  );
-
-  if(a.confirmed){
-
-    card.classList.add("good");
-
-    $("entryTitle").textContent =
-      "🟢 GOOD ENTRY CONFIRMED";
-
-  }else{
-
-    card.classList.add("wait");
-
-    $("entryTitle").textContent =
-      "⏳ WAIT — SETUP NOT CONFIRMED";
-  }
-
-  let displayNumber = "—";
-  let label = "ENTRY";
-
-  if(
-    a.contract==="OVER" ||
-    a.contract==="UNDER"
-  ){
-
-    displayNumber =
-      a.barrier===null
-        ? "—"
-        : a.barrier;
-
-    label =
-      a.barrier===null
-        ? "NO BARRIER"
-        : "BARRIER";
-
-  }else{
-
-    displayNumber =
-      a.predictedDigit===null
-        ? "—"
-        : a.predictedDigit;
-
-    label =
-      a.predictedDigit===null
-        ? "DIGIT"
-        : "DIGIT";
-  }
-
-  $("bigNumber").textContent =
-    displayNumber;
-
-  $("bigLabel").textContent =
-    label;
-
-  $("entryContract").textContent =
-    a.contract;
-
-  $("entryBarrier").textContent =
-    a.barrier!==null
-      ? a.barrier
-      : a.predictedDigit!==null
-        ? a.predictedDigit
-        : "—";
-
-  $("entryConfidence").textContent =
-    a.score + "%";
-
-  $("entryAgreement").textContent =
-    a.agreement + "%";
-
-  $("entryQuality").textContent =
-    a.quality + "%";
-
-  $("entryReason").innerHTML =
-    escapeHtml(
-      buildFullReason(a)
-    );
-
-  $("manualInstructions").innerHTML =
-    buildManualInstructions(a);
-
-  if(a.confirmed){
-
-    if(
-      a.contract==="OVER" ||
-      a.contract==="UNDER"
-    ){
-
-      const checks =
-        formatChecks(
-          a.strategy.checks
-        );
-
-      $("entryReason").innerHTML =
-        escapeHtml(
-          buildFullReason(a) +
-          " " +
-          `Checked: ${checks}.`
-        );
-    }
-  }
-
-  if(a.confirmed && !signalExpiresAt){
-    startSignalCountdown();
-  }
-}
-
-function buildFullReason(a){
-
-  if(
-    a.contract==="OVER" ||
-    a.contract==="UNDER"
-  ){
-
-    if(!a.strategyOK){
-
-      return (
-        `🚫 NO ${a.contract} IN THIS MARKET. ` +
-        `${a.contract==="OVER"
-          ?"OVER 5 → 4 → 3 → 2 → 1"
-          :"UNDER 6 → 7 → 8"} ` +
-        `all failed the strict ` +
-        `<${CONFIG.OPPOSITE_MAX_RATE}% filter.`
-      );
-    }
-
-    return (
-      barrierPassReason(
-        a.strategy,
-        a.contract
-      ) +
-      ` Multi-window agreement ${a.agreement}%, ` +
-      `quality ${a.quality}%, score ${a.score}%.`
-    );
-  }
-
-  if(
-    a.contract==="EVEN" ||
-    a.contract==="ODD"
-  ){
-
-    return (
-      a.reason +
-      ` Multi-window agreement ${a.agreement}%, ` +
-      `quality ${a.quality}%, score ${a.score}%. ` +
-      (a.confirmed
-        ? "All required confirmations passed."
-        : "Waiting for every required confirmation.")
-    );
-  }
-
-  if(a.contract==="MATCHES"){
-
-    return (
-      a.reason +
-      ` Multi-window agreement ${a.agreement}%, ` +
-      `quality ${a.quality}%, score ${a.score}%. ` +
-      (a.confirmed
-        ? "MATCHES confirmation passed."
-        : "Waiting for stronger multi-window confirmation.")
-    );
-  }
-
-  return (
-    a.reason +
-    ` Multi-window agreement ${a.agreement}%, ` +
-    `quality ${a.quality}%, score ${a.score}%.`
-  );
-}
-
-function buildManualInstructions(a){
-
-  if(!a.confirmed){
-
-    return (
-      "⏳ Do not place a trade yet. " +
-      "Wait until the box says GOOD ENTRY CONFIRMED."
-    );
-  }
-
-  if(
-    a.contract==="OVER" ||
-    a.contract==="UNDER"
-  ){
-
-    return (
-      `<strong>1.</strong> Open Deriv manually.<br>` +
-      `<strong>2.</strong> Select ` +
-      `<strong>${escapeHtml(selectedMarketName)}</strong>.<br>` +
-      `<strong>3.</strong> Select ` +
-      `<strong>${a.contract}</strong> ` +
-      `with barrier ` +
-      `<strong>${a.barrier}</strong>.<br>` +
-      `<strong>4.</strong> Verify the market and barrier.<br>` +
-      `<strong>5.</strong> Choose your own stake and duration/ticks.<br>` +
-      `<strong>6.</strong> Place the trade yourself before the ` +
-      `<strong>60-second countdown</strong> expires.`
-    );
-  }
-
-  if(
-    a.contract==="EVEN" ||
-    a.contract==="ODD"
-  ){
-
-    return (
-      `<strong>1.</strong> Open Deriv manually.<br>` +
-      `<strong>2.</strong> Select ` +
-      `<strong>${escapeHtml(selectedMarketName)}</strong>.<br>` +
-      `<strong>3.</strong> Select ` +
-      `<strong>${a.contract}</strong>.<br>` +
-      `<strong>4.</strong> Verify the selected contract and digit context.<br>` +
-      `<strong>5.</strong> Choose your own stake and duration/ticks.<br>` +
-      `<strong>6.</strong> Place manually before the countdown expires.`
-    );
-  }
-
-  if(a.contract==="MATCHES"){
-
-    return (
-      `<strong>1.</strong> Open Deriv manually.<br>` +
-      `<strong>2.</strong> Select ` +
-      `<strong>${escapeHtml(selectedMarketName)}</strong>.<br>` +
-      `<strong>3.</strong> Select MATCHES.<br>` +
-      `<strong>4.</strong> Verify predicted digit ` +
-      `<strong>${a.predictedDigit}</strong>.<br>` +
-      `<strong>5.</strong> Choose your own stake and duration/ticks.<br>` +
-      `<strong>6.</strong> Place manually before the countdown expires.`
-    );
-  }
-
-  return (
-    `<strong>1.</strong> Open Deriv manually.<br>` +
-    `<strong>2.</strong> Select ` +
-    `<strong>${escapeHtml(selectedMarketName)}</strong>.<br>` +
-    `<strong>3.</strong> Select DIFFERS.<br>` +
-    `<strong>4.</strong> Verify digit ` +
-    `<strong>${a.predictedDigit}</strong> is the digit being avoided.<br>` +
-    `<strong>5.</strong> Choose your own stake and duration/ticks.<br>` +
-    `<strong>6.</strong> Place manually before the countdown expires.`
-  );
-}
-
-function resetEntry(){
-
-  $("entryCard").classList.remove(
-    "good",
-    "expired"
-  );
-
-  $("entryCard").classList.add("wait");
-
-  $("entryTitle").textContent =
-    "⏳ WAITING FOR A CONFIRMED SETUP";
-
-  $("bigNumber").textContent = "—";
-  $("bigLabel").textContent = "ENTRY";
-
-  $("entryContract").textContent = "—";
-  $("entryBarrier").textContent = "—";
-  $("entryConfidence").textContent = "—";
-  $("entryAgreement").textContent = "—";
-  $("entryQuality").textContent = "—";
-
-  $("entryReason").textContent =
-    "Waiting for enough live data...";
-
-  $("countdown").textContent = "—";
-}
-
-/* =========================================================
-   60 SECOND COUNTDOWN
-========================================================= */
-
-function startSignalCountdown(){
-
-  stopCountdown();
-
-  signalExpiresAt =
-    Date.now() +
-    CONFIG.SIGNAL_SECONDS*1000;
-
-  updateCountdown();
-
-  signalCountdownTimer =
-    setInterval(
-      updateCountdown,
-      250
-    );
-}
-
-function updateCountdown(){
-
-  if(!signalExpiresAt){
-    $("countdown").textContent = "—";
-    return;
-  }
-
-  const remaining =
-    Math.max(
-      0,
-      signalExpiresAt-Date.now()
-    );
-
-  const seconds =
-    Math.ceil(
-      remaining/1000
-    );
-
-  $("countdown").textContent =
-    "00:" +
-    String(seconds).padStart(2,"0");
-
-  if(remaining<=0){
-
-    stopCountdown();
-
-    $("entryCard").classList.remove(
-      "good",
-      "wait"
-    );
-
-    $("entryCard").classList.add(
-      "expired"
-    );
-
-    $("entryTitle").textContent =
-      "🔴 SIGNAL EXPIRED — DO NOT TRADE";
-
-    $("entryReason").textContent =
-      "The 60-second entry window has expired. " +
-      "Wait for a fresh live confirmation.";
-
-    $("manualInstructions").innerHTML =
-      "<strong>DO NOT PLACE THE EXPIRED SIGNAL.</strong> " +
-      "Wait for the bot to generate a new confirmed setup.";
-
-    signalExpiresAt=0;
-  }
-}
-
-function stopCountdown(){
-
-  if(signalCountdownTimer){
-    clearInterval(
-      signalCountdownTimer
-    );
-  }
-
-  signalCountdownTimer=null;
-  signalExpiresAt=0;
-}
-
-/* =========================================================
-   WINDOWS
-========================================================= */
-
-function updateWindows(
-  contract,
-  windows
-){
-
-  windows.forEach(w=>{
-
-    const el =
-      $("window"+w.size);
-
-    el.classList.remove(
-      "pass",
-      "fail"
-    );
-
-    let text = "";
-
-    let ok=false;
-
-    if(
-      contract==="OVER" ||
-      contract==="UNDER"
-    ){
-
-      const result =
-        getBarrierStrategy(
-          contract,
-          w.data
-        );
-
-      ok=result.ok;
-
-      if(result.ok){
-
-        text =
-          `<strong class="good-text">` +
-          `${contract} ${result.barrier} • PASS` +
-          `</strong><br>` +
-          `CHECK ${formatChecks(result.checks)}`;
-
-      }else{
-
-        text =
-          `<strong class="bad-text">` +
-          `NO ${contract} • FAILED` +
-          `</strong><br>` +
-          `${contract==="OVER"
-            ?"5 → 4 → 3 → 2 → 1"
-            :"6 → 7 → 8"}`;
-      }
-
-    }else{
-
-      let result;
-
-      if(
-        contract==="EVEN" ||
-        contract==="ODD"
-      ){
-        result =
-          parityStrategy(
+        const s=
+          getBarrierStrategy(
             contract,
             w.data
           );
-      }
 
-      if(contract==="MATCHES"){
-        result =
-          matchesStrategy(
-            w.data
-          );
-      }
+        text=
+          s.ok
+            ? barrierReason(contract,s)
+            : `NO ${contract} • ${
+                contract==="OVER"
+                ? "5→4→3→2→1"
+                : "6→7→8"
+              } FAILED`;
 
-      if(contract==="DIFFERS"){
-        result =
-          differsStrategy(
-            w.data
-          );
-      }
-
-      ok=result?.ok || false;
-
-      if(
+      }else if(
         contract==="EVEN" ||
         contract==="ODD"
       ){
 
-        text =
-          `<strong>${contract} ` +
-          `${result.selected.toFixed(1)}%` +
-          `</strong><br>` +
-          `EDGE ${result.edge.toFixed(1)}pp<br>` +
-          `DIGIT ${result.strongest.digit} ` +
-          `${result.strongest.rate.toFixed(1)}%`;
+        const s=
+          getParityStrategy(
+            contract,
+            w.data
+          );
+
+        text=
+          `${contract} ${s.selected.toFixed(1)}% • ` +
+          `EDGE ${s.edge.toFixed(1)}% • ` +
+          `${s.ok ? "PASS":"FAIL"}`;
 
       }else if(contract==="MATCHES"){
 
-        text =
-          `<strong>MATCHES ` +
-          `${result.rate.toFixed(1)}%</strong><br>` +
-          `DIGIT ${result.digit}<br>` +
-          (matchesUnlocked
-            ? "UNLOCKED"
-            : "LOCKED 🔐");
+        if(!matchesUnlocked){
+
+          text="MATCHES LOCKED 🔐";
+
+        }else{
+
+          const s=
+            getMatchesStrategy(w.data);
+
+          text=
+            s.ok
+              ? `MATCHES ${s.digit} • ${s.rate.toFixed(1)}% • PASS`
+              : `MATCHES FILTER FAILED • ${s.rate.toFixed(1)}%`;
+        }
+
+      }else if(contract==="DIFFERS"){
+
+        const s=
+          getDiffersStrategy(w.data);
+
+        text=
+          `AVOID ${s.hotDigit} • ` +
+          `DIFFERS ${s.differs.toFixed(1)}% • ` +
+          `${s.ok ? "PASS":"FAIL"}`;
 
       }else{
 
-        text =
-          `<strong>DIFFERS ` +
-          `${result.differsRate.toFixed(1)}%</strong><br>` +
-          `AVOID DIGIT ${result.digit}<br>` +
-          `MATCH ${result.matchRate.toFixed(1)}%`;
+        const d=
+          directionalProbability(w.data);
+
+        text=
+          `${contract} • ` +
+          `${contract==="RISE"
+            ? d.rise.toFixed(1)
+            : d.fall.toFixed(1)}%`;
       }
-    }
 
-    el.classList.add(
-      ok ? "pass" : "fail"
-    );
+      return `
+        <div class="window">
+          <h4>${w.label}</h4>
+          <div class="line">${escapeHtml(text)}</div>
+        </div>
+      `;
 
-    el.querySelector(
-      ".window-text"
-    ).innerHTML = text;
-  });
-}
-
-function clearWindows(){
-
-  for(const n of [50,100,500]){
-
-    const el =
-      $("window"+n);
-
-    el.classList.remove(
-      "pass",
-      "fail"
-    );
-
-    el.querySelector(
-      ".window-text"
-    ).textContent =
-      "Waiting...";
-  }
-}
-
-/* =========================================================
-   DIGIT UI
-========================================================= */
-
-function initDigitGrid(){
-
-  const grid = $("digitGrid");
-
-  grid.innerHTML="";
-
-  for(let d=0;d<10;d++){
-
-    const el =
-      document.createElement("div");
-
-    el.className="digit";
-    el.id="digit-"+d;
-
-    el.innerHTML =
-      `<div>${d}</div>` +
-      `<small>0.0%</small>`;
-
-    grid.appendChild(el);
-  }
-}
-
-function updateDigitGrid(){
-
-  const data =
-    ticks.slice(-500);
-
-  const p =
-    digitPercentages(data);
-
-  const sorted =
-    p.map((rate,d)=>({d,rate}))
-      .sort((a,b)=>b.rate-a.rate);
-
-  for(let d=0;d<10;d++){
-
-    const el =
-      $("digit-"+d);
-
-    if(!el) continue;
-
-    el.classList.remove(
-      "hot",
-      "cold"
-    );
-
-    const rank =
-      sorted.findIndex(
-        x=>x.d===d
-      );
-
-    if(rank===0){
-      el.classList.add("hot");
-    }
-
-    if(rank===9){
-      el.classList.add("cold");
-    }
-
-    el.querySelector(
-      "small"
-    ).textContent =
-      p[d].toFixed(1)+"%";
-  }
+    }).join("");
 }
 
 /* =========================================================
    CONTRACT REFERENCE
 ========================================================= */
 
-function updateContractRates(data){
+function updateContractRates(){
 
-  const p =
-    digitPercentages(data);
+  const p=digitPercentages(
+    tickData.slice(-500)
+  );
 
-  const even =
-    [0,2,4,6,8]
-      .reduce((s,d)=>s+p[d],0);
+  const over=
+    p.slice(1,6)
+      .reduce((a,b)=>a+b,0);
 
-  const odd =
-    100-even;
+  const under=
+    p.slice(6,10)
+      .reduce((a,b)=>a+b,0);
 
-  const over =
-    [1,2,3,4,5]
-      .reduce((s,d)=>s+p[d],0);
+  const parity=
+    parityStats(
+      tickData.slice(-500)
+    );
 
-  const under =
-    [6,7,8,9]
-      .reduce((s,d)=>s+p[d],0);
+  $("rateOver").textContent=
+    `${over.toFixed(1)}%`;
 
-  let hot=0;
+  $("rateUnder").textContent=
+    `${under.toFixed(1)}%`;
 
-  for(let d=1;d<10;d++){
-    if(p[d]>p[hot]) hot=d;
-  }
+  $("rateEven").textContent=
+    `${parity.even.toFixed(1)}%`;
 
-  const matches =
-    p[hot];
-
-  const differs =
-    100-matches;
-
-  setRate("EVEN",even);
-  setRate("ODD",odd);
-  setRate("OVER",over);
-  setRate("UNDER",under);
-  setRate("MATCHES",matches);
-  setRate("DIFFERS",differs);
-
-  $("status-MATCHES").textContent =
-    matchesUnlocked
-      ? "UNLOCKED"
-      : "🔐 LOCKED";
+  $("rateOdd").textContent=
+    `${parity.odd.toFixed(1)}%`;
 }
 
-function setRate(name,value){
+/* =========================================================
+   ANALYSIS ENGINE
+========================================================= */
 
-  $("rate-"+name).textContent =
-    value.toFixed(1)+"%";
-
-  let good=false;
-
-  if(name==="EVEN" || name==="ODD"){
-    good=value>=CONFIG.PARITY_MIN;
-  }
-
-  if(name==="MATCHES"){
-    good=value>=CONFIG.MATCHES_MIN;
-  }
-
-  if(name==="DIFFERS"){
-    good=value>=CONFIG.DIFFERS_MIN;
-  }
+function runAnalysis(){
 
   if(
-    name==="OVER" ||
-    name==="UNDER"
+    tickData.length<
+    CONFIG.MIN_ANALYSIS_TICKS
   ){
-    good=true;
-  }
+    $("scannerStatus").textContent=
+      "COLLECTING";
 
-  $("status-"+name).textContent =
-    good
-      ? "REFERENCE"
-      : "WEAK";
-}
-
-/* =========================================================
-   LIVE DISPLAY
-========================================================= */
-
-function updateLiveMetrics(item){
-
-  const decimals =
-    decimalPlacesFromPip(
-      item.pipSize
-    );
-
-  $("livePrice").textContent =
-    Number(item.quote)
-      .toFixed(decimals);
-
-  const digit =
-    getLastDigitFromTick(item);
-
-  $("lastDigit").textContent =
-    digit===null
-      ? "—"
-      : digit;
-
-  const rsi =
-    calculateRSI(
-      ticks.slice(-100)
-    );
-
-  $("rsi").textContent =
-    rsi===null
-      ? "—"
-      : rsi.toFixed(1);
-
-  $("momentum").textContent =
-    calculateMomentum(
-      ticks.slice(-100)
-    ) || "—";
-}
-
-function updateAllDisplays(){
-
-  if(!ticks.length) return;
-
-  const latest =
-    ticks[ticks.length-1];
-
-  updateLiveMetrics(latest);
-
-  $("tickCount").textContent =
-    ticks.length;
-
-  $("historyCount").textContent =
-    ticks.length;
-
-  updateDigitGrid();
-
-  updateRecentTicks();
-}
-
-function updateRecentTicks(){
-
-  const box =
-    $("recentTicks");
-
-  const recent =
-    ticks.slice(-20)
-      .reverse();
-
-  box.innerHTML =
-    recent.map(item=>{
-
-      const decimals =
-        decimalPlacesFromPip(
-          item.pipSize
-        );
-
-      const price =
-        Number(item.quote)
-          .toFixed(decimals);
-
-      const digit =
-        getLastDigitFromTick(item);
-
-      const time =
-        new Date(
-          Number(item.epoch)*1000
-        ).toLocaleTimeString();
-
-      return (
-        `<div class="history-row">` +
-        `<span class="muted">${time}</span> ` +
-        `PRICE <strong>${price}</strong> ` +
-        `→ DIGIT <strong>${digit}</strong>` +
-        `</div>`
-      );
-
-    }).join("");
-}
-
-/* =========================================================
-   MATCHES LOCK
-========================================================= */
-
-function showLocked(){
-
-  $("matchesLock")
-    .classList.remove("hidden");
-
-  $("entryCard")
-    .classList.remove(
-      "good",
-      "expired"
-    );
-
-  $("entryCard")
-    .classList.add("wait");
-
-  $("entryTitle").textContent =
-    "🔐 MATCHES LOCKED";
-
-  $("bigNumber").textContent =
-    "🔐";
-
-  $("bigLabel").textContent =
-    "LOCKED";
-
-  $("entryContract").textContent =
-    "MATCHES";
-
-  $("entryBarrier").textContent =
-    "—";
-
-  $("entryConfidence").textContent =
-    "—";
-
-  $("entryAgreement").textContent =
-    "—";
-
-  $("entryQuality").textContent =
-    "—";
-
-  $("entryReason").textContent =
-    "MATCHES is locked. Enter activation code 19809 to unlock the strategy.";
-
-  $("manualInstructions").textContent =
-    "Unlock MATCHES first. No MATCHES signal is generated while locked.";
-}
-
-function unlockMatches(){
-
-  const code =
-    $("matchesCode").value.trim();
-
-  if(code===CONFIG.MATCHES_CODE){
-
-    matchesUnlocked=true;
-
-    $("matchesLock")
-      .classList.add("hidden");
-
-    $("unlockMsg").textContent =
-      "MATCHES unlocked successfully.";
-
-    $("unlockMsg").className =
-      "good-text";
-
-    logScanner(
-      "MATCHES 🔐 unlocked."
-    );
-
-    runAnalysis();
-
-  }else{
-
-    $("unlockMsg").textContent =
-      "Incorrect activation code.";
-
-    $("unlockMsg").className =
-      "bad-text";
-  }
-}
-
-/* =========================================================
-   SCANNER
-========================================================= */
-
-function startScanner(){
-
-  stopScanner();
-
-  $("scannerState").textContent =
-    "RUNNING";
-
-  scanTimer =
-    setInterval(
-      ()=>{
-        if(
-          ticks.length>=50 &&
-          !analysisBusy
-        ){
-          runAnalysis();
-        }
-      },
-      1200
-    );
-
-  if(ticks.length>=50){
-    runAnalysis();
-  }
-}
-
-function stopScanner(){
-
-  if(scanTimer){
-    clearInterval(scanTimer);
-  }
-
-  scanTimer=null;
-
-  $("scannerState").textContent =
-    "STOPPED";
-}
-
-function logScanner(text){
-
-  const box =
-    $("scanner");
-
-  if(!box) return;
-
-  const now =
-    new Date()
-      .toLocaleTimeString();
-
-  const line =
-    `[${now}] ${text}`;
-
-  if(
-    scannerLastText===text &&
-    box.lastElementChild
-  ){
     return;
   }
 
-  scannerLastText=text;
+  const contract=
+    $("contractSelect").value;
 
-  const div =
-    document.createElement("div");
+  showMatchesLock();
 
-  div.textContent=line;
+  const windows=getWindows();
 
-  box.appendChild(div);
+  updateWindows(contract);
+  updateContractRates();
 
-  while(box.children.length>120){
-    box.removeChild(
-      box.firstChild
+  const quality=
+    calculateQuality(
+      tickData.slice(-500)
     );
+
+  const agreement=
+    getAgreement(
+      contract,
+      windows
+    );
+
+  let ok=false;
+  let score=0;
+
+  let barrier=null;
+  let predictedDigit=null;
+
+  let reason="";
+
+  /* -----------------------------------------
+     OVER
+  ----------------------------------------- */
+
+  if(contract==="OVER"){
+
+    const strategy=
+      getBarrierStrategy(
+        "OVER",
+        tickData.slice(-500)
+      );
+
+    if(strategy.ok){
+
+      barrier=strategy.barrier;
+
+      const worst=
+        Math.max(
+          ...strategy.checks.map(
+            x=>x.rate
+          )
+        );
+
+      const margin=
+        CONFIG.OPPOSITE_MAX_RATE-worst;
+
+      const filterStrength=
+        clamp(
+          margin/
+          CONFIG.OPPOSITE_MAX_RATE*
+          100,
+          0,
+          100
+        );
+
+      score=Math.round(
+        filterStrength*.45+
+        quality*.30+
+        agreement*.25
+      );
+
+      ok=
+        strategy.ok &&
+        agreement>=67 &&
+        quality>=55 &&
+        score>=65;
+
+      reason=
+        `${barrierReason("OVER",strategy)}. `+
+        `Weakest checked digit ${worst.toFixed(1)}%. `+
+        `Multi-window agreement ${agreement}%. `+
+        `Data quality ${quality}%.`;
+    }else{
+
+      reason=
+        "NO OVER IN THIS MARKET. " +
+        "The required opposite digits did not stay below the 10.5% filter.";
+    }
+
+  /* -----------------------------------------
+     UNDER
+  ----------------------------------------- */
+
+  }else if(contract==="UNDER"){
+
+    const strategy=
+      getBarrierStrategy(
+        "UNDER",
+        tickData.slice(-500)
+      );
+
+    if(strategy.ok){
+
+      barrier=strategy.barrier;
+
+      const worst=
+        Math.max(
+          ...strategy.checks.map(
+            x=>x.rate
+          )
+        );
+
+      const margin=
+        CONFIG.OPPOSITE_MAX_RATE-worst;
+
+      const filterStrength=
+        clamp(
+          margin/
+          CONFIG.OPPOSITE_MAX_RATE*
+          100,
+          0,
+          100
+        );
+
+      score=Math.round(
+        filterStrength*.45+
+        quality*.30+
+        agreement*.25
+      );
+
+      ok=
+        strategy.ok &&
+        agreement>=67 &&
+        quality>=55 &&
+        score>=65;
+
+      reason=
+        `${barrierReason("UNDER",strategy)}. `+
+        `Weakest checked digit ${worst.toFixed(1)}%. `+
+        `Multi-window agreement ${agreement}%. `+
+        `Data quality ${quality}%.`;
+    }else{
+
+      reason=
+        "NO UNDER IN THIS MARKET. " +
+        "The required opposite digits did not stay below the 10.5% filter.";
+    }
+
+  /* -----------------------------------------
+     EVEN / ODD
+  ----------------------------------------- */
+
+  }else if(
+    contract==="EVEN" ||
+    contract==="ODD"
+  ){
+
+    const strategy=
+      getParityStrategy(
+        contract,
+        tickData.slice(-500)
+      );
+
+    predictedDigit=
+      strategy.strongest.digit;
+
+    score=Math.round(
+      clamp(
+        strategy.selected,
+        0,
+        100
+      )*.55+
+      quality*.25+
+      agreement*.20
+    );
+
+    ok=
+      strategy.ok &&
+      agreement>=67 &&
+      quality>=55 &&
+      score>=65;
+
+    reason=
+      `${contract} share ${strategy.selected.toFixed(1)}%. `+
+      `Edge vs ${contract==="EVEN"?"ODD":"EVEN"} `+
+      `${strategy.edge.toFixed(1)}%. `+
+      `Strongest supporting digit ${strategy.strongest.digit} `+
+      `at ${strategy.strongest.rate.toFixed(1)}%. `+
+      `Agreement ${agreement}%.`;
+
+  /* -----------------------------------------
+     MATCHES
+  ----------------------------------------- */
+
+  }else if(contract==="MATCHES"){
+
+    if(!matchesUnlocked){
+
+      ok=false;
+      score=0;
+
+      reason=
+        "MATCHES is locked. Purchase access through WhatsApp to activate MATCHES analysis.";
+
+    }else{
+
+      const strategy=
+        getMatchesStrategy(
+          tickData.slice(-500)
+        );
+
+      predictedDigit=
+        strategy.digit;
+
+      score=Math.round(
+        clamp(
+          strategy.rate/
+          30*
+          100,
+          0,
+          100
+        )*.60+
+        quality*.20+
+        agreement*.20
+      );
+
+      ok=
+        strategy.ok &&
+        agreement>=67 &&
+        quality>=55 &&
+        score>=65;
+
+      reason=
+        `Digit ${strategy.digit} is currently hottest `+
+        `at ${strategy.rate.toFixed(1)}%. `+
+        `MATCHES minimum filter is ${CONFIG.MATCHES_MIN}%. `+
+        `Agreement ${agreement}%.`;
+    }
+
+  /* -----------------------------------------
+     DIFFERS
+  ----------------------------------------- */
+
+  }else if(contract==="DIFFERS"){
+
+    const strategy=
+      getDiffersStrategy(
+        tickData.slice(-500)
+      );
+
+    score=Math.round(
+      strategy.differs*.65+
+      quality*.15+
+      agreement*.20
+    );
+
+    predictedDigit=
+      strategy.hotDigit;
+
+    ok=
+      strategy.ok &&
+      agreement>=67 &&
+      quality>=55 &&
+      score>=65;
+
+    reason=
+      `Avoid dominant digit ${strategy.hotDigit}, `+
+      `currently ${strategy.hotRate.toFixed(1)}%. `+
+      `Estimated differs coverage ${strategy.differs.toFixed(1)}%. `+
+      `Agreement ${agreement}%.`;
+
+  /* -----------------------------------------
+     RISE / FALL
+  ----------------------------------------- */
+
+  }else{
+
+    const direction=
+      directionalProbability(
+        tickData.slice(-500)
+      );
+
+    const probability=
+      contract==="RISE"
+        ? direction.rise
+        : direction.fall;
+
+    score=Math.round(
+      probability*.65+
+      quality*.20+
+      agreement*.15
+    );
+
+    ok=
+      probability>=55 &&
+      quality>=55;
+
+    reason=
+      `${contract} directional pressure `+
+      `${probability.toFixed(1)}%. `+
+      `Data quality ${quality}%. `+
+      `Agreement ${agreement}%.`;
   }
 
-  box.scrollTop =
-    box.scrollHeight;
+  const analysis={
+    contract,
+    ok,
+    score,
+    quality,
+    agreement,
+    barrier,
+    predictedDigit,
+    reason,
+    timestamp:Date.now()
+  };
+
+  lastAnalysis=analysis;
+
+  renderEntry(analysis);
+
+  /* -----------------------------------------
+     SIGNAL LIFECYCLE
+  ----------------------------------------- */
+
+  if(ok){
+
+    const key=
+      `${contract}|`+
+      `${barrier ?? predictedDigit ?? "NONE"}`;
+
+    if(key!==activeSignalKey){
+
+      activeSignalKey=key;
+      expiredSignalKey="";
+      
+      if(signalLoggedKey!==key){
+        addSignalHistory(analysis);
+        signalLoggedKey=key;
+      }
+
+      startSignalCountdown();
+
+    }else if(expiredSignalKey===key){
+
+      /* Same signal already expired.
+         Do not restart the timer. */
+
+      showExpired();
+    }
+
+  }else{
+
+    activeSignalKey="";
+    expiredSignalKey="";
+
+    stopCountdown();
+  }
+
+  $("scannerStatus").textContent=
+    ok ? "GOOD ENTRY" : "WAIT";
+
+  logScanner(
+    `${contract}: ${ok ? "GOOD ENTRY":"WAIT"} • score ${score}/100`
+  );
+}
+
+/* =========================================================
+   ENTRY UI
+========================================================= */
+
+function renderEntry(a){
+
+  $("entryMarket").textContent=
+    selectedMarketName || "—";
+
+  $("entryType").textContent=
+    a.contract;
+
+  $("entryConfidence").textContent=
+    `${a.score}/100`;
+
+  $("entryAgreement").textContent=
+    `${a.agreement}%`;
+
+  $("entryQuality").textContent=
+    `${a.quality}%`;
+
+  $("entryTicks").textContent=
+    "Manual";
+
+  $("entryReason").textContent=
+    a.reason;
+
+  if(
+    a.contract==="OVER" ||
+    a.contract==="UNDER"
+  ){
+
+    $("entryNumberLabel").textContent=
+      "BARRIER";
+
+    $("entryNumber").textContent=
+      a.barrier===null
+        ? "—"
+        : a.barrier;
+
+  }else if(
+    a.contract==="MATCHES" ||
+    a.contract==="DIFFERS"
+  ){
+
+    $("entryNumberLabel").textContent=
+      "DIGIT";
+
+    $("entryNumber").textContent=
+      a.predictedDigit===null ||
+      a.predictedDigit===undefined
+        ? "—"
+        : a.predictedDigit;
+
+  }else if(
+    a.contract==="EVEN" ||
+    a.contract==="ODD"
+  ){
+
+    $("entryNumberLabel").textContent=
+      "KEY DIGIT";
+
+    $("entryNumber").textContent=
+      a.predictedDigit===null ||
+      a.predictedDigit===undefined
+        ? "—"
+        : a.predictedDigit;
+
+  }else{
+
+    $("entryNumberLabel").textContent=
+      "SIGNAL";
+
+    $("entryNumber").textContent=
+      a.ok ? "GO" : "—";
+  }
+
+  if(a.ok){
+
+    $("entryContract").textContent=
+      a.contract==="OVER" ||
+      a.contract==="UNDER"
+        ? `${a.contract} ${a.barrier}`
+        : a.contract;
+
+    $("signalBadge").textContent=
+      "GOOD ENTRY";
+
+    $("signalBadge").className=
+      "signalBadge good";
+
+    $("entryCard").className=
+      "card col8 entry good";
+
+  }else{
+
+    $("entryContract").textContent=
+      "WAIT";
+
+    $("signalBadge").textContent=
+      a.contract==="MATCHES" &&
+      !matchesUnlocked
+        ? "🔐 LOCKED"
+        : "WAIT";
+
+    $("signalBadge").className=
+      "signalBadge bad";
+
+    $("entryCard").className=
+      "card col8 entry wait";
+  }
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+function startSignalCountdown(){
+
+  stopCountdown();
+
+  countdownEnd=
+    Date.now()+
+    CONFIG.SIGNAL_SECONDS*1000;
+
+  updateCountdown();
+
+  countdownTimer=
+    setInterval(
+      updateCountdown,
+      250
+    );
+}
+
+function stopCountdown(){
+
+  if(countdownTimer){
+
+    clearInterval(countdownTimer);
+    countdownTimer=null;
+  }
+
+  $("countdown").textContent="—";
+  $("countdown").className="countdown";
+}
+
+function updateCountdown(){
+
+  const remaining=
+    Math.max(
+      0,
+      countdownEnd-Date.now()
+    );
+
+  const seconds=
+    Math.ceil(
+      remaining/1000
+    );
+
+  if(seconds<=0){
+
+    clearInterval(countdownTimer);
+    countdownTimer=null;
+
+    expiredSignalKey=
+      activeSignalKey;
+
+    activeSignalKey="";
+
+    showExpired();
+
+    return;
+  }
+
+  const mm=
+    String(
+      Math.floor(seconds/60)
+    ).padStart(2,"0");
+
+  const ss=
+    String(seconds%60)
+    .padStart(2,"0");
+
+  $("countdown").textContent=
+    `SIGNAL EXPIRES IN ${mm}:${ss}`;
+
+  if(seconds<=10){
+
+    $("countdown").className=
+      "countdown warn";
+
+  }else{
+
+    $("countdown").className=
+      "countdown safe";
+  }
+}
+
+function showExpired(){
+
+  $("countdown").textContent=
+    "🔴 SIGNAL EXPIRED — DO NOT TRADE";
+
+  $("countdown").className=
+    "countdown dead";
+
+  $("entryCard").className=
+    "card col8 entry expired";
+
+  $("signalBadge").textContent=
+    "EXPIRED";
+
+  $("signalBadge").className=
+    "signalBadge bad";
+
+  $("entryContract").textContent=
+    "DO NOT TRADE";
+
+  $("entryReason").textContent=
+    "Signal expired. Re-scan required before any manual entry.";
 }
 
 /* =========================================================
@@ -3236,193 +2717,102 @@ function logScanner(text){
 
 function addSignalHistory(a){
 
-  const box =
-    $("signalHistory");
+  const box=$("signalHistory");
 
-  let setup="";
+  const row=document.createElement("div");
+  row.className="historyItem";
 
-  if(
+  const time=
+    new Date(
+      a.timestamp
+    ).toLocaleTimeString();
+
+  const setup=
     a.contract==="OVER" ||
     a.contract==="UNDER"
-  ){
-    setup =
-      `${a.contract} ${a.barrier}`;
-  }else{
-    setup =
-      `${a.contract} → DIGIT ${a.predictedDigit}`;
+      ? `${a.contract} ${a.barrier}`
+      : `${a.contract} ${a.predictedDigit ?? ""}`;
+
+  row.innerHTML=`
+    <div class="muted">${escapeHtml(time)}</div>
+    <div>
+      <strong>${escapeHtml(setup)}</strong>
+      <div class="muted">${escapeHtml(selectedMarketName)}</div>
+    </div>
+    <div class="${a.ok?"green":"red"}">
+      ${a.score}/100
+    </div>
+  `;
+
+  box.prepend(row);
+
+  while(box.children.length>30){
+    box.lastChild.remove();
   }
+}
 
-  const div =
-    document.createElement("div");
+/* =========================================================
+   SCANNER LOOP
+========================================================= */
 
-  div.className =
-    "history-row";
+function startScanner(){
 
-  div.innerHTML =
-    `<strong class="good-text">GOOD ENTRY</strong> ` +
-    `${escapeHtml(selectedMarketName)} • ` +
-    `${escapeHtml(setup)} • ` +
-    `Confidence ${a.score}% • ` +
-    `Agreement ${a.agreement}%`;
+  stopScanner();
 
-  box.prepend(div);
-
-  while(box.children.length>50){
-    box.removeChild(
-      box.lastChild
+  scanTimer=
+    setInterval(
+      runAnalysis,
+      CONFIG.SCAN_INTERVAL
     );
+}
+
+function stopScanner(){
+
+  if(scanTimer){
+
+    clearInterval(scanTimer);
+    scanTimer=null;
   }
-
-  logScanner(
-    "GOOD ENTRY: " +
-    setup +
-    " | confidence " +
-    a.score +
-    "%"
-  );
 }
 
+$("scanBtn").addEventListener(
+  "click",
+  runAnalysis
+);
+
+$("contractSelect").addEventListener(
+  "change",
+  ()=>{
+
+    showMatchesLock();
+
+    activeSignalKey="";
+    expiredSignalKey="";
+
+    stopCountdown();
+
+    runAnalysis();
+  }
+);
+
 /* =========================================================
-   CONNECTION UI
+   STARTUP
 ========================================================= */
 
-function setConnection(
-  live,
-  text
-){
+function init(){
 
-  $("connectionStatus").textContent =
-    text;
+  showMatchesLock();
 
-  $("statusDot").classList.toggle(
-    "live",
-    live
-  );
-
-  $("statusDot").classList.toggle(
-    "bad",
-    !live
-  );
+  if(
+    localStorage.getItem(
+      "deriv_signal_saved_login"
+    )==="1"
+  ){
+    showApp();
+  }
 }
 
-/* =========================================================
-   EVENTS
-========================================================= */
+init();
 
-$("loginBtn")
-  .addEventListener(
-    "click",
-    login
-  );
-
-$("logoutBtn")
-  .addEventListener(
-    "click",
-    logout
-  );
-
-$("marketSelect")
-  .addEventListener(
-    "change",
-    e=>selectMarket(
-      e.target.value
-    )
-  );
-
-$("contractSelect")
-  .addEventListener(
-    "change",
-    ()=>{
-
-      const contract =
-        $("contractSelect").value;
-
-      stopCountdown();
-
-      signalConfirmationCount=0;
-      lastSignalKey="";
-
-      if(contract==="MATCHES"){
-        if(!matchesUnlocked){
-          $("matchesLock")
-            .classList.remove(
-              "hidden"
-            );
-
-          showLocked();
-          return;
-        }
-      }
-
-      $("matchesLock")
-        .classList.add(
-          "hidden"
-        );
-
-      resetEntry();
-
-      if(ticks.length>=50){
-        runAnalysis();
-      }
-    }
-  );
-
-$("unlockMatches")
-  .addEventListener(
-    "click",
-    unlockMatches
-  );
-
-$("matchesCode")
-  .addEventListener(
-    "keydown",
-    e=>{
-      if(e.key==="Enter"){
-        unlockMatches();
-      }
-    }
-  );
-
-$("clearScanner")
-  .addEventListener(
-    "click",
-    ()=>{
-      $("scanner").innerHTML="";
-      scannerLastText="";
-    }
-  );
-
-$("loginPass")
-  .addEventListener(
-    "keydown",
-    e=>{
-      if(e.key==="Enter"){
-        login();
-      }
-    }
-  );
-
-/* =========================================================
-   SAVED LOCAL LOGIN
-========================================================= */
-
-if(
-  localStorage.getItem(
-    "elisy_saved_login"
-  )==="1"
-){
-
-  $("loginUser").value =
-    CONFIG.LOGIN_USER;
-
-  $("loginPass").value =
-    CONFIG.LOGIN_PASS;
-
-  $("saveLogin").checked=true;
-
-  startApp();
-}
-</script>
-
-</body>
-  </html>
+</script></body>
+    </html>
